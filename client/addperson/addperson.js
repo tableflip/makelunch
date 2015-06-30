@@ -8,6 +8,7 @@ Template.addperson.events = {
     var person = {
       name: tpl.find('.personName').value,
       img: tpl.find('.personImg').value,
+      mobile: tpl.find('.mobile').value,
       auth: {
         twitter: twitterHandle,
         email: null

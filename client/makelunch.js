@@ -116,6 +116,7 @@ function score (person){
 }
 
 MakeLunch.showFeedback = function showFeedback (text) {
+  window.scrollTo(0, 0)
   var feedback = $("#feedback")
   feedback.show()
   feedback.text("> ");
