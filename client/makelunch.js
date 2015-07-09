@@ -56,6 +56,7 @@ Meteor.startup(function () {
       onBeforeAction: [
         function () {
           this.subscribe('meals')
+          this.next()
         }
       ],
       data: function () {

@@ -13,6 +13,16 @@ App.accessRule('http://yui.yahooapis.com', {launchExternal: false})
 App.accessRule('http://netdna.bootstrapcdn.com', {launchExternal: false})
 App.accessRule('http://jailmake.com', {launchExternal: false})
 App.accessRule('http://fc05.deviantart.net', {launchExternal: false})
+App.accessRule('http://rusbycycles.co.uk', {launchExternal: false})
+App.accessRule('http://2013.lxjs.org', {launchExternal: false})
+App.accessRule('http://photos-a.ak.instagram.com', {launchExternal: false})
+App.accessRule('https://pbs.twimg.com/profile_images', {launchExternal: false})
+App.accessRule('https://fbcdn-sphotos-c-a.akamaihd.net', {launchExternal: false})
+App.accessRule('http://i2.bebo.com', {launchExternal: false})
+App.accessRule('https://cloud.githubusercontent.com', {launchExternal: false})
+App.accessRule('http://photos-h.ak.instagram.com', {launchExternal: false})
+App.accessRule('https://avatars0.githubusercontent.com', {launchExternal: false})
+App.accessRule('http://media-cache-ec0.pinimg.com', {launchExternal: false})
 
 App.icons({
   'iphone': 'icons/ios/appicon-60.png',
