@@ -1,6 +1,9 @@
 var messageBirdURI = 'https://rest.messagebird.com/',
     Future = Npm.require('fibers/future'),
-    async = Meteor.npmRequire('async')
+    async = Meteor.npmRequire('async'),
+    heirarchy,
+    eaterIndex,
+    lunchHash
 
 function sendMessage(message, eaters) {
 
@@ -80,15 +83,27 @@ SyncedCron.add({
     return parser.text('at 19:30');
   },
   job: function() {
-    var chefCandidate = Eaters.find({status: 'jail'}).map(function(eater) {
-      eater.score = eater.servings.given - eater.servings.received
-      return eater
-    }).sort(function(eater) {
-      return eater.score
-    })[0]
-    
-    if (chefCandidate) sendMessage('You\'re up to cook tomorrow, ' + greeting() + '!', chefCandidate.name)
+    heirarchy = Eaters.sorted({status: 'jail'})
+    eaterIndex = 0
+    if (heirarchy[eaterIndex]) notifyEater(heirarchy[eaterIndex].name)
   }
 });
 
 SyncedCron.start();
+
+function notifyEater(name) {
+  lunchHash = Random.id()
+  sendMessage('You\'re up to cook tomorrow, ' + greeting() + '! Respond here: http://makelunch.meteor.com/tomorrow/' + lunchHash, name);
+}
+
+Meteor.methods({
+  'confirmLunch': function(answer, hash) {
+    if (hash !== lunchHash) throw new Meteor.Error('Wrong lunch hash! Is this an old lunch you\'re promising to cook?')
+    if (answer) console.log(heirarchy[eaterIndex].name + ' is confirmed as tomorrow\'s lunch chef')
+    else {
+      console.log(heirarchy[eaterIndex].name + ' can\'t cook tomorrow, moving on...')
+      eaterIndex += 1
+      if (heirarchy[eaterIndex]) notifyEater(heirarchy[eaterIndex].name)
+    }
+  }
+})
