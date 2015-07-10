@@ -5,6 +5,10 @@ Meteor.subscribe('meals')
 
 Meteor.startup(function () {
 
+  Router.configure({
+    layoutTemplate: 'layout'
+  })
+
   Router.map(function () {
 
     this.route('home', {
@@ -128,5 +132,15 @@ Template.card.events({
   'dblclick .card': function(evt, tpl){
     var newStatus = (this.status !== 'rye') ? 'rye' : 'jail'
     Eaters.update(this._id, { $set: {status: newStatus}})
+  }
+})
+
+Template.header.events({
+  'click .menu-toggle': function (evt, tpl) {
+    $('#header').toggleClass('active')
+  },
+  'click .login-with-twitter': function (evt, tpl) {
+    evt.preventDefault()
+    Meteor.loginWithTwitter()
   }
 })

@@ -1,9 +1,7 @@
 <template name="home">
-  <div class="row">
-    <h1 class="welcome">{{> today}}</h1>
-    {{> deck}}
-    {{> rye }}
-  </div>
+  <h1 class="welcome">{{> today}}</h1>
+  {{> deck}}
+  {{> rye }}
 </template>
 
 <template name="today">
@@ -33,14 +31,16 @@
 
 <template name="card">
   <div class="card{{#if eating}} eating{{/if}} {{scoreSummary this}}" data-person-id="{{_id}}">
-    <h1>{{name}}
+    <h2>
       {{#if currentUser}}
-        <a class="btn-editperson" href="/editperson/{{ _id }}"><i class="fa fa-pencil"></i></a>
+        <a class="btn-editperson" href="/editperson/{{ _id }}">{{name}}</a>
+      {{else}}
+        {{name}}
       {{/if}}
       <span class="score">{{ score this }}</span>
-    </h1>
+    </h2>
     {{> photoFrame this}}
-    <ul class="stats">
+    <ul class="stats hidden-xs">
       <li>
         <label>Servings</label>
         <span>{{servings.given}} : {{servings.received}}</span>
@@ -62,5 +62,11 @@
         {{/if}}
       </li>
     </ul>
+    <div class="stats visible-xs-block">
+      <span class="ratio">{{servings.given}} : {{servings.received}}</span>
+      {{#if lastCooked}}
+        <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>
+      {{/if}}
+    </div>
   </div>
 </template>
