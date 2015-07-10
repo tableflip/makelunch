@@ -67,15 +67,10 @@ Meteor.startup(function () {
     })
     
     this.route('tomorrow', {
-      path:'/tomorrow/:hash',
+      path:'/tomorrow/:code',
       onBeforeAction: function () {
         if (!Meteor.userId()) Router.go('home')
         this.next()
-      },
-      data: function () {
-        return {
-          chef: Eaters.findOne({'auth.twitter': Meteor.user().services.twitter.screenName})
-        }
       }
     })
   })// end router.map
