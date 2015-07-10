@@ -25,6 +25,11 @@ header .logo{
   height: 50px;
   vertical-align:middle;
 }
+
+header .home {
+  display: none;
+}
+
 header nav {
   display: inline-block;
   vertical-align: middle;
@@ -48,11 +53,13 @@ header nav a:hover {
 }
 header #feedback {
   position: absolute;
-  bottom: 5px;
+  top: 0;
   right: 5px;
   text-align: right;
   width: 250px;
-  color: white;
+  color: red;
+  font-size: 20px;
+  line-height: 50px;
 }
 
 header .login-panel {
@@ -424,6 +431,10 @@ input[type="date"].form-control{
   header .logo{
     display:none;
   }
+  header .home {
+    display: block;
+  }
+  
   .card{
     width:100%;
   }
@@ -476,5 +487,10 @@ input[type="date"].form-control{
     font-size: 32px;
     padding: 20px;
     margin: 0;
+  }
+  
+  header .login-panel #login-dropdown-list {
+    left: 0;
+    top: 50px;
   }
 }

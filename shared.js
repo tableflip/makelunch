@@ -22,6 +22,32 @@ Eaters.scoreSummary = function(eater){
   if (score < 0) return "bad"
 }
 
+Eaters.sorted = function(query) {
+  return this.find(query || {}).fetch().sort(scoreSort)
+}
+
+function scoreSort (a, b) {
+  if (score(a) === score(b)) {
+    var aLastCooked = a.lastCooked || "1970-01-01"
+    var bLastCooked = b.lastCooked || "1970-01-01"
+
+    if (moment(aLastCooked).isSame(bLastCooked)) {
+      return 0
+    } else if (moment(aLastCooked).isBefore(bLastCooked)) {
+      return -1
+    } else {
+      return 1
+    }
+  }
+  if (score(a) > score(b)) return 1;
+  return -1
+}
+
+function score (person){
+  if(!person || !person.servings) return 0;
+  return person.servings.given - person.servings.received
+}
+
 Meals.create = function(meal){
   if(!meal) throw new Error("No meal provided")
   if (meal.dish === '' || null) throw new Error("Can't create a meal with an empty dish!")

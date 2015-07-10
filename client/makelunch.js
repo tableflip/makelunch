@@ -11,7 +11,7 @@ Meteor.startup(function () {
       path:'/' ,
       data: function () {
         return {
-          eaters: Eaters.find({status:'jail'}).fetch().sort(scoreSort),
+          eaters: Eaters.sorted({status:'jail'}),
           mia: Eaters.find({status:'rye'}).fetch(),
           date: todaysDate(),
           whoShouldCook: whoShouldCook()
@@ -56,11 +56,25 @@ Meteor.startup(function () {
       onBeforeAction: [
         function () {
           this.subscribe('meals')
+          this.next()
         }
       ],
       data: function () {
         return {
           meals: Meals.find({}, {sort: {date: -1}}).fetch()
+        }
+      }
+    })
+    
+    this.route('tomorrow', {
+      path:'/tomorrow/:hash',
+      onBeforeAction: function () {
+        if (!Meteor.userId()) Router.go('home')
+        this.next()
+      },
+      data: function () {
+        return {
+          chef: Eaters.findOne({'auth.twitter': Meteor.user().services.twitter.screenName})
         }
       }
     })
@@ -84,38 +98,12 @@ UI.registerHelper('score', function (eater) {
   return eater.servings.given - eater.servings.received
 })
 
-
-function scoreSort (a, b) {
-  if (score(a) === score(b)) {
-    var aLastCooked = a.lastCooked || "1970-01-01"
-    var bLastCooked = b.lastCooked || "1970-01-01"
-
-    if (moment(aLastCooked).isSame(bLastCooked)) {
-      return 0
-    } else if (moment(aLastCooked).isBefore(bLastCooked)) {
-      return -1
-    } else {
-      return 1
-    }
-  }
-  if (score(a) > score(b)) return 1;
-  return -1
-}
-
 function whoShouldCook() {
-  var eaters = Eaters.find({'status':'jail'}).fetch()
-
-  eaters.sort(scoreSort)
-
-  return eaters[0]
-}
-
-function score (person){
-  if(!person || !person.servings) return 0;
-  return person.servings.given - person.servings.received
+  return Eaters.sorted[0]
 }
 
 MakeLunch.showFeedback = function showFeedback (text) {
+  window.scrollTo(0, 0)
   var feedback = $("#feedback")
   feedback.show()
   feedback.text("> ");

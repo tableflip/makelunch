@@ -10,7 +10,12 @@ accounts-ui
 iron:router
 mrt:moment
 jparker:crypto-md5
-mike:mocha
-velocity:html-reporter
 london:body-class
 
+http
+richsilv:cordova-notifications
+percolate:synced-cron
+meteorhacks:npm
+
+
+npm-container
