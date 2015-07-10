@@ -1,5 +1,23 @@
 <template name="meals">
-  <table class="pure-table pure-table-horizontal">
+  {{#each meals}}
+    <div class="row meal">
+      <div class="tint"></div>
+      <div class="names">
+        {{#each chef}}
+          {{#with profile this}}
+            <span>{{name}}</span>
+          {{/with}}
+        {{/each}}
+      </div>
+      <span class="dish">{{dish}}</span>
+      {{#each eaters}}
+        {{#with profile this}}
+          {{> photoFrame}}
+        {{/with}}
+      {{/each}}
+    </div>
+  {{/each}}
+  <!-- <table class="pure-table pure-table-horizontal">
     <thead>
       <tr>
         <th>Date</th>
@@ -30,5 +48,5 @@
     </tr>
     {{/each}}
     </tbody>
-  </table>
+  </table> -->
 </template>
