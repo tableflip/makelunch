@@ -139,6 +139,9 @@ Template.header.events({
   'click .menu-toggle': function (evt, tpl) {
     $('#header').toggleClass('active')
   },
+  'click #header nav a': function (evt, tpl) {
+    $('#header').removeClass('active')
+  },
   'click .login-with-twitter': function (evt, tpl) {
     evt.preventDefault()
     Meteor.loginWithTwitter()

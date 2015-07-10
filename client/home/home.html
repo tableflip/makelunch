@@ -31,16 +31,16 @@
 
 <template name="card">
   <div class="card{{#if eating}} eating{{/if}} {{scoreSummary this}}" data-person-id="{{_id}}">
-    <h2>
+    <div class="label-top">
       {{#if currentUser}}
         <a class="btn-editperson" href="/editperson/{{ _id }}">{{name}}</a>
       {{else}}
         {{name}}
       {{/if}}
       <span class="score">{{ score this }}</span>
-    </h2>
+    </div>
     {{> photoFrame this}}
-    <ul class="stats hidden-xs">
+    <ul class="stats label-bottom hidden-xs">
       <li>
         <label>Servings</label>
         <span>{{servings.given}} : {{servings.received}}</span>
@@ -62,7 +62,7 @@
         {{/if}}
       </li>
     </ul>
-    <div class="stats visible-xs-block">
+    <div class="stats label-bottom visible-xs-block">
       <span class="ratio">{{servings.given}} : {{servings.received}}</span>
       {{#if lastCooked}}
         <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>

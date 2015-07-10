@@ -4,7 +4,9 @@
     <div class="mealEaters">
       {{#each people}}
         <div class="card" data-eater="{{_id}}">
-          <h2>{{name}}</h2>
+          <div class="label-top">
+            <span>{{name}}</span>
+          </div>
           {{> photoFrame this}}
         </div>
       {{/each}}
