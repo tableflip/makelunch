@@ -128,6 +128,12 @@ Template.home.todaysDate = function () {
   return todaysDate()
 }
 
+Template.addmeal.helpers({
+  todaysDate: function () {
+    return moment().format('YYYY-MM-DD')
+  }
+})
+
 Template.card.events({
   'dblclick .card': function(evt, tpl){
     var newStatus = (this.status !== 'rye') ? 'rye' : 'jail'
