@@ -36,29 +36,7 @@
       <span class="score">{{ score this }}</span>
     </div>
     {{> photoFrame this}}
-    <ul class="stats label-bottom hidden-xs">
-      <li>
-        <label>Servings</label>
-        <span>{{servings.given}} : {{servings.received}}</span>
-      </li>
-      <li>
-        <label>Last ate</label>
-        {{#if lastEaten}}
-        <span title="{{lastEaten}}">{{fromNow lastEaten}}</span>
-        {{else}}
-        <span title="Never">Never</span>
-        {{/if}}
-      </li>
-      <li>
-        <label>Last cooked</label>
-        {{#if lastCooked}}
-        <span title="{{lastCooked}}">{{fromNow lastCooked}}</span>
-        {{else}}
-        <span>Never</span>
-        {{/if}}
-      </li>
-    </ul>
-    <div class="stats label-bottom visible-xs-block">
+    <div class="stats label-bottom">
       <span class="ratio">{{servings.given}} : {{servings.received}}</span>
       {{#if lastCooked}}
         <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>
