@@ -25,13 +25,16 @@
       <a href="#" class="login-with-twitter">Login with Twitter</a>
       {{/unless}}
     </nav>
-    <span id="feedback"></span>
   </header>
 </template>
 
 <template name="photoFrame">
   <div class="photoFrame" title="{{name}}">
-    <img src="{{img}}">
+    {{#if uploadcare}}
+      <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
+    {{else}}
+      <img src="{{monster}}">
+    {{/if}}
   </div>
 </template>
 

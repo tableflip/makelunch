@@ -17,7 +17,7 @@ a {
   text-align: center;
   border-radius: 3px;
   margin-bottom: 5px;
-  background-color: RGBA(44, 159, 242, 1);
+  background-color: rgba(44, 159, 242, 1);
   &:hover {
     box-shadow: inset 0 0 1px 1px white;
   }
@@ -52,6 +52,9 @@ input.form-control[type=text], input.form-control[type=number], input.form-contr
   margin: 5px 0;
   border-radius: 3px;
   padding: 4px 6px;
+}
+.uploadcare-widget {
+  margin: 5px 0;
 }
 button[type=submit] {
   margin-top: 5px;
@@ -133,10 +136,14 @@ body.home .card {
     height: 35px;
     padding: 10px 10px;
     width: 100%;
-    background-color: RGBA(250, 73, 23, 1);
+    background-color: rgba(250, 73, 23, 1);
     .score {
       float: right;
     }
+  }
+  .photoFrame {
+    background-color: rgb(13, 39, 54);
+    min-height: 100px;
   }
   img { vertical-align: middle; }
   .stats {
@@ -150,7 +157,7 @@ body.home .card {
     transition: top 0.15s;
     padding: 10px;
     width: 100%;
-    background-color: RGBA(13, 39, 54, 0.8);
+    background-color: rgba(13, 39, 54, 0.8);
     span {
       display: block;
       margin-bottom: 5px;
@@ -191,11 +198,12 @@ body.addmeal, body.editmeal {
     bottom: 100%;
     opacity: 1;
     transition: all 0.2s;
+    overflow: hidden;
   }
   .card.eating .eater-status {
     bottom: 0;
     opacity: 1;
-    background-color: RGBA(13, 39, 54, 0.8);
+    background-color: rgba(13, 39, 54, 0.8);
     &:before {
       position: absolute;
       left: 50%;
@@ -230,13 +238,13 @@ body.meals .meal {
   }
   .tint {
     z-index: 2;
-    background-color: RGBA(13, 39, 54, 0.8);
+    background-color: rgba(13, 39, 54, 0.8);
     transition: background-color 0.25s;
   }
   &:hover, &:focus {
-    background-color: RGBA(13, 39, 54, 0.5);
+    background-color: rgba(13, 39, 54, 0.5);
     .tint {
-      background-color: RGBA(13, 39, 54, 0);
+      background-color: rgba(13, 39, 54, 0);
     }
     .centred-content {
       opacity: 0;
@@ -380,12 +388,38 @@ body.editperson .editimg img {
       margin: 0 -2px;
     }
   }
-  .form-group input {
-    max-width: 600px;
+  .form-group {
+    text-align: right;
+    label {
+      text-align: left;
+      line-height: 30px;
+      margin: 5px 0;
+      width: 20%;
+      display: inline-block;
+      float: left;
+    }
+    input.form-control[type=text], input.form-control[type=number], input.form-control[type=url], input.form-control[type=date] {
+      height: 30px;
+      margin: 5px 0;
+      display: inline-block;
+      width: 80%;
+    }
+    .uploadcare-widget {
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-right: calc(~"80% - 125px");
+      .uploadcare-widget-button {
+        width: 120px;
+        text-align: center;
+      }
+    }
+  }
+  .form-group.submit {
+    text-align: right;
   }
   button[type=submit] {
-    width: 200px;
-    margin-left: 400px;
+    width: auto;
+    padding: 6px 18px;
   }
 }
 @media (min-width: 1200px) {

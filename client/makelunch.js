@@ -92,13 +92,6 @@ Meteor.startup(function () {
 
   //registerHelpers
   UI.registerHelper('scoreSummary', Eaters.scoreSummary)
-
-  return SEO.config({
-    title: 'Makelunch',
-    meta: {
-      'viewport': 'initial-scale=1'
-    }
-  })
 })// end Meteor.startup
 
 UI.registerHelper('fromNow', function (date) {
@@ -111,8 +104,13 @@ UI.registerHelper('equal', function (a, b) {
 
 UI.registerHelper('profile', function (userId) {
   var eater = Eaters.findOne(userId)
-  eater.img = eater.img || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
+  eater.monster = eater.monster || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
   return eater
+})
+
+UI.registerHelper('monster', function () {
+  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=monsterid"
+  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=monsterid"
 })
 
 UI.registerHelper('score', function (eater) {

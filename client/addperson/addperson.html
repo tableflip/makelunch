@@ -15,12 +15,14 @@
       <label class="hidden-xs">Phone Number</label>
       <input class="form-control placeholder-visible-xs mobile" type="text" placeholder="Mobile Number" />
     </div>
-    
+
     <div class="form-group">
-      <label class="hidden-xs">Photo url</label>
-      <input class="form-control placeholder-visible-xs personImg" type="url" placeholder="Photo URL" />
+      <label class="hidden-xs">Picture</label>
+      <input type="hidden" name="picture" role="uploadcare-uploader" data-crop />
+      <input type="hidden" id="uploadcare-uuid" name="uploadcare-uuid" />
     </div>
-    <div class="form-group">
+
+    <div class="form-group submit">
       <button class="btn" type="submit">Add</button>
     </div>
   </form>
