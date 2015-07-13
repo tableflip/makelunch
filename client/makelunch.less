@@ -1,3 +1,4 @@
+/* GENERAL */
 * {
   box-sizing: border-box;
   font-weight: 100;
@@ -62,60 +63,47 @@ body > header {
   width: 100%;
   top: 0;
   min-height: 30px;
-}
-body > header .logo {
-  display: inline-block;
-  width: auto;
-  height: 100%;
-}
-body > header .logo .icon {
-  width: 5em;
-  height: 2em;
-}
-body > header .menu-toggle {
-  float: right;
-  display: inline-block;
-}
-body > header .menu-toggle .icon {
-  width: 2.5em;
-  height: 2em;
-}
-body > header > nav {
-  max-height: 0;
-  overflow: hidden;
-  transform: translateZ(0);
-  transition: max-height 0.25s;
-}
-body > header.active {
-  box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
-}
-body > header.active > nav {
-  max-height: 160px;
-}
-body > header > nav > a {
-  display: block;
-  height: 30px;
-  color: #FFF;
-  text-decoration: none;
-  font-weight: 300;
-  font-size: 24px;
-  margin: 10px 0;
-}
-body > header > nav > a:last-of-type {
-  margin-bottom: 0;
-}
-body > header > nav a .fa {
-  display: none;
+  .logo {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    .icon {
+      width: 5em;
+      height: 2em;
+    }
+  }
+  .menu-toggle {
+    float: right;
+    display: inline-block;
+    .icon {
+      width: 2.5em;
+      height: 2em;
+    }
+  }
+  > nav {
+    max-height: 0;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition: max-height 0.25s;
+    > a {
+      display: block;
+      height: 30px;
+      color: #FFF;
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 24px;
+      margin: 10px 0;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &.active {
+    box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
+    > nav { max-height: 160px; }
+  }
 }
 
-.card {
-  color: #FFF;
-  overflow: hidden;
-  position: relative;
-  height: 300px;
-  height: calc(~"100vw - 20px");
-  margin-bottom: 5px;
-}
 body.home .card {
   width: calc(~"100% + 20px");
   margin-left: -10px;
@@ -123,61 +111,68 @@ body.home .card {
   height: 320px;
   height: calc(~"100vw");
 }
-.card > .label-top {
-  position: absolute;
-  top: 0;
-  margin: 0;
-  height: 28px;
-  padding: 5px 10px;
-  width: 100%;
-  background-color: rgba(47, 159, 241, 0.9);
-}
-.card > .label-top .score {
-  float: right;
-}
-.card img, .card .photoframe {
-  width: 100%;
-}
-.card .stats {
-  transform: translateZ(0);
+.card {
+  color: #FFF;
   overflow: hidden;
-  position: absolute;
-  text-align: center;
-  top: calc(~"100% - 39px");
-  bottom: 0;
-  font-size: 18px;
-  transition: top 0.15s;
-  padding: 10px;
-  width: 100%;
-  background-color: rgba(47, 159, 241, 0.9);
-}
-.card:hover .stats, .card:focus .stats {
-  border-top: 1px solid white;
-  top: 28px;
-}
-.card .stats span {
-  display: block;
+  position: relative;
+  height: 300px;
+  height: calc(~"100vw - 20px");
   margin-bottom: 5px;
+  > .label-top {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    height: 28px;
+    padding: 5px 10px;
+    width: 100%;
+    background-color: rgba(47, 159, 241, 0.9);
+    .score {
+      float: right;
+    }
+  }
+  .stats {
+    transform: translateZ(0);
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: calc(~"100% - 39px");
+    bottom: 0;
+    font-size: 18px;
+    transition: top 0.15s;
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(47, 159, 241, 0.9);
+    span {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .card-buttons {
+      position: absolute;
+      left: -100%;
+      width: calc(~"100% - 20px");
+      transition: left 0.15s;
+      bottom: 5px;
+      a {
+        display: block;
+        padding: 10px 5px;
+        text-align: center;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        background-color: #F94816;
+      }
+    }
+  }
+  &:hover, &:focus {
+    .stats {
+      border-top: 1px solid white;
+      top: 28px;
+      .card-buttons {
+        left: 10px;
+      }
+    }
+  }
+  img, .photoFrame { width: 100%; }
 }
-.card .stats .card-buttons {
-  position: absolute;
-  left: -100%;
-  width: calc(~"100% - 20px");
-  transition: left 0.15s;
-  bottom: 5px;
-}
-.card:hover .stats .card-buttons, .card:focus .stats .card-buttons {
-  left: 10px;
-}
-.card .stats .card-buttons a {
-  display: block;
-  padding: 10px 5px;
-  text-align: center;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  background-color: #F94816;
-}
-
 /* ADD MEAL */
 body.addmeal, body.editmeal {
   .card {

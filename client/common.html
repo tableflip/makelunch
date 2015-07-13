@@ -8,21 +8,17 @@
     </a>
     <nav>
       <a href="/" class="home">
-        <i class="fa fa-home"></i>
         <span>Home</span>
       </a>
       {{#if currentUser }}
       <a href="/addmeal" class="add-meal">
-        <i class="fa fa-cutlery"></i>
         <span>Log a meal</span>
       </a>
       <a href="/addperson">
-        <i class="fa fa-plus-circle"></i>
         <span>Add someone</span>
       </a>
       {{/if}}
       <a href="/meals">
-        <i class="fa fa-th-list"></i>
         <span>Meals past</span>
       </a>
       {{#unless currentUser }}
