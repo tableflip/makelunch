@@ -69,7 +69,7 @@ body > header > nav {
   transition: max-height 0.25s;
 }
 body > header.active {
-  box-shadow: 0 0px 20px 5px #666;
+  box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
 }
 body > header.active > nav {
   max-height: 160px;
@@ -95,15 +95,15 @@ body > header > nav a .fa {
   overflow: hidden;
   position: relative;
   height: 300px;
-  height: calc(100vw - 20px);
+  height: calc(~"100vw - 20px");
   margin-bottom: 5px;
 }
 body.home .card {
-  width: calc(100% + 20px);
+  width: calc(~"100% + 20px");
   margin-left: -10px;
   margin-right: -10px;
   height: 320px;
-  height: calc(100vw);
+  height: calc(~"100vw");
 }
 .card > .label-top {
   position: absolute;
@@ -124,7 +124,7 @@ body.home .card {
   overflow: hidden;
   position: absolute;
   text-align: center;
-  top: calc(100% - 35px);
+  top: calc(~"100% - 35px");
   bottom: 0;
   transition: top 0.15s;
   padding: 10px;
@@ -141,7 +141,7 @@ body.home .card {
 }
 .card .stats .card-buttons {
   position: absolute;
-  width: calc(100% - 20px);
+  width: calc(~"100% - 20px");
   opacity: 0;
   transition: opacity 0.1s;
   bottom: 5px;
@@ -161,9 +161,9 @@ body.home .card {
 /* ADD MEAL */
 body.addmeal .card {
   display: inline-block;
-  width: calc(50% - 5px);
+  width: calc(~"50% - 5px");
   height: 150px;
-  height: calc(50vw - 20px);
+  height: calc(~"50vw - 20px");
 }
 body.addmeal .card > .label-top {
   overflow: hidden;
@@ -209,7 +209,7 @@ button[type=submit] {
 /* MEALS */
 body.meals .meal .photoFrame {
   display: inline-block;
-  width: calc(20% - 2px);
+  width: calc(~"20% - 2px");
   margin: 1px;
 }
 body.meals .meal {

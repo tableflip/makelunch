@@ -91,6 +91,13 @@ Meteor.startup(function () {
 
   //registerHelpers
   UI.registerHelper('scoreSummary', Eaters.scoreSummary)
+
+  return SEO.config({
+    title: 'Makelunch',
+    meta: {
+      'viewport': 'initial-scale=1'
+    }
+  })
 })// end Meteor.startup
 
 UI.registerHelper('fromNow', function (date) {
