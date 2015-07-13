@@ -9,6 +9,11 @@ Meteor.startup(function () {
     layoutTemplate: 'layout'
   })
 
+  Router.onBeforeAction(function () {
+    $('body, html').scrollTop(0)
+    this.next()
+  })
+
   Router.map(function () {
 
     this.route('home', {
@@ -37,7 +42,6 @@ Meteor.startup(function () {
       path:'/editmeal/:_id',
       data: function () {
         var meal = Meals.findOne(this.params._id)
-        console.log(meal)
         return {
           meal: meal,
           eaters: Eaters.find({_id: {$in: meal.eaters, $nin: meal.chef}}),
@@ -94,7 +98,6 @@ UI.registerHelper('fromNow', function (date) {
 })
 
 UI.registerHelper('equal', function (a, b) {
-  console.log(a, b)
   return a === b
 })
 
