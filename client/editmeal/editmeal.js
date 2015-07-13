@@ -16,7 +16,6 @@ Template.editmeal.events({
 
   'click .mealEaters .card': function (evt, tpl) {
     var card = $(evt.currentTarget)
-    console.log(card.attr('class'))
 
     if (card.hasClass('chef')) card.removeClass('chef eating') 
       else if (card.hasClass('eating')) card.addClass('chef')

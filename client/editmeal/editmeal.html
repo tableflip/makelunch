@@ -1,44 +1,46 @@
 <template name="editmeal">
   <form class="editmeal">
     <h1>Editing meal for {{meal.date}}</h1>
-    <h2>Who ate?</h2>
     <div class="mealEaters">
       {{#each chefs}}
         <div class="card eating chef" data-eater="{{_id}}">
-          <h1>{{name}}</h1>
+          <div class="label-top">
+            <span>{{name}}</span>
+          </div>
           {{> photoFrame this}}
         </div>
       {{/each}}
       {{#each eaters}}
         <div class="card eating" data-eater="{{_id}}">
-          <h1>{{name}}</h1>
+          <div class="label-top">
+            <span>{{name}}</span>
+          </div>
           {{> photoFrame this}}
         </div>
       {{/each}}
       {{#each people}}
         <div class="card" data-eater="{{_id}}">
-          <h1>{{name}}</h1>
+          <div class="label-top">
+            <span>{{name}}</span>
+          </div>
           {{> photoFrame this}}
         </div>
       {{/each}}
     </div>
     <div class="form-group">
-      <label>What was for lunch?</label>
-      <input type="text" class="mealDish form-control" value="{{meal.dish}}" required='required'>
+      <label class="hidden-xs">What's for lunch?</label>
+      <input placeholder="What's for lunch?" type="text" class="mealDish form-control" value="{{meal.dish}}" required='required'>
     </div>
     <div class="form-group guests">
-      <label>Were there any guests?</label>
-      <input type="number" min="0" step="1" value="{{meal.guests}}" class="mealGuests form-control"/>
+      <label class="hidden-xs">Any guests?</label>
+      <input placeholder="Number of guests" type="number" min="0" step="1" class="mealGuests form-control" value="{{meal.guests}}" />
     </div>
     <div class="form-group date">
-      <label>Date</label>
-      <input type="date" class="mealDate form-control" value="{{meal.date}}" required='required'/>
+      <label class="hidden-xs">Date?</label>
+      <input placeholder="Today's date" type="date" class="mealDate form-control" value="{{meal.date}}" required='required'/>
     </div>
     <div class="form-group submit">
-      <button class="btn">Save</button>
+      <button class="btn" type="submit">Save</button>
     </div>
   </form>
-  <div class="form-group button">
-    <button class="btn delete">Bin this meal</button>
-  </div>
 </template>

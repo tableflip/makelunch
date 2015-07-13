@@ -42,6 +42,7 @@ Meteor.startup(function () {
       path:'/editmeal/:_id',
       data: function () {
         var meal = Meals.findOne(this.params._id)
+        if (!meal) return false
         return {
           meal: meal,
           eaters: Eaters.find({_id: {$in: meal.eaters, $nin: meal.chef}}),
@@ -145,8 +146,17 @@ Template.home.todaysDate = function () {
 }
 
 Template.addmeal.helpers({
-  todaysDate: function () {
+  todaysISODate: function () {
     return moment().format('YYYY-MM-DD')
+  }
+})
+
+Template.editmeal.helpers({
+  todaysISODate: function () {
+    return moment().format('YYYY-MM-DD')
+  },
+  todaysDate: function () {
+    return moment().format('DD/MM/YYYY')
   }
 })
 
