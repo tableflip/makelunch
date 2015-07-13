@@ -2,19 +2,22 @@
   {{#each meals}}
     <div class="row meal">
       <div class="tint"></div>
-      <div class="names">
-        {{#each chef}}
-          {{#with profile this}}
-            <span>{{name}}</span>
-          {{/with}}
-        {{/each}}
+      <div class="centred-content">
+        <div class="names">
+          {{#each chef}}
+            {{#with profile this}}
+              <span>{{name}}</span>
+            {{/with}}
+          {{/each}}
+        </div>
+        <span class="dish">{{dish}}</span>
       </div>
-      <span class="dish">{{dish}}</span>
       {{#each eaters}}
         {{#with profile this}}
           {{> photoFrame}}
         {{/with}}
       {{/each}}
+      <a class="btn btn-edit-meal" href="/editmeal/{{_id}}">Edit meal</a>
     </div>
   {{/each}}
 </template>
