@@ -203,6 +203,7 @@ body.addmeal, body.editmeal {
       color: white;
       font-size: 64px;
       text-align: center;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
     }
   }
   .card.chef > .label-top:before { content: '\1F373'; }
@@ -282,7 +283,66 @@ body.editperson .editimg img {
   /* SM */
   .visible-xs-inline-block, .visible-xs-block { display: none; }
   .hidden-xs { display: block; }
-
+  input.placeholder-hidden-xs::-webkit-input-placeholder {
+    color: transparent;
+  }
+  input.placeholder-hidden-xs:-moz-placeholder {
+    color: transparent;
+  }
+  input.placeholder-hidden-xs::-moz-placeholder {
+    color: transparent;
+  }
+  input.placeholder-hidden-xs:-ms-input-placeholder {  
+    color: transparent;
+  }
+  .form-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  body.home .card {
+    display: inline-block;
+    width: calc(~"50% - 3px");
+    margin: 5px -2px 5px 2px;
+    height: auto;
+  }
+  body.addmeal, body.editmeal {
+    .card, .card:nth-child(odd) {
+      display: inline-block;
+      width: calc(~"25% - 2px");
+      margin: 2px -4px 2px 2px;
+      height: auto;
+    }
+  }
+  body.meals .meal .centred-content {
+    font-size: 36px;
+  }
+  #header {
+    .menu-toggle {
+      display: none;
+    }
+    > nav {
+      display: inline-block;
+      float: right;
+      max-height: none;
+      > a {
+        display: inline-block;
+        height: auto;
+        color: #FFF;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 18px;
+        margin: 10px;
+        &:last-of-type {
+          margin: 10px;
+        }
+      }
+      > a.home { display: none; }
+    }
+    &.active {
+      box-shadow: none;
+      > nav { max-height: auto; }
+    }
+  }
 }
 @media (min-width: 992px) {
   /* MD */

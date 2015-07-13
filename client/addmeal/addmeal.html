@@ -13,41 +13,18 @@
     </div>
     <div class="form-group">
       <label class="hidden-xs">What's for lunch?</label>
-      <input placeholder="What's for lunch?" type="text" class="mealDish form-control" required='required'>
+      <input placeholder="What's for lunch?" type="text" class="mealDish form-control placeholder-hidden-xs" required='required'>
     </div>
     <div class="form-group guests">
       <label class="hidden-xs">Any guests?</label>
-      <input placeholder="Number of guests" type="number" min="0" step="1" class="mealGuests form-control"/>
+      <input placeholder="Number of guests" type="number" min="0" step="1" class="mealGuests form-control placeholder-hidden-xs"/>
     </div>
     <div class="form-group date">
       <label class="hidden-xs">Date?</label>
-      <input placeholder="Today's date" type="date" class="mealDate form-control" value="{{todaysISODate}}" required='required'/>
+      <input placeholder="Today's date" type="date" class="mealDate form-control placeholder-hidden-xs" value="{{todaysISODate}}" required='required'/>
     </div>
     <div class="form-group submit">
       <button class="btn" type="submit">Add</button>
     </div>
   </form>
-</template>
-
-<!-- not wired up -->
-<template name="nuaddmeal">
-  <div class="add-meal-hint">
-    <h2 class="add-eaters-hint">Who ate? (including chef)</h2>
-    <h2 class="add-chefs-hint">Who cooked?</h2>
-    <h2 class="add-meal-details-hint">What did they cook?</h2>
-    <button class="next btn">Next</button>
-    <button class="save btn fa fa-check">Save</button>
-    <button class="cancel btn pull-right fa fa-times">Cancel</button>
-    <div class="meal-details">
-      <div class="form-group dish">
-        <label for="mealDish">Dish</label>
-        <input class="mealDish form-control" id="mealDish" type="text" />
-      </div>
-      <br>
-      <div class="form-group date">
-        <label for="mealDate">Date</label>
-        <input class="mealDate form-control" id="mealDate" type="date" value="{{todaysISODate}}"/>
-      </div>
-    </div>
-  </div>
 </template>
