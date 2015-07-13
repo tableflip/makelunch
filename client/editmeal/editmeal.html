@@ -7,6 +7,7 @@
           <div class="label-top">
             <span>{{name}}</span>
           </div>
+          <div class="eater-status"></div>
           {{> photoFrame this}}
         </div>
       {{/each}}
@@ -15,6 +16,7 @@
           <div class="label-top">
             <span>{{name}}</span>
           </div>
+          <div class="eater-status"></div>
           {{> photoFrame this}}
         </div>
       {{/each}}
@@ -23,21 +25,22 @@
           <div class="label-top">
             <span>{{name}}</span>
           </div>
+          <div class="eater-status"></div>
           {{> photoFrame this}}
         </div>
       {{/each}}
     </div>
     <div class="form-group">
       <label class="hidden-xs">What's for lunch?</label>
-      <input placeholder="What's for lunch?" type="text" class="mealDish form-control placeholder-hidden-xs" value="{{meal.dish}}" required='required'>
+      <input placeholder="What's for lunch?" type="text" class="mealDish form-control placeholder-visible-xs" value="{{meal.dish}}" required='required'>
     </div>
     <div class="form-group guests">
       <label class="hidden-xs">Any guests?</label>
-      <input placeholder="Number of guests" type="number" min="0" step="1" class="mealGuests form-control placeholder-hidden-xs" value="{{meal.guests}}" />
+      <input placeholder="Number of guests" type="number" min="0" step="1" class="mealGuests form-control placeholder-visible-xs" value="{{meal.guests}}" />
     </div>
     <div class="form-group date">
       <label class="hidden-xs">Date?</label>
-      <input placeholder="Today's date" type="date" class="mealDate form-control placeholder-hidden-xs" value="{{meal.date}}" required='required'/>
+      <input placeholder="Today's date" type="date" class="mealDate form-control placeholder-visible-xs" value="{{meal.date}}" required='required'/>
     </div>
     <div class="form-group submit">
       <button class="btn" type="submit">Save</button>

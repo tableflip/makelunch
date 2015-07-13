@@ -10,6 +10,18 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.btn {
+  display: inline-block;
+  padding: 6px 5px;
+  color: #FFF;
+  text-align: center;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  background-color: RGBA(44, 159, 242, 1);
+  &:hover {
+    box-shadow: inset 0 0 1px 1px white;
+  }
+}
 .tint {
   position: absolute;
   width: 100%;
@@ -38,6 +50,7 @@ input.form-control[type=text], input.form-control[type=number], input.form-contr
   width: 100%;
   height: 36px;
   margin: 5px 0;
+  border-radius: 3px;
   padding: 4px 6px;
 }
 button[type=submit] {
@@ -51,13 +64,13 @@ button[type=submit] {
 }
 
 body {
-  background-color: #FFF;
+  background-color: #C1CFB8;
   color: #000;
   padding-top: 56px;
 }
 body > header {
   z-index: 4;
-  background-color: #2F9FF1;
+  background-color: #0E2835;
   color: #FFF;
   position: fixed;
   width: 100%;
@@ -118,18 +131,18 @@ body.home .card {
   height: 300px;
   height: calc(~"100vw - 20px");
   margin-bottom: 5px;
+  vertical-align: middle;
   > .label-top {
-    position: absolute;
-    top: 0;
     margin: 0;
-    height: 28px;
-    padding: 5px 10px;
+    height: 35px;
+    padding: 10px 10px;
     width: 100%;
-    background-color: rgba(47, 159, 241, 0.9);
+    background-color: RGBA(250, 73, 23, 1);
     .score {
       float: right;
     }
   }
+  img { vertical-align: middle; }
   .stats {
     transform: translateZ(0);
     overflow: hidden;
@@ -141,7 +154,7 @@ body.home .card {
     transition: top 0.15s;
     padding: 10px;
     width: 100%;
-    background-color: rgba(47, 159, 241, 0.9);
+    background-color: RGBA(13, 39, 54, 0.8);
     span {
       display: block;
       margin-bottom: 5px;
@@ -152,20 +165,13 @@ body.home .card {
       width: calc(~"100% - 20px");
       transition: left 0.15s;
       bottom: 5px;
-      a {
-        display: block;
-        padding: 10px 5px;
-        text-align: center;
-        border-radius: 3px;
-        margin-bottom: 5px;
-        background-color: #F94816;
-      }
+      .btn { display: block; }
     }
   }
   &:hover, &:focus {
     .stats {
       border-top: 1px solid white;
-      top: 28px;
+      top: 35px;
       .card-buttons {
         left: 10px;
       }
@@ -180,20 +186,22 @@ body.addmeal, body.editmeal {
     width: calc(~"50% - 5px");
     height: 150px;
     height: calc(~"50vw - 20px");
-    > .label-top {
-      overflow: hidden;
-      font-size: 14px;
-      height: 26px;
-      transform: translateZ(0);
-      transition: all 0.2s;
-    }
   }
   .card:nth-child(odd) {
     margin-right: 5px;
   }
-  .card.eating > .label-top {
-    height: 100%;
-    background-color: rgba(47, 159, 241, 0.9);
+  .card .eater-status {
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    bottom: 100%;
+    opacity: 1;
+    transition: all 0.2s;
+  }
+  .card.eating .eater-status {
+    bottom: 0;
+    opacity: 1;
+    background-color: RGBA(13, 39, 54, 0.8);
     &:before {
       position: absolute;
       left: 50%;
@@ -206,7 +214,7 @@ body.addmeal, body.editmeal {
       text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
     }
   }
-  .card.chef > .label-top:before { content: '\1F373'; }
+  .card.chef .eater-status:before { content: '\1F373'; }
 }
 /* MEALS */
 body.meals .meal {
@@ -228,19 +236,19 @@ body.meals .meal {
   }
   .tint {
     z-index: 2;
-    background-color: rgba(47, 159, 241, 0.8);
+    background-color: RGBA(13, 39, 54, 0.8);
     transition: background-color 0.25s;
   }
   &:hover, &:focus {
-    background-color: rgba(47, 159, 241, 0.5);
+    background-color: RGBA(13, 39, 54, 0.5);
     .tint {
-      background-color: rgba(47, 159, 241, 0);
+      background-color: RGBA(13, 39, 54, 0);
     }
     .centred-content {
       opacity: 0;
     }
     .btn-edit-meal {
-      left: 5px;
+      left: 10px;
     }
   }
   .centred-content {
@@ -265,10 +273,6 @@ body.meals .meal {
     position: absolute;
     bottom: 5px;
     left: -100%;
-    color: white;
-    background-color: #F94816;
-    border-radius: 3px;
-    padding: 6px 12px;
     z-index: 4;
     transition: left 0.5s;
   }
@@ -283,16 +287,18 @@ body.editperson .editimg img {
   /* SM */
   .visible-xs-inline-block, .visible-xs-block { display: none; }
   .hidden-xs { display: block; }
-  input.placeholder-hidden-xs::-webkit-input-placeholder {
+
+  body { padding-top: 61px; }
+  input.placeholder-visible-xs::-webkit-input-placeholder {
     color: transparent;
   }
-  input.placeholder-hidden-xs:-moz-placeholder {
+  input.placeholder-visible-xs:-moz-placeholder {
     color: transparent;
   }
-  input.placeholder-hidden-xs::-moz-placeholder {
+  input.placeholder-visible-xs::-moz-placeholder {
     color: transparent;
   }
-  input.placeholder-hidden-xs:-ms-input-placeholder {  
+  input.placeholder-visible-xs:-ms-input-placeholder {  
     color: transparent;
   }
   .form-group {
@@ -304,12 +310,12 @@ body.editperson .editimg img {
     width: calc(~"50% - 3px");
     margin: 5px -2px 5px 2px;
     height: auto;
+    .stats { padding-top: 50px; }
   }
   body.addmeal, body.editmeal {
     .card, .card:nth-child(odd) {
-      display: inline-block;
       width: calc(~"25% - 2px");
-      margin: 2px -4px 2px 2px;
+      margin: 0 -4px 0 2px;
       height: auto;
     }
   }
@@ -317,15 +323,19 @@ body.editperson .editimg img {
     font-size: 36px;
   }
   #header {
+    height: 56px;
+    padding: 10px;
     .menu-toggle {
       display: none;
     }
     > nav {
+      height: 100%;
       display: inline-block;
       float: right;
       max-height: none;
       > a {
         display: inline-block;
+        vertical-align: middle;
         height: auto;
         color: #FFF;
         text-decoration: none;
@@ -346,7 +356,43 @@ body.editperson .editimg img {
 }
 @media (min-width: 992px) {
   /* MD */
-
+  body {
+    padding-top: 0;
+  }
+  .container {
+    margin: 0 auto;
+    width: 920px;
+    padding: 10px 0;
+  }
+  #header {
+    position: relative;
+    padding: 10px;
+  }
+  body.home .card {
+    width: calc(~"25% - 2px");
+    margin: 0 -4px 2px 2px;
+    .stats { padding-top: 10px; }
+  }
+  body.addmeal, body.editmeal {
+    .card, .card:nth-child(odd) {
+      width: calc(~"25% - 2px");
+      margin: 0 -4px 2px 2px;
+    }
+  }
+  /* MEALS */
+  body.meals .meal {
+    .photoFrame {
+      width: 10%;
+      margin: 0 -2px;
+    }
+  }
+  .form-group input {
+    max-width: 600px;
+  }
+  button[type=submit] {
+    width: 200px;
+    margin-left: 400px;
+  }
 }
 @media (min-width: 1200px) {
   /* LG */
