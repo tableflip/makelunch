@@ -3,7 +3,7 @@
     <h1>Who's eating?</h1>
     <div class="mealEaters">
       {{#each people}}
-        <div class="card" data-eater="{{_id}}">
+        <div class="card {{#if equal _id ../chef}}eating chef{{/if}}" data-eater="{{_id}}">
           <div class="label-top">
             <span>{{name}}</span>
           </div>

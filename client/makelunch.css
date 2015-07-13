@@ -111,7 +111,7 @@ body.home .card {
   margin: 0;
   padding: 5px 10px;
   width: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(47, 159, 241, 0.8);
 }
 .card > .label-top .score {
   float: right;
@@ -122,10 +122,19 @@ body.home .card {
 .card .stats {
   position: absolute;
   text-align: center;
+  top: calc(100% - 28px);
   bottom: 0;
+  transition: top 0.25s;
   padding: 5px 10px;
   width: 100%;
   background-color: rgba(0,0,0,0.6);
+}
+.card:hover .stats, .card:focus .stats {
+  top: 50%;
+}
+.card .stats span {
+  display: block;
+  margin-bottom: 5px;
 }
 
 /* ADD MEAL */
@@ -146,9 +155,8 @@ body.addmeal .card:nth-child(odd) {
 }
 body.addmeal .card.eating > .label-top {
   height: 100%;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(47, 159, 241, 0.9);
 }
-body.addmeal .card.eating > .label-top span {  }
 body.addmeal .card.eating > .label-top:before {
   position: absolute;
   left: 50%;

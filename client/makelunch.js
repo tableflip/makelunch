@@ -27,6 +27,7 @@ Meteor.startup(function () {
       path:'/addmeal',
       data: function () {
         return {
+          chef: this.params.query.chef,
           people: Eaters.find({status:'jail'}),
         }
       }
@@ -90,6 +91,11 @@ Meteor.startup(function () {
 
 UI.registerHelper('fromNow', function (date) {
   return moment(date + 'T12:00').fromNow()
+})
+
+UI.registerHelper('equal', function (a, b) {
+  console.log(a, b)
+  return a === b
 })
 
 UI.registerHelper('profile', function (userId) {

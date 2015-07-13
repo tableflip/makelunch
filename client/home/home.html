@@ -67,6 +67,10 @@
       {{#if lastCooked}}
         <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>
       {{/if}}
+      {{#if currentUser}}
+        <a class="btn btn-edit-user" href="/editperson/{{ _id }}">Edit</a>
+        <a class="btn btn-make-chef" href="/addmeal?chef={{ _id }}">Cook</a>
+      {{/if}}
     </div>
   </div>
 </template>
