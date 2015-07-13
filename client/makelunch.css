@@ -109,9 +109,10 @@ body.home .card {
   position: absolute;
   top: 0;
   margin: 0;
+  height: 28px;
   padding: 5px 10px;
   width: 100%;
-  background-color: rgba(47, 159, 241, 0.8);
+  background-color: rgba(47, 159, 241, 0.9);
 }
 .card > .label-top .score {
   float: right;
@@ -123,15 +124,16 @@ body.home .card {
   overflow: hidden;
   position: absolute;
   text-align: center;
-  top: calc(100% - 28px);
+  top: calc(100% - 35px);
   bottom: 0;
   transition: top 0.25s;
-  padding: 5px 10px;
+  padding: 10px;
   width: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(47, 159, 241, 0.9);
 }
 .card:hover .stats, .card:focus .stats {
-  top: 25%;
+  border-top: 1px solid white;
+  top: 28px;
 }
 .card .stats span {
   display: block;
@@ -149,13 +151,11 @@ body.home .card {
 }
 .card .stats .card-buttons a {
   display: block;
-  padding: 5px;
+  padding: 10px 5px;
   text-align: center;
-  font-weight: bold;
-  border: 2px solid white;
   border-radius: 3px;
   margin-bottom: 5px;
-  background-color: rgba(47, 159, 241, 1);
+  background-color: #F94816;
 }
 
 /* ADD MEAL */
