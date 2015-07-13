@@ -120,6 +120,7 @@ body.home .card {
   width: 100%;
 }
 .card .stats {
+  overflow: hidden;
   position: absolute;
   text-align: center;
   top: calc(100% - 28px);
@@ -130,11 +131,31 @@ body.home .card {
   background-color: rgba(0,0,0,0.6);
 }
 .card:hover .stats, .card:focus .stats {
-  top: 50%;
+  top: 25%;
 }
 .card .stats span {
   display: block;
   margin-bottom: 5px;
+}
+.card .stats .card-buttons {
+  position: absolute;
+  width: calc(100% - 20px);
+  opacity: 0;
+  transition: opacity 0.1s;
+  bottom: 5px;
+}
+.card:hover .stats .card-buttons, .card:focus .stats .card-buttons {
+  opacity: 1;
+}
+.card .stats .card-buttons a {
+  display: block;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid white;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  background-color: rgba(47, 159, 241, 1);
 }
 
 /* ADD MEAL */

@@ -144,7 +144,8 @@ Template.addmeal.helpers({
 })
 
 Template.card.events({
-  'dblclick .card': function(evt, tpl){
+  'click .btn-on-the-rye': function(evt, tpl){
+    evt.preventDefault()
     var newStatus = (this.status !== 'rye') ? 'rye' : 'jail'
     Eaters.update(this._id, { $set: {status: newStatus}})
   }
