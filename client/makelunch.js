@@ -42,7 +42,12 @@ Meteor.startup(function () {
       path:'/editmeal/:_id',
       data: function () {
         var meal = Meals.findOne(this.params._id)
-        if (!meal) return false
+        if (!meal) return {
+          meal: null,
+          eaters: null,
+          chefs: null,
+          people: null
+        }
         return {
           meal: meal,
           eaters: Eaters.find({_id: {$in: meal.eaters, $nin: meal.chef}}),
