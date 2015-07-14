@@ -24,8 +24,6 @@ App.accessRule('http://photos-h.ak.instagram.com', {launchExternal: false})
 App.accessRule('https://avatars0.githubusercontent.com', {launchExternal: false})
 App.accessRule('http://media-cache-ec0.pinimg.com', {launchExternal: false})
 
-App.setPreference('keepRunning', false)
-
 App.icons({
   'iphone': 'icons/ios/appicon-60.png',
   'iphone_2x': 'icons/ios/appicon-60@2x.png',
