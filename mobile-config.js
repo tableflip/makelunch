@@ -1,7 +1,7 @@
 App.info({
   id: 'io.tableflip.makelunchdev',
-  version: '0.3',
-  name: 'MakeLunch Dev',
+  version: '0.4',
+  name: 'MakeLunch',
   description: 'Lunch tracking app',
   author: 'tableflip',
   email: 'hello@tableflip.io',
