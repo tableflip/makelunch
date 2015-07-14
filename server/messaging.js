@@ -17,7 +17,7 @@ function sendMessage(message, eaters, link) {
       eaters = Eaters.find({name: eaters}).fetch();
   else if (Array.isArray(eaters))
       eaters = Eaters.find({name: {$in: eaters}}).fetch();
-  else if (typeof eaters === "object")
+  else if (typeof eaters === 'object')
       eaters = [eaters]
   else if (eaters instanceof Mongo.Cursor)
       eaters = eaters.fetch()
