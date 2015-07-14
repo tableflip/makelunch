@@ -91,29 +91,29 @@ Meteor.startup(function () {
   })// end router.map
 
   //registerHelpers
-  UI.registerHelper('scoreSummary', Eaters.scoreSummary)
+  Template.registerHelper('scoreSummary', Eaters.scoreSummary)
 })// end Meteor.startup
 
-UI.registerHelper('fromNow', function (date) {
+Template.registerHelper('fromNow', function (date) {
   return moment(date + 'T12:00').fromNow()
 })
 
-UI.registerHelper('equal', function (a, b) {
+Template.registerHelper('equal', function (a, b) {
   return a === b
 })
 
-UI.registerHelper('profile', function (userId) {
+Template.registerHelper('profile', function (userId) {
   var eater = Eaters.findOne(userId)
   eater.monster = eater.monster || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
   return eater
 })
 
-UI.registerHelper('monster', function () {
+Template.registerHelper('monster', function () {
   if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=monsterid"
   return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=monsterid"
 })
 
-UI.registerHelper('score', function (eater) {
+Template.registerHelper('score', function (eater) {
   return eater.servings.given - eater.servings.received
 })
 
@@ -121,41 +121,12 @@ function whoShouldCook() {
   return Eaters.sorted[0]
 }
 
-MakeLunch.showFeedback = function showFeedback (text) {
-  window.scrollTo(0, 0)
-  var feedback = $("#feedback")
-  feedback.show()
-  feedback.text("> ");
-
-  (function tickerText (i) {
-    setTimeout(function() {
-      feedback.text(feedback.text() + text[i])
-      if (i < text.length - 1) {
-        tickerText(++i)
-      } else {
-        feedback.delay(2000).fadeOut()
-      }
-    }, 50)
-  })(0)
-}
-
-Template.home.todaysDate = function () {
+Template.registerHelper('todaysDate', function () {
   return todaysDate()
-}
-
-Template.addmeal.helpers({
-  todaysISODate: function () {
-    return moment().format('YYYY-MM-DD')
-  }
 })
 
-Template.editmeal.helpers({
-  todaysISODate: function () {
-    return moment().format('YYYY-MM-DD')
-  },
-  todaysDate: function () {
-    return moment().format('DD/MM/YYYY')
-  }
+Template.registerHelper('todaysISODate', function () {
+  return moment().format('YYYY-MM-DD')
 })
 
 Template.card.events({

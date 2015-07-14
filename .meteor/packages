@@ -18,6 +18,7 @@ percolate:synced-cron
 meteorhacks:npm
 
 
-npm-container
 flemay:less-autoprefixer
 maximdubrovin:uploadcare
+npm-container
+service-configuration
