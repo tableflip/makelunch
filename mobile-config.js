@@ -1,7 +1,7 @@
 App.info({
-  id: 'com.tableflip.makelunch',
-  version: '0.2',
-  name: 'MakeLunch',
+  id: 'io.tableflip.makelunchdev',
+  version: '0.3',
+  name: 'MakeLunch Dev',
   description: 'Lunch tracking app',
   author: 'tableflip',
   email: 'hello@tableflip.io',
@@ -23,6 +23,8 @@ App.accessRule('https://cloud.githubusercontent.com', {launchExternal: false})
 App.accessRule('http://photos-h.ak.instagram.com', {launchExternal: false})
 App.accessRule('https://avatars0.githubusercontent.com', {launchExternal: false})
 App.accessRule('http://media-cache-ec0.pinimg.com', {launchExternal: false})
+
+App.setPreference('keepRunning', false)
 
 App.icons({
   'iphone': 'icons/ios/appicon-60.png',
