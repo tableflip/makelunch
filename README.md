@@ -1,33 +1,8 @@
 Make Lunch!
 ===========
 
-Getting started
----------------
-- Clone the repo
-- Add a settings.json:
-```json
-{
-  "twitter": {
-    "consumerKey": "",
-    "secret": ""
-  }
-}
-- Run meteor:
-```bash
-meteor
-```
-- Go to [http://localhost:3000](http://localhost:3000)
-- *For now, you'll need to edit the following code* in server/server.js:
-```js
-Accounts.validateLoginAttempt(function (info) {
-  if (!info.user) return false
-  var screenName = info.user.services.twitter.screenName.toLowerCase()
-  var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
-  if(eaters.length === 0) return false
-  return true
-})
-```
-- Comment out everything except ``` return true ``` and uncomment once you've logged in and created a user with your Twitter handle. Sorry.
+What it does
+------------
 
 Help figure out whose cooking next by recording stats on how many servings you've made vs how many you've received.
 
@@ -42,6 +17,35 @@ To recommend who cooks next we look at how has the lowest value of `servings.giv
 - User auth
 - Edit data / correct mistakes
 - Whizzbang visulisations
+
+Getting started
+---------------
+- Clone the repo
+- Add a settings.json:
+```json
+{
+  "twitter": {
+    "consumerKey": "",
+    "secret": ""
+  }
+}
+```
+- Run meteor:
+```bash
+meteor
+```
+- Go to [http://localhost:3000](http://localhost:3000)
+- **For now, you'll need to edit the following code** in server/server.js:
+```js
+Accounts.validateLoginAttempt(function (info) {
+  if (!info.user) return false
+  var screenName = info.user.services.twitter.screenName.toLowerCase()
+  var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
+  if(eaters.length === 0) return false
+  return true
+})
+```
+- Comment out everything in that function except ``` return true ``` and uncomment once you've logged in and created a user with your Twitter handle. Sorry.
 
 Routes
 ------
