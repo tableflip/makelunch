@@ -91,6 +91,7 @@ SyncedCron.add({
 SyncedCron.start();
 
 function startNotifying() {
+  if (new Date().getDay() > 4) return false
   heirarchy = Eaters.sorted({status: 'jail'})
   eaterIndex = 0
   if (heirarchy[eaterIndex]) notifyEater(heirarchy[eaterIndex].name)
