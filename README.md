@@ -21,7 +21,7 @@ To recommend who cooks next we look at how has the lowest value of `servings.giv
 Getting started
 ---------------
 - Clone the repo
-- Add a settings.json:
+- Add a settings.json in the top level of the repo:
 ```json
 {
   "twitter": {
@@ -32,7 +32,7 @@ Getting started
 ```
 - Run meteor:
 ```bash
-meteor
+$ meteor run --settings settings.json
 ```
 - Go to [http://localhost:3000](http://localhost:3000)
 - **For now, you'll need to edit the following code** in server/server.js:
