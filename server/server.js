@@ -50,7 +50,19 @@ Meteor.startup(function () {
     }
   })
 
-});
+  if (Meteor.settings && Meteor.settings.twitter) {
+    ServiceConfiguration.configurations.update(
+      { "service": "twitter" },
+      {
+        $set: {
+          "consumerKey": Meteor.settings.twitter.consumerKey,
+          "secret": Meteor.settings.twitter.secret
+        }
+      },
+      { upsert: true }
+    )
+  }
+})
 
 function updateStats (meal) {
   updateChefs(meal)

@@ -1,9 +1,6 @@
 <template name="home">
-  <div class="row">
-    <h1 class="welcome">{{> today}}</h1>
-    {{> deck}}
-    {{> rye }}
-  </div>
+  {{> deck}}
+  {{> rye }}
 </template>
 
 <template name="today">
@@ -21,6 +18,7 @@
 </template>
 
 <template name="rye">
+  {{#if mia}}
   <div class="row">
     <div class="rye drop">
       <h1>On the Rye</h1>
@@ -29,38 +27,35 @@
       {{/each}}
     </div>
   </div>
+  {{/if}}
 </template>
 
 <template name="card">
   <div class="card{{#if eating}} eating{{/if}} {{scoreSummary this}}" data-person-id="{{_id}}">
-    <h1>{{name}}
-      {{#if currentUser}}
-        <a class="btn-editperson" href="/editperson/{{ _id }}"><i class="fa fa-pencil"></i></a>
-      {{/if}}
+    <div class="label-top">
+      {{name}}
       <span class="score">{{ score this }}</span>
-    </h1>
+    </div>
     {{> photoFrame this}}
-    <ul class="stats">
-      <li>
-        <label>Servings</label>
-        <span>{{servings.given}} : {{servings.received}}</span>
-      </li>
-      <li>
-        <label>Last ate</label>
-        {{#if lastEaten}}
-        <span title="{{lastEaten}}">{{fromNow lastEaten}}</span>
-        {{else}}
-        <span title="Never">Never</span>
-        {{/if}}
-      </li>
-      <li>
-        <label>Last cooked</label>
-        {{#if lastCooked}}
-        <span title="{{lastCooked}}">{{fromNow lastCooked}}</span>
-        {{else}}
-        <span>Never</span>
-        {{/if}}
-      </li>
-    </ul>
+    <div class="stats label-bottom">
+      <span class="ratio">{{servings.given}} : {{servings.received}}</span>
+      {{#if lastCooked}}
+        <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>
+      {{/if}}
+      {{#if lastEaten}}
+        <span title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</span>
+      {{/if}}
+      {{#if currentUser}}
+        <div class="card-buttons">
+          <a class="btn btn-make-chef" href="/addmeal?chef={{ _id }}">Cook</a>
+          <a class="btn btn-edit-user" href="/editperson/{{ _id }}">Edit</a>
+          {{#if equal status 'jail'}}
+            <a class="btn btn-on-the-rye" href="#">On the Rye</a>
+          {{else}}
+            <a class="btn btn-on-the-rye" href="#">Off the Rye</a>
+          {{/if}}
+        </div>
+      {{/if}}
+    </div>
   </div>
 </template>

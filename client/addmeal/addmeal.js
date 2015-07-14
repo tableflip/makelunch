@@ -10,14 +10,12 @@ Template.addmeal.events({
       dish: tpl.find('.mealDish').value
     }
 
-    console.log(meal)
     Meals.insert(meal)
     Router.go('meals')
   },
 
   'click .mealEaters .card': function (evt, tpl) {
     var card = $(evt.currentTarget)
-    console.log(card.attr('class'))
 
     if (card.hasClass('chef')) card.removeClass('chef eating') 
       else if (card.hasClass('eating')) card.addClass('chef')

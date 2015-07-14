@@ -1,36 +1,34 @@
 <template name="editperson">
-  <div class="container">
-    <h1>Edit {{ name }}</h1>
-    <form class="col-md-6">
-      <input class="personId" type="hidden" value="{{ _id }}" >
-      <div class="form-group">
-        <label>Name</label>
-        <input class="form-control personName" type="text" value="{{ name }}" />
-      </div>
-      
-      <div class="form-group">
-        <label>Twitter Handle</label>
-        <input class="form-control twitterHandle" type="text" value="{{ auth.twitter }}" />
-      </div>
-      
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input class="form-control mobile" type="text" value="{{ mobile }}" />
-      </div>
-
-      <div class="editimg">
-        <img src="{{ img }}" />
-      </div>
-
-      <div class="form-group">
-        <label>Photo url</label>
-        <input class="form-control personImg" type="url" value="{{ img }}" />
-      </div>
-      <div class="form-group">
-        <button class="btn">Save</button>
-      </div>
-    </form>
-
+  <h1>Edit {{ name }}</h1>
+  <form class="col-md-6">
+    <input class="personId" type="hidden" value="{{ _id }}" >
+    <div class="form-group">
+      <label class="hidden-xs">Name</label>
+      <input class="form-control placeholder-visible-xs personName" type="text" placeholder="Name" value="{{ name }}" required />
+    </div>
     
-  </div>
+    <div class="form-group">
+      <label class="hidden-xs">Twitter Handle</label>
+      <input class="form-control placeholder-visible-xs twitterHandle" type="text" placeholder="Twitter handle" value="{{ auth.twitter }}" />
+    </div>
+    
+    <div class="form-group">
+      <label class="hidden-xs">Phone Number</label>
+      <input class="form-control placeholder-visible-xs mobile" type="text" placeholder="Mobile number" value="{{ mobile }}" />
+    </div>
+
+    <div class="form-group">
+      <label class="hidden-xs">Picture</label>
+      <input type="hidden" name="picture" role="uploadcare-uploader" data-crop />
+      <input type="hidden" id="uploadcare-uuid" name="uploadcare-uuid" />
+    </div>
+
+    <div class="form-group">
+      <label class="hidden-xs">Photo url</label>
+      <input class="form-control placeholder-visible-xs personImg" type="url" placeholder="Photo URL" value="{{ img }}" />
+    </div>
+    <div class="form-group submit">
+      <button class="btn" type="submit">Save</button>
+    </div>
+  </form>
 </template>

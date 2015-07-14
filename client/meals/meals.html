@@ -1,34 +1,23 @@
 <template name="meals">
-  <table class="pure-table pure-table-horizontal">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Chef</th>
-        <th>Cooked</th>
-        <th>For</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{#each meals}}
-    <tr>
-      <td>{{date}}</td>
-      <td>
-      {{#each chef}}
-        {{#with profile this}}
-          {{> photoFrame}}
-        {{/with}}
-      {{/each}}
-      </td>
-      <td><a href="/editmeal/{{ _id }}">{{dish}}</a></td>
-      <td>
+  {{#each meals}}
+    <div class="row meal">
+      <div class="tint"></div>
+      <div class="centred-content">
+        <div class="names">
+          {{#each chef}}
+            {{#with profile this}}
+              <span>{{name}}</span>
+            {{/with}}
+          {{/each}}
+        </div>
+        <span class="dish">{{dish}}</span>
+      </div>
       {{#each eaters}}
         {{#with profile this}}
           {{> photoFrame}}
         {{/with}}
       {{/each}}
-      </td>
-    </tr>
-    {{/each}}
-    </tbody>
-  </table>
+      <a class="btn btn-edit-meal" href="/editmeal/{{_id}}">Edit meal</a>
+    </div>
+  {{/each}}
 </template>

@@ -5,6 +5,15 @@ Meteor.subscribe('meals')
 
 Meteor.startup(function () {
 
+  Router.configure({
+    layoutTemplate: 'layout'
+  })
+
+  Router.onBeforeAction(function () {
+    $('body, html').scrollTop(0)
+    this.next()
+  })
+
   Router.map(function () {
 
     this.route('home', {
@@ -23,6 +32,7 @@ Meteor.startup(function () {
       path:'/addmeal',
       data: function () {
         return {
+          chef: this.params.query.chef,
           people: Eaters.find({status:'jail'}),
         }
       }
@@ -32,7 +42,12 @@ Meteor.startup(function () {
       path:'/editmeal/:_id',
       data: function () {
         var meal = Meals.findOne(this.params._id)
-        console.log(meal)
+        if (!meal) return {
+          meal: null,
+          eaters: null,
+          chefs: null,
+          people: null
+        }
         return {
           meal: meal,
           eaters: Eaters.find({_id: {$in: meal.eaters, $nin: meal.chef}}),
@@ -76,20 +91,29 @@ Meteor.startup(function () {
   })// end router.map
 
   //registerHelpers
-  UI.registerHelper('scoreSummary', Eaters.scoreSummary)
+  Template.registerHelper('scoreSummary', Eaters.scoreSummary)
 })// end Meteor.startup
 
-UI.registerHelper('fromNow', function (date) {
+Template.registerHelper('fromNow', function (date) {
   return moment(date + 'T12:00').fromNow()
 })
 
-UI.registerHelper('profile', function (userId) {
+Template.registerHelper('equal', function (a, b) {
+  return a === b
+})
+
+Template.registerHelper('profile', function (userId) {
   var eater = Eaters.findOne(userId)
-  eater.img = eater.img || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
+  eater.monster = eater.monster || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
   return eater
 })
 
-UI.registerHelper('score', function (eater) {
+Template.registerHelper('monster', function () {
+  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=monsterid"
+  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=monsterid"
+})
+
+Template.registerHelper('score', function (eater) {
   return eater.servings.given - eater.servings.received
 })
 
@@ -97,31 +121,31 @@ function whoShouldCook() {
   return Eaters.sorted[0]
 }
 
-MakeLunch.showFeedback = function showFeedback (text) {
-  window.scrollTo(0, 0)
-  var feedback = $("#feedback")
-  feedback.show()
-  feedback.text("> ");
-
-  (function tickerText (i) {
-    setTimeout(function() {
-      feedback.text(feedback.text() + text[i])
-      if (i < text.length - 1) {
-        tickerText(++i)
-      } else {
-        feedback.delay(2000).fadeOut()
-      }
-    }, 50)
-  })(0)
-}
-
-Template.home.todaysDate = function () {
+Template.registerHelper('todaysDate', function () {
   return todaysDate()
-}
+})
+
+Template.registerHelper('todaysISODate', function () {
+  return moment().format('YYYY-MM-DD')
+})
 
 Template.card.events({
-  'dblclick .card': function(evt, tpl){
+  'click .btn-on-the-rye': function(evt, tpl){
+    evt.preventDefault()
     var newStatus = (this.status !== 'rye') ? 'rye' : 'jail'
     Eaters.update(this._id, { $set: {status: newStatus}})
+  }
+})
+
+Template.header.events({
+  'click .menu-toggle': function (evt, tpl) {
+    $('#header').toggleClass('active')
+  },
+  'click #header nav a': function (evt, tpl) {
+    $('#header').removeClass('active')
+  },
+  'click .login-with-twitter': function (evt, tpl) {
+    evt.preventDefault()
+    Meteor.loginWithTwitter()
   }
 })

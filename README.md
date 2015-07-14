@@ -1,6 +1,9 @@
 Make Lunch!
 ===========
 
+What it does
+------------
+
 Help figure out whose cooking next by recording stats on how many servings you've made vs how many you've received.
 
 If I cook for 8 people (including me), I recieve 1 portion and give 8, so am +7
@@ -14,6 +17,35 @@ To recommend who cooks next we look at how has the lowest value of `servings.giv
 - User auth
 - Edit data / correct mistakes
 - Whizzbang visulisations
+
+Getting started
+---------------
+- Clone the repo
+- Add a settings.json in the top level of the repo:
+```json
+{
+  "twitter": {
+    "consumerKey": "",
+    "secret": ""
+  }
+}
+```
+- Run meteor:
+```bash
+$ meteor run --settings settings.json
+```
+- Go to [http://localhost:3000](http://localhost:3000)
+- **For now, you'll need to edit the following code** in server/server.js:
+```js
+Accounts.validateLoginAttempt(function (info) {
+  if (!info.user) return false
+  var screenName = info.user.services.twitter.screenName.toLowerCase()
+  var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
+  if(eaters.length === 0) return false
+  return true
+})
+```
+- Comment out everything in that function except ``` return true ``` and uncomment once you've logged in and created a user with your Twitter handle. Sorry.
 
 Routes
 ------

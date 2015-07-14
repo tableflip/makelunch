@@ -1,40 +1,15 @@
 <head>
-  <title>Make Lunch</title>
+  <script>
+    UPLOADCARE_PUBLIC_KEY = '15127b47da228b9b2d87'
+  </script>
+  <title>Makelunch</title>
   <meta name="viewport" content="initial-scale=1">
 </head>
-<body>
-  <header>
-    <a href="/" class="logo"></a>
-    <nav>
-      {{#if currentUser }}
-      <a href="/" class="home">
-        <i class="fa fa-home"></i>
-        <span>Home</span>
-      </a>
-      <a href="/addmeal" class="add-meal">
-        <i class="fa fa-cutlery"></i>
-        <span>Log a meal</span>
-      </a>
-      <a href="/addperson">
-        <i class="fa fa-plus-circle"></i>
-        <span>Add someone</span>
-      </a>
-      <a href="/meals">
-        <i class="fa fa-th-list"></i>
-        <span>Meals past</span>
-      </a>
-      {{/if}}
-      {{#unless currentUser }}
-      <span class="login-panel">
-        <i class="fa fa-twitter"></i>
-        {{> loginButtons}}
-      </span>
-      {{/unless}}
-    </nav>
-    <span id="feedback"></span>
-  </header>
 
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.4.2/tables-min.css">
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<!-- router append content to body by default. Use `renderRouter` helper to move it elsewhere -->
-</body>
+<template name="layout">
+  {{> svgdefs }}
+  {{> header }}
+  <div class="container">
+    {{> yield}}
+  </div>
+</template>

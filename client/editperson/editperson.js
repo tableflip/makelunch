@@ -8,7 +8,7 @@ Template.editperson.events = {
    var eaterId = this._id
    var person = {
       name: tpl.find('.personName').value,
-      img: tpl.find('.personImg').value,
+      uploadcare: tpl.find('#uploadcare-uuid').value,
       mobile: tpl.find('.mobile').value,
       auth: {
         twitter: twitterHandle,
@@ -17,6 +17,14 @@ Template.editperson.events = {
     }
 
     Eaters.update(eaterId, {$set: person})
-    MakeLunch.showFeedback('Updated ' + tpl.find('.personName').value)
+    Router.go('/')
   }
 }
+
+Template.addperson.onRendered(function () {
+  var widget = uploadcare.Widget('[role=uploadcare-uploader]')
+  widget.onUploadComplete(function (fileInfo) {
+    console.log('Got Uploadcare UUID:', fileInfo.uuid)
+    $('input#uploadcare-uuid').val(fileInfo.uuid)
+  })
+})

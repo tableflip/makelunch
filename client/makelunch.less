@@ -1,0 +1,422 @@
+/* GENERAL */
+* {
+  box-sizing: border-box;
+  font-weight: 100;
+}
+.visible-xs-block { display: block; }
+.visible-xs-inline-block { display: inline-block; }
+.hidden-xs { display: none; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.btn {
+  display: inline-block;
+  padding: 6px 5px;
+  color: #FFF;
+  text-align: center;
+  border-radius: 0;
+  margin-bottom: 5px;
+  background-color: rgba(44, 159, 242, 1);
+  &:hover {
+    box-shadow: inset 0 0 1px 1px white;
+  }
+}
+.tint {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+}
+.icon {
+  display: inline-block;
+  margin: 0 auto;
+  width: 2em;
+  height: 2em;
+}
+.icon svg {
+  fill: currentColor;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+}
+.container {
+  padding: 10px;
+}
+input.form-control[type=text], input.form-control[type=number], input.form-control[type=url], input.form-control[type=date] {
+  border: 1px solid #555;
+  box-shadow: none;
+  width: 100%;
+  height: 36px;
+  margin: 5px 0;
+  border-radius: 0;
+  padding: 4px 6px;
+}
+.uploadcare-widget {
+  margin: 5px 0;
+}
+button[type=submit] {
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 0;
+  padding: 8px 12px;
+  border: none;
+  background-color: #F53F16;
+  color: #FFF;
+}
+
+body {
+  background-color: #C1CFB8;
+  color: #000;
+  padding-top: 56px;
+}
+body > header {
+  z-index: 4;
+  background-color: #0E2835;
+  color: #FFF;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  min-height: 30px;
+  .logo {
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    .icon {
+      width: 5em;
+      height: 2em;
+    }
+  }
+  .menu-toggle {
+    float: right;
+    display: inline-block;
+    .icon {
+      width: 2.5em;
+      height: 2em;
+    }
+  }
+  > nav {
+    max-height: 0;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition: max-height 0.25s;
+    > a {
+      display: block;
+      height: 30px;
+      color: #FFF;
+      text-decoration: none;
+      font-weight: 300;
+      font-size: 24px;
+      margin: 10px 0;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &.active {
+    box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
+    > nav { max-height: 160px; }
+  }
+}
+
+body.home .card {
+  width: calc(~"100% + 20px");
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.card {
+  color: #FFF;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+  vertical-align: middle;
+  > .label-top {
+    margin: 0;
+    height: 35px;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: rgba(250, 73, 23, 1);
+    .score {
+      float: right;
+    }
+  }
+  .photoFrame {
+    background-color: rgb(13, 39, 54);
+    min-height: 100px;
+  }
+  img { vertical-align: middle; }
+  .stats {
+    transform: translateZ(0);
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: calc(~"100% - 39px");
+    bottom: 0;
+    font-size: 18px;
+    transition: top 0.15s;
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(13, 39, 54, 0.8);
+    span {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .card-buttons {
+      position: absolute;
+      left: -100%;
+      width: calc(~"100% - 20px");
+      transition: left 0.15s;
+      bottom: 5px;
+      .btn { display: block; }
+    }
+  }
+  &:hover, &:focus {
+    .stats {
+      border-top: 1px solid white;
+      top: 35px;
+      .card-buttons {
+        left: 10px;
+      }
+    }
+  }
+  img, .photoFrame { width: 100%; }
+}
+/* ADD MEAL */
+body.addmeal, body.editmeal {
+  .card {
+    display: inline-block;
+    width: calc(~"50% - 5px");
+  }
+  .card:nth-child(odd) {
+    margin-right: 5px;
+  }
+  .card .eater-status {
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    bottom: 100%;
+    opacity: 1;
+    transition: all 0.2s;
+    overflow: hidden;
+  }
+  .card.eating .eater-status {
+    bottom: 0;
+    opacity: 1;
+    background-color: rgba(13, 39, 54, 0.8);
+    &:before {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      content: '\1F374';
+      color: white;
+      font-size: 64px;
+      text-align: center;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
+    }
+  }
+  .card.chef .eater-status:before { content: '\1F373'; }
+  .btn.delete {
+    padding: 6px 12px;
+  }
+}
+/* MEALS */
+body.meals .meal {
+  text-align: right;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+  padding: 0 1px;
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color 0.25s;
+  .photoFrame {
+    display: inline-block;
+    width: 20%;
+    margin: 0 -2px;
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+  .tint {
+    z-index: 2;
+    background-color: rgba(13, 39, 54, 0.8);
+    transition: background-color 0.25s;
+  }
+  &:hover, &:focus {
+    background-color: rgba(13, 39, 54, 0.5);
+    .tint {
+      background-color: rgba(13, 39, 54, 0);
+    }
+    .centred-content {
+      opacity: 0;
+    }
+    .btn-edit-meal {
+      left: 10px;
+    }
+  }
+  .centred-content {
+    opacity: 1;
+    position: absolute;
+    text-align: center;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s;
+    font-size: 20px;
+    color: #FFF;
+    .names {
+      span:not(:last-child):after { content: ' & '; }
+    }
+    .dish {
+      font-weight: bold;
+    }
+  }
+  .btn-edit-meal {
+    position: absolute;
+    bottom: 5px;
+    left: -100%;
+    z-index: 4;
+    transition: left 0.5s;
+  }
+} 
+
+/* EDIT PERSON */
+body.editperson .editimg img {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  /* SM */
+  .visible-xs-inline-block, .visible-xs-block { display: none; }
+  .hidden-xs { display: block; }
+
+  body { padding-top: 61px; }
+  input.placeholder-visible-xs::placeholder {
+    color: transparent;
+  }
+  .form-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  body.home .card {
+    display: inline-block;
+    width: calc(~"50% - 3px");
+    margin: 5px -2px 5px 2px;
+    height: auto;
+    .stats { padding-top: 50px; }
+  }
+  body.addmeal, body.editmeal {
+    .card, .card:nth-child(odd) {
+      width: calc(~"25% - 2px");
+      margin: 0 -4px 0 2px;
+      height: auto;
+    }
+  }
+  body.meals .meal .centred-content {
+    font-size: 36px;
+  }
+  #header {
+    height: 56px;
+    padding: 10px;
+    .menu-toggle {
+      display: none;
+    }
+    > nav {
+      height: 100%;
+      display: inline-block;
+      float: right;
+      max-height: none;
+      > a {
+        display: inline-block;
+        vertical-align: middle;
+        height: auto;
+        color: #FFF;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 18px;
+        margin: 10px;
+        &:last-of-type {
+          margin: 10px;
+        }
+      }
+      > a.home { display: none; }
+    }
+    &.active {
+      box-shadow: none;
+      > nav { max-height: auto; }
+    }
+  }
+}
+@media (min-width: 992px) {
+  /* MD */
+  body {
+    padding-top: 0;
+  }
+  .container {
+    margin: 0 auto;
+    width: 920px;
+    padding: 10px 0;
+  }
+  #header {
+    position: relative;
+    padding: 10px;
+  }
+  body.home .card {
+    width: calc(~"25% - 2px");
+    margin: 0 -4px 2px 2px;
+    .stats { padding-top: 10px; }
+  }
+  body.addmeal, body.editmeal {
+    .card, .card:nth-child(odd) {
+      width: calc(~"25% - 2px");
+      margin: 0 -4px 2px 2px;
+    }
+  }
+  /* MEALS */
+  body.meals .meal {
+    .photoFrame {
+      width: 10%;
+      margin: 0 -2px;
+    }
+  }
+  .form-group {
+    text-align: right;
+    label {
+      text-align: left;
+      line-height: 30px;
+      margin: 5px 0;
+      width: 20%;
+      display: inline-block;
+      float: left;
+    }
+    input.form-control[type=text], input.form-control[type=number], input.form-control[type=url], input.form-control[type=date] {
+      height: 30px;
+      margin: 5px 0;
+      display: inline-block;
+      width: 80%;
+    }
+    .uploadcare-widget {
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-right: calc(~"80% - 125px");
+      .uploadcare-widget-button {
+        width: 120px;
+        text-align: center;
+      }
+    }
+  }
+  .form-group.submit {
+    text-align: right;
+  }
+  button[type=submit] {
+    width: auto;
+    padding: 6px 18px;
+  }
+}
+@media (min-width: 1200px) {
+  /* LG */
+
+}
