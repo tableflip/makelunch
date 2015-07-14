@@ -5,7 +5,13 @@ var messageBirdURI = 'https://rest.messagebird.com/',
     eaterIndex,
     lunchHash
 
-function sendMessage(message, eaters) {
+Meteor.startup(function() {
+  heirarchy = Eaters.sorted({status: 'jail'}),
+  eaterIndex = 0,
+  lunchHash = Random.id()  
+})
+
+function sendMessage(message, eaters, link) {
 
   if (typeof eaters === 'string')
       eaters = Eaters.find({name: eaters}).fetch();
@@ -27,7 +33,7 @@ function sendMessage(message, eaters) {
 
     if (user && user.regid) {
       messageCount += 1
-      Meteor.notificationClient.sendNotification(user, {title: 'Message from MakeLunch', message: message})
+      Meteor.notificationClient.sendNotification(user, {title: 'Message from MakeLunch', message: message, link: link})
       cb()
     } else if (eater.mobile) {
       HTTP.call('POST', messageBirdURI + 'messages', {
@@ -37,7 +43,7 @@ function sendMessage(message, eaters) {
         data: {
           recipients: eater.mobile,
           originator: 'MakeLunch',
-          body: message
+          body: message + ' Respond here: ' + Meteor.absoluteUrl() + link
         }
       }, function(err, res) {
         if (res) messageCount += 1
@@ -56,10 +62,7 @@ function sendMessage(message, eaters) {
 
 Meteor.methods({
   
-  sendMessage: function(message, eaters, password) {
-    if (password === Meteor.settings.messagePassword) return sendMessage(message, eaters)
-    else throw new Meteor.Error('wrong password')
-  }
+
   
 })
 
@@ -82,28 +85,49 @@ SyncedCron.add({
   schedule: function(parser) {
     return parser.text('at 19:30');
   },
-  job: function() {
-    heirarchy = Eaters.sorted({status: 'jail'})
-    eaterIndex = 0
-    if (heirarchy[eaterIndex]) notifyEater(heirarchy[eaterIndex].name)
-  }
+  job: startNotifying
 });
 
 SyncedCron.start();
 
-function notifyEater(name) {
-  lunchHash = Random.id()
-  sendMessage('You\'re up to cook tomorrow, ' + greeting() + '! Respond here: http://makelunch.meteor.com/tomorrow/' + lunchHash, name);
+function startNotifying() {
+  if (new Date().getDay() > 4) return false
+  heirarchy = Eaters.sorted({status: 'jail'})
+  eaterIndex = 0
+  if (heirarchy[eaterIndex]) notifyEater(heirarchy[eaterIndex].name)
+  else lunchHash = Random.id()
 }
 
+function notifyEater(name) {
+  lunchHash = Random.id()
+  console.log('You\'re up to cook tomorrow, ' + greeting() + '!', name, 'tomorrow/' + lunchHash)
+  sendMessage('You\'re up to cook tomorrow, ' + greeting() + '!', name, 'tomorrow/' + lunchHash)
+}
+
+var foo = 'bar';
+
 Meteor.methods({
-  'confirmLunch': function(answer, hash) {
-    if (hash !== lunchHash) throw new Meteor.Error('Wrong lunch hash! Is this an old lunch you\'re promising to cook?')
-    if (answer) console.log(heirarchy[eaterIndex].name + ' is confirmed as tomorrow\'s lunch chef')
+  'confirmLunch': function(answer, code) {
+    if (code !== lunchHash) throw new Meteor.Error('Wrong lunch code! Is this an old lunch you\'re promising to cook?')
+    if (answer) {
+      console.log(heirarchy[eaterIndex].name + ' is confirmed as tomorrow\'s lunch chef')
+      lunchHash = Random.id()
+    }
     else {
       console.log(heirarchy[eaterIndex].name + ' can\'t cook tomorrow, moving on...')
       eaterIndex += 1
       if (heirarchy[eaterIndex]) notifyEater(heirarchy[eaterIndex].name)
+      else lunchHash = Random.id()
     }
+  },
+
+  'sendMessage': function(message, eaters, password, link) {
+    if (password === Meteor.settings.messagePassword) return sendMessage(message, eaters, link)
+    else throw new Meteor.Error('wrong password')
+  },
+  
+  'startNotifying': function(password) {
+    if (password === Meteor.settings.messagePassword) return startNotifying()
+    else throw new Meteor.Error('wrong password')    
   }
 })

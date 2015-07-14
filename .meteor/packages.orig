@@ -20,5 +20,9 @@ meteorhacks:npm
 flemay:less-autoprefixer
 maximdubrovin:uploadcare
 npm-container
+<<<<<<< HEAD
+service-configuration
+=======
 reactive-var
 standard-app-packages
+>>>>>>> master
