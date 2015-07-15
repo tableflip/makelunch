@@ -32,11 +32,11 @@ Template.editmeal.events({
       else if (card.hasClass('eating')) card.addClass('chef')
       else if (!card.hasClass('eating')) card.addClass('eating')
   },
-  'click .button .delete': function (evt, tpl) {
+  'click .btn.delete': function (evt, tpl) {
     evt.preventDefault()
-    $('.button .delete').addClass('verify')
+    $('.btn.delete').addClass('verify')
   },
-  'click .button .delete.verify': function (evt, tpl) {
+  'click .btn.delete.verify': function (evt, tpl) {
     evt.preventDefault()
     Meals.remove(this.meal._id)
     Router.go('meals')
