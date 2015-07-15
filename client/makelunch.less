@@ -270,9 +270,9 @@ body.meals .meal {
     position: absolute;
     text-align: center;
     z-index: 3;
-    left: 50%;
+    width: 100%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0, -50%);
     transition: opacity 0.25s;
     font-size: 20px;
     color: #FFF;
@@ -281,6 +281,8 @@ body.meals .meal {
     }
     .dish {
       font-weight: bold;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
     }
   }
   .btn-edit-meal {
