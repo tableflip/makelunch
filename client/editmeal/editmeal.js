@@ -1,3 +1,11 @@
+Template.editmeal.onCreated(function() {
+  this.error = new ReactiveVar()
+})
+
+Template.editmeal.helpers({
+  error: function() {return Template.instance().error.get()}
+})
+
 Template.editmeal.events({
   'submit': function (evt, tpl) {
     evt.preventDefault()
@@ -9,15 +17,18 @@ Template.editmeal.events({
       guests: parseInt(tpl.find('.mealGuests').value, 10),
       dish: tpl.find('.mealDish').value
     }
-    
-    Meals.edit(this.meal._id, meal)
-    Router.go('meals')
+
+    if (!meal.chef.length) tpl.error.set('You need to choose a chef')
+    else {
+      Meals.edit(this.meal._id, meal)
+      Router.go('meals')
+    }
   },
 
   'click .mealEaters .card': function (evt, tpl) {
     var card = $(evt.currentTarget)
 
-    if (card.hasClass('chef')) card.removeClass('chef eating') 
+    if (card.hasClass('chef')) card.removeClass('chef eating')
       else if (card.hasClass('eating')) card.addClass('chef')
       else if (!card.hasClass('eating')) card.addClass('eating')
   },
