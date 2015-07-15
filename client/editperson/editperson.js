@@ -1,7 +1,7 @@
 Template.editperson.events = {
   'submit': function (evt, tpl) {
     evt.preventDefault();
-    
+
     var twitterHandle = tpl.find('.twitterHandle').value
     twitterHandle = twitterHandle.trim().toLowerCase().replace('@' , '')
 
@@ -21,7 +21,7 @@ Template.editperson.events = {
   }
 }
 
-Template.addperson.onRendered(function () {
+Template.editperson.onRendered(function () {
   var widget = uploadcare.Widget('[role=uploadcare-uploader]')
   widget.onUploadComplete(function (fileInfo) {
     console.log('Got Uploadcare UUID:', fileInfo.uuid)
