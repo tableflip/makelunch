@@ -125,11 +125,11 @@ Meteor.methods({
     Eaters.update({}, {$set: {status: 'jail'}}, {multi:true})
   }
 })
-
-Accounts.validateLoginAttempt(function (info) {
-  if (!info.user) return false
-  var screenName = info.user.services.twitter.screenName.toLowerCase()
-  var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
-  if(eaters.length === 0) return false
-  return true
-})
+// 
+// Accounts.validateLoginAttempt(function (info) {
+//   if (!info.user) return false
+//   var screenName = info.user.services.twitter.screenName.toLowerCase()
+//   var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
+//   if(eaters.length === 0) return false
+//   return true
+// })

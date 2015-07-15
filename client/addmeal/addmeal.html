@@ -24,6 +24,11 @@
       <label class="hidden-xs">Date?</label>
       <input placeholder="Today's date" type="date" class="mealDate form-control placeholder-visible-xs" value="{{todaysISODate}}" required='required'/>
     </div>
+    {{#if error}}
+      <div class="alert">
+        {{error}}
+      </div>
+    {{/if}}
     <div class="form-group submit">
       <button class="btn" type="submit">Add</button>
     </div>
