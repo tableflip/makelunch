@@ -1,6 +1,6 @@
 App.info({
   id: 'com.tableflip.makelunch',
-  version: '0.4',
+  version: '0.5',
   name: 'MakeLunch',
   description: 'Lunch tracking app',
   author: 'tableflip',
