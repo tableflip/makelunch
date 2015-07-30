@@ -6,15 +6,16 @@ Template.editperson.events = {
     twitterHandle = twitterHandle.trim().toLowerCase().replace('@' , '')
 
    var eaterId = this._id
-   var person = {
-      name: tpl.find('.personName').value,
-      uploadcare: tpl.find('#uploadcare-uuid').value,
-      mobile: tpl.find('.mobile').value,
+
+    var person = {
       auth: {
         twitter: twitterHandle,
         email: null
       }
     }
+    if (tpl.find('.personName').value) person.name = tpl.find('.personName').value
+    if (tpl.find('#uploadcare-uuid').value) person.uploadcare = tpl.find('#uploadcare-uuid').value
+    if (tpl.find('.mobile').value) person.mobile = tpl.find('.mobile').value
 
     Eaters.update(eaterId, {$set: person})
     Router.go('/')
