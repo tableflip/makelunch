@@ -8,6 +8,7 @@ Template.editperson.events = {
    var eaterId = this._id
 
     var person = {
+      mobile: tpl.find('.mobile').value,
       auth: {
         twitter: twitterHandle,
         email: null
@@ -15,7 +16,6 @@ Template.editperson.events = {
     }
     if (tpl.find('.personName').value) person.name = tpl.find('.personName').value
     if (tpl.find('#uploadcare-uuid').value) person.uploadcare = tpl.find('#uploadcare-uuid').value
-    if (tpl.find('.mobile').value) person.mobile = tpl.find('.mobile').value
 
     Eaters.update(eaterId, {$set: person})
     Router.go('/')
