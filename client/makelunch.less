@@ -71,13 +71,12 @@ button[type=submit] {
 }
 
 body {
-  background-color: #C1CFB8;
-  color: #000;
+  color: #444;
   padding-top: 56px;
 }
 body > header {
   z-index: 4;
-  background-color: #0E2835;
+  background-color: #2DD2AD;
   color: #FFF;
   position: fixed;
   width: 100%;
@@ -100,7 +99,7 @@ body > header {
       height: 2em;
     }
   }
-  > nav {
+  nav {
     max-height: 0;
     overflow: hidden;
     transform: translateZ(0);
@@ -120,7 +119,7 @@ body > header {
   }
   &.active {
     box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
-    > nav { max-height: 160px; }
+    nav { max-height: 160px; }
   }
 }
 
@@ -336,7 +335,7 @@ body.editperson .editimg img {
     .menu-toggle {
       display: none;
     }
-    > nav {
+    nav {
       height: 100%;
       display: inline-block;
       float: right;
@@ -375,6 +374,9 @@ body.editperson .editimg img {
   #header {
     position: relative;
     padding: 10px;
+    .container {
+      padding: 0;
+    }
   }
   body.home .card {
     width: calc(~"25% - 2px");

@@ -1,30 +1,32 @@
 <template name="header">
-  <header id="header" class="container">
-    <a href="/" class="logo">
-      {{> svg "jailmake-logo"}}
-    </a>
-    <a href="#" class="menu-toggle visible-xs-inline-block">
-      {{> svg "burger-menu"}}
-    </a>
-    <nav>
-      <a href="/" class="home">
-        <span>Home</span>
+  <header id="header">
+    <div class="container">
+      <a href="/" class="logo">
+        {{> svg "tableflip-logo"}}
       </a>
-      {{#if currentUser }}
-      <a href="/addmeal" class="add-meal">
-        <span>Log a meal</span>
+      <a href="#" class="menu-toggle visible-xs-inline-block">
+        {{> svg "burger-menu"}}
       </a>
-      <a href="/addperson">
-        <span>Add someone</span>
-      </a>
-      {{/if}}
-      <a href="/meals">
-        <span>Meals past</span>
-      </a>
-      {{#unless currentUser }}
-      <a href="#" class="login-with-twitter">Login with Twitter</a>
-      {{/unless}}
-    </nav>
+      <nav>
+        <a href="/" class="home">
+          <span>Home</span>
+        </a>
+        {{#if currentUser }}
+        <a href="/addmeal" class="add-meal">
+          <span>Log a meal</span>
+        </a>
+        <a href="/addperson">
+          <span>Add someone</span>
+        </a>
+        {{/if}}
+        <a href="/meals">
+          <span>Meals past</span>
+        </a>
+        {{#unless currentUser }}
+        <a href="#" class="login-with-twitter">Login with Twitter</a>
+        {{/unless}}
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -46,6 +48,19 @@
       </symbol>
       <symbol id="burger-menu" viewBox="0 0 114.88363 98.993637">
         <path d="M 6.5248631,97.24519 C 1.6899031,94.82985 -0.79024692,89.75492 0.87267308,85.679562 1.5526231,84.013195 3.3605231,81.715364 4.8902331,80.573272 c 2.72845,-2.037081 3.72843,-2.076532 52.6346299,-2.076532 48.906197,0 49.906177,0.03945 52.634627,2.076532 1.52971,1.142092 3.33761,3.439923 4.01756,5.10629 1.04039,2.54971 0.96783,3.567468 -0.45796,6.423468 -3.45928,6.92929 -3.1438,6.8906 -56.194227,6.8906 -43.22083,0 -47.8153099,-0.15751 -50.9999999,-1.74844 z m -1.88313,-39.879143 c -1.28047,-0.89688 -2.96164,-3.14688 -3.73592002,-5 -1.21953,-2.918745 -1.21022,-3.842159 0.0696,-6.905296 C 3.6750431,38.999733 3.7013331,38.99674 57.758343,38.99674 c 45.125177,0 48.526597,0.121881 51.782117,1.85548 6.35924,3.38636 6.99704,11.629615 1.24962,16.15054 -2.45659,1.932354 -4.1001,1.99398 -53.177567,1.99398 -45.20111,0 -50.8927999,-0.175217 -52.9707799,-1.630693 z m 0,-39 c -1.28047,-0.89688 -2.96164,-3.14688 -3.73592002,-5 -1.21402,-2.905546 -1.21032,-3.8419149 0.0268,-6.8028889 C 3.7144431,-0.09468787 2.9268431,-0.00367687 57.725153,4.7813379e-4 104.91017,0.00407813 107.16256,0.08820813 110.23635,1.9623901 c 5.75414,3.508479 6.03781,11.7265469 0.55368,16.0403699 -2.45654,1.932354 -4.10005,1.99398 -53.177517,1.99398 -45.20111,0 -50.8927999,-0.175217 -52.9707799,-1.630693 z" />
+      </symbol>
+      <symbol id="tableflip-logo" viewBox="0 0 99 109">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+              <g id="TABLEFLIP" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M0,26.5 L47.5,0 L95,26 L95,78.5 L48.5,105.5 L0.5,79.5 L0,26.5 Z" id="Node" stroke-width="3" sketch:type="MSShapeGroup"></path>
+                  <g id="Table" transform="translate(8.000000, 13.000000)" stroke-width="5" sketch:type="MSShapeGroup">
+                      <path d="M39,0.5 L2.5,19 L39,38 L76.5,19 L39,0.5 Z" id="Path-2"></path>
+                      <path d="M2.5,19.5 L2.5,50.5" id="Line"></path>
+                      <path d="M39.5,38.5 L39.5,68.5" id="Line"></path>
+                      <path d="M77.5,19.5 L77.5,49.5" id="Line"></path>
+                  </g>
+              </g>
+          </g>
       </symbol>
     </defs>
 </svg>
