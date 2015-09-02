@@ -18,7 +18,7 @@ Template.editperson.events = {
     if (tpl.find('.personName').value) person.name = tpl.find('.personName').value
     if (tpl.find('#uploadcare-uuid').value) {
       var currentUuid = Eaters.findOne({ _id: ctx._id }).uploadcare
-      Meteor.call('storeUploadcare', currentUuid, function () {
+      Meteor.call('removeUploadcare', currentUuid, function () {
         person.uploadcare = tpl.find('#uploadcare-uuid').value
         Meteor.call('storeUploadcare', person.uploadcare, function () {
           Eaters.update(eaterId, {$set: person})
