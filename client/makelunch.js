@@ -80,7 +80,7 @@ Meteor.startup(function () {
         }
       }
     })
-    
+
     this.route('tomorrow', {
       path:'/tomorrow/:code',
       onBeforeAction: function () {
@@ -130,6 +130,10 @@ Template.registerHelper('todaysISODate', function () {
 })
 
 Template.card.events({
+  'click .photoFrame': function (evt, tpl) {
+    $('.card').removeClass('visible')
+    tpl.$('.card').addClass('visible')
+  },
   'click .btn-on-the-rye': function(evt, tpl){
     evt.preventDefault()
     var newStatus = (this.status !== 'rye') ? 'rye' : 'jail'

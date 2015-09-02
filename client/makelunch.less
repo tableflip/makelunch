@@ -175,7 +175,18 @@ body.home .card {
       .btn { display: block; }
     }
   }
-  &:hover, &:focus {
+  @media (min-width: 768px) {
+    &:hover {
+      .stats {
+        border-top: 1px solid white;
+        top: 35px;
+        .card-buttons {
+          left: 10px;
+        }
+      }
+    }
+  }
+  &:focus, &.visible {
     .stats {
       border-top: 1px solid white;
       top: 35px;
