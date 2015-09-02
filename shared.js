@@ -7,11 +7,15 @@ Eaters = new Meteor.Collection('Eaters', { transform: function (e) {
   return e
 }})
 
-Eaters.create = function(opts){
+Eaters.create = function (opts) {
   if(typeof opts.name != 'string' || opts.name === '' || opts.name.match(/^\s+$/)  ) throw new Error("name not string")
   opts.status = opts.status || 'jail'
   opts.servings = opts.servings || {'given':0,'received':0}
-  return Eaters.insert(opts)
+  if (opts.uploadcare) {
+    Meteor.call('storeUploadcare', opts.uploadcare, function () {
+      Eaters.insert(opts)
+    })
+  } else Eaters.insert(opts)
 }
 
 Eaters.scoreSummary = function(eater){

@@ -123,6 +123,26 @@ Meteor.methods({
   },
   goToJail: function () {
     Eaters.update({}, {$set: {status: 'jail'}}, {multi:true})
+  },
+  storeUploadcare: function (uuid, cb) {
+    var ctx = this
+    if (!ctx.userId) throw new Meteor.Error('403')
+    var headers = {
+      Authorization: 'Uploadcare.Simple ' + Meteor.settings.uploadcare.publicKey + ':' + Meteor.settings.uploadcare.privateKey
+    }
+    HTTP.put('https://api.uploadcare.com/files/' + uuid + '/storage/', {
+      headers: headers
+    }, cb)
+  },
+  removeUploadcare: function (uuid, cb) {
+    var ctx = this
+    if (!ctx.userId) throw new Meteor.Error('403')
+    var headers = {
+      Authorization: 'Uploadcare.Simple ' + Meteor.settings.uploadcare.publicKey + ':' + Meteor.settings.uploadcare.privateKey
+    }
+    HTTP.del('https://api.uploadcare.com/files/' + uuid + '/storage/', {
+      headers: headers
+    }, cb)
   }
 })
 
