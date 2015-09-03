@@ -30,7 +30,7 @@ Template.addmeal.events({
     var card = $(evt.currentTarget)
 
     if (card.hasClass('chef')) card.removeClass('chef eating')
-      else if (card.hasClass('eating')) card.addClass('chef')
-      else if (!card.hasClass('eating')) card.addClass('eating')
+    else if (card.hasClass('eating')) card.addClass('chef')
+    else if (!card.hasClass('eating')) card.addClass('eating')
   }
 })

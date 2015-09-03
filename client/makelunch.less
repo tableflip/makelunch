@@ -139,12 +139,15 @@ body.home .card {
 }
 .card {
   color: #FFF;
+  user-select: none;
   overflow: hidden;
   position: relative;
   margin-bottom: 5px;
   vertical-align: middle;
   > .label-top {
     margin: 0;
+    position: relative;
+    z-index: 1;
     height: 35px;
     padding: 10px 10px;
     width: 100%;
@@ -205,6 +208,41 @@ body.addmeal, body.editmeal {
   .card {
     display: inline-block;
     width: calc(~"50% - 5px");
+    .icon {
+      position: absolute;
+      color: black;
+      left: 5%;
+      width: 90%;
+      height: 45%;
+      display: block;
+    }
+    .icon-chef {
+      top: 0;
+    }
+    .icon-knife-fork {
+      top: 56%;
+      height: 42.5%;
+      bottom: 5%;
+    }
+    .eater-status {
+      transition: top 0.25s, bottom 0.25s;
+      bottom: 100%;
+    }
+    &.eating {
+      .eater-status {
+        bottom: 0;
+      }
+    }
+    &.eating.chef {
+      .eater-status {
+        bottom: -100%;
+      }
+    }
+    &.eating:not(.chef) {
+      .icon-knife-fork {
+        display: block;
+      }
+    }
   }
   .card:nth-child(odd) {
     margin-right: 5px;
@@ -212,29 +250,15 @@ body.addmeal, body.editmeal {
   .card .eater-status {
     position: absolute;
     width: 100%;
-    top: 35px;
+    height: calc(~"200% - 35px");
     bottom: 100%;
-    opacity: 1;
-    transition: all 0.2s;
+    transition: bottom 0.2s;
     overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .card.eating .eater-status {
     bottom: 0;
-    opacity: 1;
-    background-color: rgba(13, 39, 54, 0.8);
-    &:before {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      content: '\1F374';
-      color: white;
-      font-size: 64px;
-      text-align: center;
-      text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
-    }
   }
-  .card.chef .eater-status:before { content: '\1F373'; }
   .btn.delete {
     padding: 6px 12px;
     transition: background-color 0.5s;
