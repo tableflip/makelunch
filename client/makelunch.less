@@ -145,148 +145,6 @@ body > header {
   }
 }
 
-body.home .card {
-  width: calc(~"100% + 20px");
-  margin-left: -10px;
-  margin-right: -10px;
-}
-.card {
-  color: #FFF;
-  user-select: none;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 5px;
-  vertical-align: middle;
-  > .label-top {
-    margin: 0;
-    position: relative;
-    z-index: 1;
-    height: 35px;
-    padding: 10px 10px;
-    width: 100%;
-    background-color: rgba(250, 73, 23, 1);
-    .score {
-      float: right;
-    }
-  }
-  .photoFrame {
-    background-color: rgb(13, 39, 54);
-    min-height: 100px;
-  }
-  img { vertical-align: middle; }
-  .stats {
-    transform: translateZ(0);
-    height: calc(~"100% - 36px");
-    overflow: hidden;
-    position: absolute;
-    text-align: center;
-    top: calc(~"100% - 36px");
-    bottom: 0;
-    font-size: 18px;
-    line-height: 20px;
-    transition: top 0.15s;
-    padding: 10px;
-    width: 100%;
-    background-color: rgba(13, 39, 54, 0.8);
-    span {
-      display: block;
-      margin-bottom: 5px;
-    }
-    .card-buttons {
-      position: absolute;
-      bottom: 5px;
-      width: calc(~"100% - 20px");
-      .btn { display: block; }
-    }
-  }
-  &:focus, &.visible {
-    .stats {
-      border-top: 1px solid white;
-      top: 35px;
-      .card-buttons {
-        left: 10px;
-      }
-    }
-  }
-  &.basic {
-    .label-top, .photoFrame {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-    }
-  }
-  img, .photoFrame { width: 100%; }
-}
-/* ADD MEAL */
-body.addmeal, body.editmeal {
-  .card {
-    display: inline-block;
-    width: calc(~"50% - 5px");
-    .icon {
-      position: absolute;
-      color: black;
-      left: 5%;
-      width: 90%;
-      height: 45%;
-      display: block;
-    }
-    .icon-chef {
-      top: 0;
-    }
-    .icon-knife-fork {
-      top: 56%;
-      height: 42.5%;
-      bottom: 5%;
-    }
-    .eater-status {
-      transition: top 0.25s, bottom 0.25s;
-      bottom: 100%;
-    }
-    &.eating {
-      .eater-status {
-        bottom: 0;
-      }
-    }
-    &.eating.chef {
-      .eater-status {
-        bottom: -100%;
-      }
-    }
-    &.eating:not(.chef) {
-      .icon-knife-fork {
-        display: block;
-      }
-    }
-  }
-  .card:nth-child(odd) {
-    margin-right: 5px;
-  }
-  .card .eater-status {
-    position: absolute;
-    width: 100%;
-    height: calc(~"200% - 35px");
-    bottom: 100%;
-    transition: bottom 0.2s;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.9);
-  }
-  .card.eating .eater-status {
-    bottom: 0;
-  }
-  .btn.delete {
-    padding: 6px 12px;
-    transition: background-color 0.5s;
-    &.verify {
-      background-color: darken(rgba(44, 159, 242, 1), 30%);
-      font-weight: bold;
-    }
-  }
-}
-
-/* EDIT PERSON */
-body.editperson .editimg img {
-  width: 100%;
-}
-
 @media (min-width: 768px) {
   /* SM */
   .visible-xs-inline-block, .visible-xs-block { display: none; }
@@ -301,29 +159,6 @@ body.editperson .editimg img {
   .form-group {
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  body.home .card {
-    display: inline-block;
-    width: calc(~"50% - 3px");
-    margin: 5px -2px 5px 2px;
-    height: auto;
-    .stats { padding-top: 50px; }
-    &:hover {
-      .stats {
-        border-top: 1px solid white;
-        top: 35px;
-        .card-buttons {
-          left: 10px;
-        }
-      }
-    }
-  }
-  body.addmeal, body.editmeal {
-    .card, .card:nth-child(odd) {
-      width: calc(~"25% - 2px");
-      margin: 0 -4px 0 2px;
-      height: auto;
-    }
   }
   #header {
     height: 56px;
@@ -377,17 +212,6 @@ body.editperson .editimg img {
   #header {
     position: relative;
     padding: 10px;
-  }
-  body.home .card {
-    width: calc(~"25% - 2px");
-    margin: 0 -4px 2px 2px;
-    .stats { padding-top: 10px; }
-  }
-  body.addmeal, body.editmeal {
-    .card, .card:nth-child(odd) {
-      width: calc(~"25% - 2px");
-      margin: 0 -4px 2px 2px;
-    }
   }
   .form-group {
     text-align: right;
