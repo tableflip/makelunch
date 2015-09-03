@@ -1,6 +1,6 @@
 Template.meals.events = {
-  'click .meal': function (e) {
+  'click .meal .tint': function (e) {
     $('.meal').removeClass('visible')
-    $(e.currentTarget).addClass('visible')
+    $(e.currentTarget).closest('.meal').addClass('visible')
   }
 }
