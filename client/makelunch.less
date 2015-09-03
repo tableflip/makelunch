@@ -175,7 +175,7 @@ body.home .card {
       .btn { display: block; }
     }
   }
-  &:hover, &:focus {
+  &:focus, &.visible {
     .stats {
       border-top: 1px solid white;
       top: 35px;
@@ -338,6 +338,15 @@ body.editperson .editimg img {
     margin: 5px -2px 5px 2px;
     height: auto;
     .stats { padding-top: 50px; }
+    &:hover {
+      .stats {
+        border-top: 1px solid white;
+        top: 35px;
+        .card-buttons {
+          left: 10px;
+        }
+      }
+    }
   }
   body.addmeal, body.editmeal {
     .card, .card:nth-child(odd) {
