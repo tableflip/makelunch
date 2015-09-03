@@ -175,17 +175,6 @@ body.home .card {
       .btn { display: block; }
     }
   }
-  @media (min-width: 768px) {
-    &:hover {
-      .stats {
-        border-top: 1px solid white;
-        top: 35px;
-        .card-buttons {
-          left: 10px;
-        }
-      }
-    }
-  }
   &:focus, &.visible {
     .stats {
       border-top: 1px solid white;
@@ -370,6 +359,15 @@ body.editperson .editimg img {
     &.active {
       box-shadow: none;
       > nav { max-height: auto; }
+    }
+  }
+  .card:hover {
+    .stats {
+      border-top: 1px solid white;
+      top: 35px;
+      .card-buttons {
+        left: 10px;
+      }
     }
   }
 }
