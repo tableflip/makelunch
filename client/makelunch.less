@@ -152,6 +152,7 @@ body.home .card {
   img { vertical-align: middle; }
   .stats {
     transform: translateZ(0);
+    height: calc(~"100% - 36px");
     overflow: hidden;
     position: absolute;
     text-align: center;
@@ -168,10 +169,8 @@ body.home .card {
     }
     .card-buttons {
       position: absolute;
-      left: -100%;
-      width: calc(~"100% - 20px");
-      transition: left 0.15s;
       bottom: 5px;
+      width: calc(~"100% - 20px");
       .btn { display: block; }
     }
   }
