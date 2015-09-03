@@ -7,8 +7,8 @@ Template.meals.events = {
 }
 
 Template.meals.onRendered(function () {
-  $(window).on('resize', function () {
+  $(window).on('resize', _.debounce(function () {
     if ($('#responsive-detect-xs').css('display') !== 'block')
       $('.meal').removeClass('visible')
-  })
+  }, 250))
 })
