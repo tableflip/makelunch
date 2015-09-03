@@ -110,17 +110,25 @@ body > header {
   }
   > nav {
     max-height: 0;
+    margin-top: 0;
+    padding: 0;
     overflow: hidden;
-    transform: translateZ(0);
-    transition: max-height 0.25s;
+    text-align: right;
+    transform: translate3d(0,0,0);
+    transition: max-height 0.25s,
+                margin-top 0.25s,
+                padding 0.25s;
     > a {
-      display: block;
-      height: 30px;
-      color: #FFF;
+      display: inline-block;
+      background-color: white;
+      color: #0E2835;
+      font-weight: 700;
+      padding: 10px;
+      margin: 2px 0;
+      text-align: right;
       text-decoration: none;
-      font-weight: 300;
       font-size: 24px;
-      margin: 10px 0;
+      position: relative;
       &:last-of-type {
         margin-bottom: 0;
       }
@@ -128,7 +136,12 @@ body > header {
   }
   &.active {
     box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
-    > nav { max-height: 160px; }
+    > nav {
+      padding: 10px 0 5px;
+      border-top: 1px solid white;
+      margin-top: 10px;
+      max-height: 240px;
+    }
   }
 }
 
