@@ -2,6 +2,7 @@
   {{#each meals}}
     <div class="row meal">
       <div class="tint"></div>
+      <time datetime="{{date}}" class="date">{{niceDate date}}</time>
       <div class="centred-content">
         <div class="names">
           {{#each chef}}
@@ -17,6 +18,12 @@
           {{> photoFrame}}
         {{/with}}
       {{/each}}
+      {{#if guests}}
+        <div class="guests">
+          <img src="/img/square-pixel.png" />
+          <span>+{{guests}}</span>
+        </div>
+      {{/if}}
       <a class="btn btn-edit-meal" href="/editmeal/{{_id}}">Edit meal</a>
     </div>
   {{/each}}

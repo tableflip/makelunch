@@ -129,6 +129,10 @@ Template.registerHelper('todaysISODate', function () {
   return moment().format('YYYY-MM-DD')
 })
 
+Template.registerHelper('niceDate', function (date) {
+  return moment(date, 'YYYY-MM-DD').format('ddd Do MMM')
+})
+
 Template.card.events({
   'click .btn-on-the-rye': function(evt, tpl){
     evt.preventDefault()
