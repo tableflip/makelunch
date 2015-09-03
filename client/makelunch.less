@@ -6,6 +6,14 @@
 .visible-xs-block { display: block; }
 .visible-xs-inline-block { display: inline-block; }
 .hidden-xs { display: none; }
+#responsive-detect-xs {
+  display: block;
+  font-size: 0;
+}
+#responsive-detect-sm, #responsive-detect-md, #responsive-detect-lg {
+  display: none;
+  font-size: 0;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -240,6 +248,8 @@ body.editperson .editimg img {
   /* SM */
   .visible-xs-inline-block, .visible-xs-block { display: none; }
   .hidden-xs { display: block; }
+  #responsive-detect-xs { display: none; }
+  #responsive-detect-sm { display: block; }
 
   body { padding-top: 61px; }
   input.placeholder-visible-xs::placeholder {
@@ -306,6 +316,9 @@ body.editperson .editimg img {
 }
 @media (min-width: 992px) {
   /* MD */
+  #responsive-detect-sm { display: none; }
+  #responsive-detect-md { display: block; }
+
   body {
     padding-top: 0;
   }
@@ -365,5 +378,6 @@ body.editperson .editimg img {
 }
 @media (min-width: 1200px) {
   /* LG */
-
+  #responsive-detect-md { display: none; }
+  #responsive-detect-lg { display: block; }
 }

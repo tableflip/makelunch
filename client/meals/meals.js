@@ -1,6 +1,14 @@
 Template.meals.events = {
-  'click .meal .tint': function (e) {
+  'click .meal': function (e) {
+    if ($('#responsive-detect-xs').css('display') !== 'block') return
     $('.meal').removeClass('visible')
-    $(e.currentTarget).closest('.meal').addClass('visible')
+    $(e.currentTarget).addClass('visible')
   }
 }
+
+Template.meals.onRendered(function () {
+  $(window).on('resize', function () {
+    if ($('#responsive-detect-xs').css('display') !== 'block')
+      $('.meal').removeClass('visible')
+  })
+})
