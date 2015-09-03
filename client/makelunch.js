@@ -109,8 +109,8 @@ Template.registerHelper('profile', function (userId) {
 })
 
 Template.registerHelper('monster', function () {
-  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=monsterid"
-  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=monsterid"
+  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=retro"
+  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
 })
 
 Template.registerHelper('score', function (eater) {

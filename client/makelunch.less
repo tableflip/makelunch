@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Courier Prime";
-  src: url("/fonts/Courier Prime.ttf") format("truetype");
+  src: url("/fonts/Courier Prime Sans.ttf") format("truetype");
 }
 
 /* GENERAL */
@@ -85,8 +85,9 @@ button[type=submit] {
 
 body {
   background-color: #302E2A;
-  color: #000;
+  color: #FFF;
   padding-top: 56px;
+  font-family: "Courier Prime", monospace;
 }
 body > header {
   z-index: 4;
@@ -101,19 +102,20 @@ body > header {
     width: auto;
     height: 100%;
     .icon {
-      width: 5em;
+      margin-left:2px;
       height: 2em;
     }
   }
   .menu-toggle {
     float: right;
     display: inline-block;
+    margin-right:-25px;
     .icon {
       width: 2.5em;
       height: 2em;
     }
   }
-  > nav {
+ nav {
     max-height: 0;
     margin-top: 0;
     padding: 0;
@@ -141,7 +143,7 @@ body > header {
   }
   &.active {
     box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
-    > nav {
+   nav {
       padding: 5px 0 0;
       border-top: 1px solid white;
       margin-top: 10px;
@@ -167,11 +169,10 @@ body > header {
   }
   #header {
     height: 56px;
-    padding: 10px;
     .menu-toggle {
       display: none;
     }
-    > nav {
+   nav {
       height: 100%;
       display: inline-block;
       padding: 0;
@@ -197,7 +198,7 @@ body > header {
     }
     &.active {
       box-shadow: none;
-      > nav { max-height: auto; }
+     nav { max-height: auto; }
     }
   }
 }
@@ -216,7 +217,6 @@ body > header {
   }
   #header {
     position: relative;
-    padding: 10px;
   }
   .form-group {
     text-align: right;

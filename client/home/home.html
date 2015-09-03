@@ -8,31 +8,27 @@
 </template>
 
 <template name="deck">
-  <div class="row">
-    <div class="deck drop">
-      {{#each eaters}}
-        {{> card eater=this}}
-      {{/each}}
-    </div>
+  <div class="deck">
+    {{#each eaters}}
+      {{> card eater=this}}
+    {{/each}}
   </div>
 </template>
 
 <template name="rye">
   {{#if mia}}
-  <div class="row">
-    <div class="rye drop">
-      <h1>Out of action</h1>
-      {{#each mia}}
-        {{> card basic=true eater=this}}
-      {{/each}}
-    </div>
+  <h1>Out of action</h1>
+  <div class="rye deck">
+    {{#each mia}}
+      {{> card basic=true eater=this}}
+    {{/each}}
   </div>
   {{/if}}
 </template>
 
 <template name="card">
   {{#with eater}}
-  <div class="card {{scoreSummary this}} {{#if ../basic}}basic{{/if}}" data-person-id="{{_id}}">
+  <div class="card {{scoreSummary this}}" data-person-id="{{_id}}">
     <span class="name">{{name}}</span>
     {{#if uploadcare}}
       <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
