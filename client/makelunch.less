@@ -239,6 +239,7 @@ body.meals .meal {
   padding: 0 1px;
   background-color: rgba(255, 255, 255, 0);
   transition: background-color 0.25s;
+  transform: translate3d(0, 0, 0);
   .photoFrame {
     display: inline-block;
     width: 20%;
@@ -253,7 +254,7 @@ body.meals .meal {
     background-color: rgba(13, 39, 54, 0.8);
     transition: background-color 0.25s;
   }
-  &:hover, &:focus {
+  &:focus, &.visible {
     background-color: rgba(13, 39, 54, 0.5);
     .tint {
       background-color: rgba(13, 39, 54, 0);
@@ -291,7 +292,7 @@ body.meals .meal {
     bottom: 5px;
     left: -100%;
     z-index: 4;
-    transition: left 0.5s;
+    transition: left 0.25s;
   }
 }
 
@@ -327,8 +328,22 @@ body.editperson .editimg img {
       height: auto;
     }
   }
-  body.meals .meal .centred-content {
-    font-size: 36px;
+  body.meals .meal {
+    .centred-content {
+      font-size: 36px;
+    }
+    &:hover {
+      background-color: rgba(13, 39, 54, 0.5);
+      .tint {
+        background-color: rgba(13, 39, 54, 0);
+      }
+      .centred-content {
+        opacity: 0;
+      }
+      .btn-edit-meal {
+        left: 10px;
+      }
+    }
   }
   #header {
     height: 56px;
