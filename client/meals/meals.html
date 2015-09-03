@@ -17,6 +17,12 @@
           {{> photoFrame}}
         {{/with}}
       {{/each}}
+      {{#if guests}}
+        <div class="guests">
+          <img src="/img/square-pixel.png" />
+          <span>+{{guests}}</span>
+        </div>
+      {{/if}}
       <a class="btn btn-edit-meal" href="/editmeal/{{_id}}">Edit meal</a>
     </div>
   {{/each}}
