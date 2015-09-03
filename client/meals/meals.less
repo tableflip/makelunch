@@ -1,0 +1,126 @@
+/* MEALS */
+body.meals .meal {
+  text-align: right;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 5px;
+  padding: 0 1px;
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color 0.25s;
+  transform: translate3d(0, 0, 0);
+  time {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    font-size: 12px;
+    z-index: 2;
+    transition: opacity 0.25s;
+  }
+  .photoFrame, .guests {
+    display: inline-block;
+    width: 20%;
+    margin: 0 -2px;
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+  .guests {
+    background-color: #0E2835;
+    position: relative;
+    span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 24px;
+    }
+  }
+  .tint {
+    z-index: 2;
+    background-color: rgba(13, 39, 54, 0.8);
+    transition: background-color 0.25s;
+  }
+  &:focus, &.visible {
+    background-color: rgba(13, 39, 54, 0.5);
+    .tint {
+      background-color: rgba(13, 39, 54, 0);
+    }
+    time {
+      opacity: 0;
+    }
+    .centred-content {
+      opacity: 0;
+    }
+    .btn-edit-meal {
+      left: 10px;
+    }
+  }
+  .centred-content {
+    opacity: 1;
+    position: absolute;
+    text-align: center;
+    z-index: 3;
+    width: 100%;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: opacity 0.25s;
+    font-size: 20px;
+    color: #FFF;
+    .names {
+      span:not(:last-child):after { content: ' & '; }
+    }
+    .dish {
+      font-weight: bold;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .btn-edit-meal {
+    position: absolute;
+    bottom: 5px;
+    left: -100%;
+    z-index: 4;
+    transition: left 0.25s;
+  }
+}
+
+@media (min-width: 768px) {
+  /* SM */
+  body.meals .meal {
+    .centred-content {
+      font-size: 36px;
+    }
+    time {
+      font-size: 14px;
+    }
+    &:hover {
+      background-color: rgba(13, 39, 54, 0.5);
+      .tint {
+        background-color: rgba(13, 39, 54, 0);
+      }
+      time {
+        opacity: 0;
+      }
+      .centred-content {
+        opacity: 0;
+      }
+      .btn-edit-meal {
+        left: 10px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  /* MD */
+  body.meals .meal {
+    .photoFrame, .guests {
+      width: 10%;
+      margin: 0 -2px;
+    }
+  }
+}

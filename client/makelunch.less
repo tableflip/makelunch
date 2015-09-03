@@ -6,6 +6,14 @@
 .visible-xs-block { display: block; }
 .visible-xs-inline-block { display: inline-block; }
 .hidden-xs { display: none; }
+#responsive-detect-xs {
+  display: block;
+  font-size: 0;
+}
+#responsive-detect-sm, #responsive-detect-md, #responsive-detect-lg {
+  display: none;
+  font-size: 0;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -230,89 +238,6 @@ body.addmeal, body.editmeal {
     }
   }
 }
-/* MEALS */
-body.meals .meal {
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 5px;
-  padding: 0 1px;
-  background-color: rgba(255, 255, 255, 0);
-  transition: background-color 0.25s;
-  time {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: white;
-    font-size: 12px;
-    z-index: 2;
-  }
-  .photoFrame, .guests {
-    display: inline-block;
-    width: 20%;
-    margin: 0 -2px;
-    img {
-      width: 100%;
-      vertical-align: middle;
-    }
-  }
-  .guests {
-    background-color: #0E2835;
-    position: relative;
-    span {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 24px;
-    }
-  }
-  .tint {
-    z-index: 2;
-    background-color: rgba(13, 39, 54, 0.8);
-    transition: background-color 0.25s;
-  }
-  &:hover, &:focus {
-    background-color: rgba(13, 39, 54, 0.5);
-    .tint {
-      background-color: rgba(13, 39, 54, 0);
-    }
-    .centred-content {
-      opacity: 0;
-    }
-    .btn-edit-meal {
-      left: 10px;
-    }
-  }
-  .centred-content {
-    opacity: 1;
-    position: absolute;
-    text-align: center;
-    z-index: 3;
-    width: 100%;
-    top: 50%;
-    transform: translate(0, -50%);
-    transition: opacity 0.25s;
-    font-size: 20px;
-    color: #FFF;
-    .names {
-      span:not(:last-child):after { content: ' & '; }
-    }
-    .dish {
-      font-weight: bold;
-      white-space: nowrap;
-      overflow-x: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  .btn-edit-meal {
-    position: absolute;
-    bottom: 5px;
-    left: -100%;
-    z-index: 4;
-    transition: left 0.5s;
-  }
-}
 
 /* EDIT PERSON */
 body.editperson .editimg img {
@@ -323,6 +248,8 @@ body.editperson .editimg img {
   /* SM */
   .visible-xs-inline-block, .visible-xs-block { display: none; }
   .hidden-xs { display: block; }
+  #responsive-detect-xs { display: none; }
+  #responsive-detect-sm { display: block; }
 
   body { padding-top: 61px; }
   input.placeholder-visible-xs::placeholder {
@@ -353,14 +280,6 @@ body.editperson .editimg img {
       width: calc(~"25% - 2px");
       margin: 0 -4px 0 2px;
       height: auto;
-    }
-  }
-  body.meals .meal {
-    .centred-content {
-      font-size: 36px;
-    }
-    time {
-      font-size: 14px;
     }
   }
   #header {
@@ -397,6 +316,9 @@ body.editperson .editimg img {
 }
 @media (min-width: 992px) {
   /* MD */
+  #responsive-detect-sm { display: none; }
+  #responsive-detect-md { display: block; }
+
   body {
     padding-top: 0;
   }
@@ -418,13 +340,6 @@ body.editperson .editimg img {
     .card, .card:nth-child(odd) {
       width: calc(~"25% - 2px");
       margin: 0 -4px 2px 2px;
-    }
-  }
-  /* MEALS */
-  body.meals .meal {
-    .photoFrame, .guests {
-      width: 10%;
-      margin: 0 -2px;
     }
   }
   .form-group {
@@ -463,5 +378,6 @@ body.editperson .editimg img {
 }
 @media (min-width: 1200px) {
   /* LG */
-
+  #responsive-detect-md { display: none; }
+  #responsive-detect-lg { display: block; }
 }
