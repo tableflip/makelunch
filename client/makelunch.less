@@ -230,71 +230,6 @@ body.addmeal, body.editmeal {
     }
   }
 }
-/* MEALS */
-body.meals .meal {
-  text-align: right;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 5px;
-  padding: 0 1px;
-  background-color: rgba(255, 255, 255, 0);
-  transition: background-color 0.25s;
-  transform: translate3d(0, 0, 0);
-  .photoFrame {
-    display: inline-block;
-    width: 20%;
-    margin: 0 -2px;
-    img {
-      width: 100%;
-      vertical-align: middle;
-    }
-  }
-  .tint {
-    z-index: 2;
-    background-color: rgba(13, 39, 54, 0.8);
-    transition: background-color 0.25s;
-  }
-  &:focus, &.visible {
-    background-color: rgba(13, 39, 54, 0.5);
-    .tint {
-      background-color: rgba(13, 39, 54, 0);
-    }
-    .centred-content {
-      opacity: 0;
-    }
-    .btn-edit-meal {
-      left: 10px;
-    }
-  }
-  .centred-content {
-    opacity: 1;
-    position: absolute;
-    text-align: center;
-    z-index: 3;
-    width: 100%;
-    top: 50%;
-    transform: translate(0, -50%);
-    transition: opacity 0.25s;
-    font-size: 20px;
-    color: #FFF;
-    .names {
-      span:not(:last-child):after { content: ' & '; }
-    }
-    .dish {
-      font-weight: bold;
-      white-space: nowrap;
-      overflow-x: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  .btn-edit-meal {
-    position: absolute;
-    bottom: 5px;
-    left: -100%;
-    z-index: 4;
-    transition: left 0.25s;
-  }
-}
 
 /* EDIT PERSON */
 body.editperson .editimg img {
@@ -326,23 +261,6 @@ body.editperson .editimg img {
       width: calc(~"25% - 2px");
       margin: 0 -4px 0 2px;
       height: auto;
-    }
-  }
-  body.meals .meal {
-    .centred-content {
-      font-size: 36px;
-    }
-    &:hover {
-      background-color: rgba(13, 39, 54, 0.5);
-      .tint {
-        background-color: rgba(13, 39, 54, 0);
-      }
-      .centred-content {
-        opacity: 0;
-      }
-      .btn-edit-meal {
-        left: 10px;
-      }
     }
   }
   #header {
@@ -400,13 +318,6 @@ body.editperson .editimg img {
     .card, .card:nth-child(odd) {
       width: calc(~"25% - 2px");
       margin: 0 -4px 2px 2px;
-    }
-  }
-  /* MEALS */
-  body.meals .meal {
-    .photoFrame {
-      width: 10%;
-      margin: 0 -2px;
     }
   }
   .form-group {
