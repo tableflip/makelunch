@@ -117,6 +117,17 @@ Template.registerHelper('score', function (eater) {
   return eater.servings.given - eater.servings.received
 })
 
+Template.registerHelper('status', function (eater) {
+  if (eater.servings.given > eater.servings.received) return 'positive'
+  if (eater.servings.given < eater.servings.received) return 'negative'
+  if (eater.servings.given === eater.servings.received) return 'balanced'
+})
+
+Template.registerHelper('absPointsArray', function (eater) {
+  var absPoints = Math.abs(eater.servings.given - eater.servings.received)
+  return Array.apply(null, Array(absPoints)).map(function () {})
+})
+
 function whoShouldCook() {
   return Eaters.sorted[0]
 }
