@@ -152,12 +152,14 @@ body.home .card {
   img { vertical-align: middle; }
   .stats {
     transform: translateZ(0);
+    height: calc(~"100% - 36px");
     overflow: hidden;
     position: absolute;
     text-align: center;
     top: calc(~"100% - 36px");
     bottom: 0;
     font-size: 18px;
+    line-height: 20px;
     transition: top 0.15s;
     padding: 10px;
     width: 100%;
@@ -168,14 +170,12 @@ body.home .card {
     }
     .card-buttons {
       position: absolute;
-      left: -100%;
-      width: calc(~"100% - 20px");
-      transition: left 0.15s;
       bottom: 5px;
+      width: calc(~"100% - 20px");
       .btn { display: block; }
     }
   }
-  &:hover, &:focus {
+  &:focus, &.visible {
     .stats {
       border-top: 1px solid white;
       top: 35px;
@@ -255,6 +255,15 @@ body.editperson .editimg img {
     margin: 5px -2px 5px 2px;
     height: auto;
     .stats { padding-top: 50px; }
+    &:hover {
+      .stats {
+        border-top: 1px solid white;
+        top: 35px;
+        .card-buttons {
+          left: 10px;
+        }
+      }
+    }
   }
   body.addmeal, body.editmeal {
     .card, .card:nth-child(odd) {
