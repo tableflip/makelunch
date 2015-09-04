@@ -155,16 +155,18 @@ var twitterWhitelist = [
 ]
 
 Accounts.validateLoginAttempt(function (info) {
-  var twitterUsers = Meteor.users.find({'services.twitter': {$exists: true}}, {fields: {'services.twitter.screenName': true}}).map(function (user) {
-    return user.services.twitter.screenName
-  })
-  var twitterEaters = Eaters.find({'auth.twitter': {$exists: true}}).map(function (eater) {
-    return eater.auth.twitter
-  })
-  if (!_.intersection(twitterUsers, twitterEaters).length) return true
   if (!info.user || !info.user.services || !info.user.services.twitter) {
     console.error('Attempt to log in has no twitter credentials attached.')
     return false
+  }
+  if (!Eaters.find().count()) {
+    Eaters.create({
+      name: info.user.profile.name,
+      auth: {
+        twitter: info.user.services.twitter.screenName
+      }
+    })
+    return true
   }
   if (twitterWhitelist.indexOf(info.user.services.twitter.screenName) > -1) return true
   var screenName = info.user.services.twitter.screenName.toLowerCase()
