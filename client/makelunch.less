@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Courier Prime";
+  src: url("/fonts/Courier Prime Sans.ttf") format("truetype");
+}
+
 /* GENERAL */
 * {
   box-sizing: border-box;
@@ -60,6 +65,7 @@ input.form-control[type=text], input.form-control[type=number], input.form-contr
   margin: 5px 0;
   border-radius: 0;
   padding: 4px 6px;
+  color: black;
 }
 .uploadcare-widget {
   margin: 5px 0;
@@ -79,36 +85,46 @@ button[type=submit] {
 }
 
 body {
-  background-color: #C1CFB8;
-  color: #000;
+  background-color: #303030;
+  color: #FFF;
   padding-top: 56px;
+  font-family: "Courier Prime", monospace;
 }
 body > header {
   z-index: 4;
-  background-color: #0E2835;
+  background-color: #ffc107;
   color: #FFF;
   position: fixed;
   width: 100%;
   top: 0;
   min-height: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.12), 0px 4px 4px 0px rgba(0,0,0,0.24);
+  h1 {
+    position: absolute;
+    left: 50%;
+    top: 15px;
+    transform: translate(-50%, 0);
+    margin: 0;
+  }
   .logo {
     display: inline-block;
     width: auto;
     height: 100%;
     .icon {
-      width: 5em;
+      margin-left:2px;
       height: 2em;
     }
   }
   .menu-toggle {
     float: right;
     display: inline-block;
+    margin-right:-25px;
     .icon {
       width: 2.5em;
       height: 2em;
     }
   }
-  > nav {
+ nav {
     max-height: 0;
     margin-top: 0;
     padding: 0;
@@ -136,155 +152,13 @@ body > header {
   }
   &.active {
     box-shadow: 0 0px 20px 0px rgba(100,100,100,0.5);
-    > nav {
+   nav {
       padding: 5px 0 0;
       border-top: 1px solid white;
       margin-top: 10px;
       max-height: 240px;
     }
   }
-}
-
-body.home .card {
-  width: calc(~"100% + 20px");
-  margin-left: -10px;
-  margin-right: -10px;
-}
-.card {
-  color: #FFF;
-  user-select: none;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 5px;
-  vertical-align: middle;
-  > .label-top {
-    margin: 0;
-    position: relative;
-    z-index: 1;
-    height: 35px;
-    padding: 10px 10px;
-    width: 100%;
-    background-color: rgba(250, 73, 23, 1);
-    .score {
-      float: right;
-    }
-  }
-  .photoFrame {
-    background-color: rgb(13, 39, 54);
-    min-height: 100px;
-  }
-  img { vertical-align: middle; }
-  .stats {
-    transform: translateZ(0);
-    height: calc(~"100% - 36px");
-    overflow: hidden;
-    position: absolute;
-    text-align: center;
-    top: calc(~"100% - 36px");
-    bottom: 0;
-    font-size: 18px;
-    line-height: 20px;
-    transition: top 0.15s;
-    padding: 10px;
-    width: 100%;
-    background-color: rgba(13, 39, 54, 0.8);
-    span {
-      display: block;
-      margin-bottom: 5px;
-    }
-    .card-buttons {
-      position: absolute;
-      bottom: 5px;
-      width: calc(~"100% - 20px");
-      .btn { display: block; }
-    }
-  }
-  &:focus, &.visible {
-    .stats {
-      border-top: 1px solid white;
-      top: 35px;
-      .card-buttons {
-        left: 10px;
-      }
-    }
-  }
-  &.basic {
-    .label-top, .photoFrame {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-    }
-  }
-  img, .photoFrame { width: 100%; }
-}
-/* ADD MEAL */
-body.addmeal, body.editmeal {
-  .card {
-    display: inline-block;
-    width: calc(~"50% - 5px");
-    .icon {
-      position: absolute;
-      color: black;
-      left: 5%;
-      width: 90%;
-      height: 45%;
-      display: block;
-    }
-    .icon-chef {
-      top: 0;
-    }
-    .icon-knife-fork {
-      top: 56%;
-      height: 42.5%;
-      bottom: 5%;
-    }
-    .eater-status {
-      transition: top 0.25s, bottom 0.25s;
-      bottom: 100%;
-    }
-    &.eating {
-      .eater-status {
-        bottom: 0;
-      }
-    }
-    &.eating.chef {
-      .eater-status {
-        bottom: -100%;
-      }
-    }
-    &.eating:not(.chef) {
-      .icon-knife-fork {
-        display: block;
-      }
-    }
-  }
-  .card:nth-child(odd) {
-    margin-right: 5px;
-  }
-  .card .eater-status {
-    position: absolute;
-    width: 100%;
-    height: calc(~"200% - 35px");
-    bottom: 100%;
-    transition: bottom 0.2s;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.9);
-  }
-  .card.eating .eater-status {
-    bottom: 0;
-  }
-  .btn.delete {
-    padding: 6px 12px;
-    transition: background-color 0.5s;
-    &.verify {
-      background-color: darken(rgba(44, 159, 242, 1), 30%);
-      font-weight: bold;
-    }
-  }
-}
-
-/* EDIT PERSON */
-body.editperson .editimg img {
-  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -302,36 +176,19 @@ body.editperson .editimg img {
     margin-top: 10px;
     margin-bottom: 10px;
   }
-  body.home .card {
-    display: inline-block;
-    width: calc(~"50% - 3px");
-    margin: 5px -2px 5px 2px;
-    height: auto;
-    .stats { padding-top: 50px; }
-    &:hover {
-      .stats {
-        border-top: 1px solid white;
-        top: 35px;
-        .card-buttons {
-          left: 10px;
-        }
-      }
-    }
-  }
-  body.addmeal, body.editmeal {
-    .card, .card:nth-child(odd) {
-      width: calc(~"25% - 2px");
-      margin: 0 -4px 0 2px;
-      height: auto;
-    }
-  }
   #header {
     height: 56px;
-    padding: 10px;
+    h1 {
+      position: static;
+      display: inline-block;
+      vertical-align: top;
+      transform: translate(0, 0);
+      margin: 4px 0 0 5px;
+    }
     .menu-toggle {
       display: none;
     }
-    > nav {
+   nav {
       height: 100%;
       display: inline-block;
       padding: 0;
@@ -357,7 +214,7 @@ body.editperson .editimg img {
     }
     &.active {
       box-shadow: none;
-      > nav { max-height: auto; }
+     nav { max-height: auto; }
     }
   }
 }
@@ -371,23 +228,11 @@ body.editperson .editimg img {
   }
   .container {
     margin: 0 auto;
-    width: 920px;
+    width: 988px;
     padding: 10px 0;
   }
   #header {
     position: relative;
-    padding: 10px;
-  }
-  body.home .card {
-    width: calc(~"25% - 2px");
-    margin: 0 -4px 2px 2px;
-    .stats { padding-top: 10px; }
-  }
-  body.addmeal, body.editmeal {
-    .card, .card:nth-child(odd) {
-      width: calc(~"25% - 2px");
-      margin: 0 -4px 2px 2px;
-    }
   }
   .form-group {
     text-align: right;
@@ -408,9 +253,9 @@ body.editperson .editimg img {
     .uploadcare-widget {
       margin-top: 0;
       margin-bottom: 0;
-      margin-right: calc(~"80% - 125px");
+      margin-right: calc(~"80% - 165px");
       .uploadcare-widget-button {
-        width: 120px;
+        width: 160px;
         text-align: center;
       }
     }

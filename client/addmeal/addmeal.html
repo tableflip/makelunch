@@ -3,15 +3,17 @@
     <h1>Who's eating?</h1>
     <div class="mealEaters">
       {{#each people}}
-        <div class="card {{#if equal _id ../chef}}eating chef{{/if}}" data-eater="{{_id}}">
-          <div class="label-top">
-            <span>{{name}}</span>
-          </div>
+        <div class="card" data-eater="{{_id}}">
+          <span class="name">{{name}}</span>
+          {{#if uploadcare}}
+            <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
+          {{else}}
+            <img src="{{monster}}">
+          {{/if}}
           <div class="eater-status">
             {{> svg "chef"}}
             {{> svg "knife-fork"}}
           </div>
-          {{> photoFrame this}}
         </div>
       {{/each}}
     </div>

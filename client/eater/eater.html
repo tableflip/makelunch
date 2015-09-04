@@ -1,0 +1,61 @@
+<template name="eater">
+  {{#with eater}}
+  <div class="card">
+    <span class="name">{{name}}</span>
+    {{#if uploadcare}}
+      <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
+    {{else}}
+      <img src="{{monster}}">
+    {{/if}}
+  </div>
+  <div class="stats">
+    <p class="score">{{score this}} points</p>
+    <p class="ratio">{{servings.given}} served : {{servings.received}} eaten</p>
+    {{#if lastCooked}}
+      <p class="last-cooked">Last cooked {{fromNow lastCooked}}</p>
+    {{/if}}
+    {{#if lastEaten}}
+      <p title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</p>
+    {{/if}}
+  </div>
+  {{#if currentUser}}
+    <div class="eater-buttons">
+      {{#if equal ./status 'jail'}}
+        <a class="btn btn-make-chef" href="/addmeal?chef={{ _id }}">Cook</a>
+      {{/if}}
+      <a class="btn btn-edit-user" href="/editperson/{{ _id }}">Edit</a>
+      {{#if equal ./status 'jail'}}
+        <a class="btn btn-on-the-rye" data-eater={{ _id }} href="#">Out of action</a>
+      {{else}}
+        <a class="btn btn-on-the-rye" data-eater={{ _id }} href="#">Back in action</a>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{/with}}
+  {{#if meals}}
+    <div class="meals">
+      <h2>Meals cooked</h2>
+      {{#each meals}}
+        <div class="row meal">
+          <div class="tint"></div>
+          <time datetime="{{date}}" class="date">{{niceDateWithYear date}}</time>
+          <div class="centred-content">
+            <span class="dish">{{dish}}</span>
+          </div>
+          {{#each eaters}}
+            {{#with profile this}}
+              {{> photoFrame}}
+            {{/with}}
+          {{/each}}
+          {{#if guests}}
+            <div class="guests">
+              <img src="/img/square-pixel.png" />
+              <span>+{{guests}}</span>
+            </div>
+          {{/if}}
+          <a class="btn btn-edit-meal" href="/editmeal/{{_id}}">Edit meal</a>
+        </div>
+      {{/each}}
+    </div>
+    {{/if}}
+</template>

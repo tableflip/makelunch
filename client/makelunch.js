@@ -66,6 +66,23 @@ Meteor.startup(function () {
 
     this.route('addperson')
 
+    this.route('eater', {
+      path: '/eater/:_id',
+      onBeforeAction: [
+        function () {
+          this.subscribe('meals', Infinity)
+          this.next()
+        }
+      ],
+      data: function () {
+        var ctx = this
+        return {
+          eater: Eaters.findOne(ctx.params._id),
+          meals: Meals.find({ chef: this.params._id })
+        }
+      }
+    })
+
     this.route('meals', {
       path:'/meals',
       onBeforeAction: [
@@ -113,12 +130,23 @@ Template.registerHelper('profile', function (userId) {
 })
 
 Template.registerHelper('monster', function () {
-  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=monsterid"
-  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=monsterid"
+  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=retro"
+  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
 })
 
 Template.registerHelper('score', function (eater) {
   return eater.servings.given - eater.servings.received
+})
+
+Template.registerHelper('status', function (eater) {
+  if (eater.servings.given > eater.servings.received) return 'positive'
+  if (eater.servings.given < eater.servings.received) return 'negative'
+  if (eater.servings.given === eater.servings.received) return 'balanced'
+})
+
+Template.registerHelper('absPointsArray', function (eater) {
+  var absPoints = Math.abs(eater.servings.given - eater.servings.received)
+  return Array.apply(null, Array(absPoints)).map(function () {})
 })
 
 function whoShouldCook() {
@@ -137,15 +165,14 @@ Template.registerHelper('niceDate', function (date) {
   return moment(date, 'YYYY-MM-DD').format('ddd Do MMM')
 })
 
+Template.registerHelper('niceDateWithYear', function (date) {
+  return moment(date, 'YYYY-MM-DD').format('ddd Do MMM YYYY')
+})
+
 Template.card.events({
   'click .photoFrame': function (evt, tpl) {
     $('.card').removeClass('visible')
     tpl.$('.card').addClass('visible')
-  },
-  'click .btn-on-the-rye': function(evt, tpl){
-    evt.preventDefault()
-    var newStatus = (this.status !== 'rye') ? 'rye' : 'jail'
-    Eaters.update(this._id, { $set: {status: newStatus}})
   }
 })
 

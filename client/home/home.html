@@ -8,58 +8,38 @@
 </template>
 
 <template name="deck">
-  <div class="row">
-    <div class="deck drop">
-      {{#each eaters}}
-        {{> card eater=this}}
-      {{/each}}
-    </div>
+  <div class="deck">
+    {{#each eaters}}
+      {{> card eater=this}}
+    {{/each}}
   </div>
 </template>
 
 <template name="rye">
   {{#if mia}}
-  <div class="row">
-    <div class="rye drop">
-      <h1>Out of action</h1>
-      {{#each mia}}
-        {{> card basic=true eater=this}}
-      {{/each}}
-    </div>
+  <h1>Out of action</h1>
+  <div class="rye deck">
+    {{#each mia}}
+      {{> card basic=true eater=this}}
+    {{/each}}
   </div>
   {{/if}}
 </template>
 
 <template name="card">
   {{#with eater}}
-  <div class="card{{#if eating}} eating{{/if}} {{scoreSummary this}} {{#if ../basic}}basic{{/if}}" data-person-id="{{_id}}">
-    <div class="label-top">
-      {{name}}
-      <span class="score">{{ score this }}</span>
+  <a class="card {{scoreSummary this}}" href="/eater/{{_id}}" data-person-id="{{_id}}">
+    <span class="name">{{name}}</span>
+    {{#if uploadcare}}
+      <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
+    {{else}}
+      <img src="{{monster}}">
+    {{/if}}
+    <div class="score {{status this}}">
+      {{#each absPointsArray this}}
+        <div></div>
+      {{/each}}
     </div>
-    {{> photoFrame this}}
-    <div class="stats label-bottom">
-      <span class="ratio">{{servings.given}} : {{servings.received}}</span>
-      {{#if lastCooked}}
-        <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>
-      {{/if}}
-      {{#if lastEaten}}
-        <span title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</span>
-      {{/if}}
-      {{#if currentUser}}
-        <div class="card-buttons">
-          {{#unless ../basic}}
-            <a class="btn btn-make-chef" href="/addmeal?chef={{ _id }}">Cook</a>
-          {{/unless}}
-          <a class="btn btn-edit-user" href="/editperson/{{ _id }}">Edit</a>
-          {{#if equal status 'jail'}}
-            <a class="btn btn-on-the-rye" href="#">Out of action</a>
-          {{else}}
-            <a class="btn btn-on-the-rye" href="#">Back in action</a>
-          {{/if}}
-        </div>
-      {{/if}}
-    </div>
-  </div>
+  </a>
   {{/with}}
 </template>
