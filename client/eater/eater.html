@@ -1,18 +1,22 @@
 <template name="eater">
-  <h1>{{name}}</h1>
-  {{#if uploadcare}}
-    <img class="eater-pic" src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
-  {{else}}
-    <img class="eater-pic" src="{{monster}}">
-  {{/if}}
-  <p class="ratio">{{servings.given}} served</p>
-  <p class="ratio">{{servings.received}} eaten</p>
-  {{#if lastCooked}}
-    <p class="last-cooked">Last cooked {{fromNow lastCooked}}</p>
-  {{/if}}
-  {{#if lastEaten}}
-    <p title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</p>
-  {{/if}}
+  <div class="card">
+    <span class="name">{{name}}</span>
+    {{#if uploadcare}}
+      <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
+    {{else}}
+      <img src="{{monster}}">
+    {{/if}}
+  </div>
+  <div class="stats">
+    <p class="score">{{score this}} points</p>
+    <p class="ratio">{{servings.given}} served : {{servings.received}} eaten</p>
+    {{#if lastCooked}}
+      <p class="last-cooked">Last cooked {{fromNow lastCooked}}</p>
+    {{/if}}
+    {{#if lastEaten}}
+      <p title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</p>
+    {{/if}}
+  </div>
   {{#if currentUser}}
     <div class="eater-buttons">
       {{#if equal status 'jail'}}
