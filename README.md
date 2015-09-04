@@ -10,7 +10,7 @@ If I cook for 8 people (including me), I recieve 1 portion and give 8, so am +7
 
 Meals are historical records. The stats on the Eaters are calculated on meal insert. It's an experiment in document storage style.
 
-To recommend who cooks next we look at how has the lowest value of `servings.given` - `servings.recieved`. 
+To recommend who cooks next we look at how has the lowest value of `servings.given` - `servings.recieved`.
 
 **TODO:**
 - In the event of a tie, who cooked longest ago. (could also factor in meals eaten vs cooked)
@@ -24,9 +24,24 @@ Getting started
 - Add a settings.json in the top level of the repo:
 ```json
 {
-  "twitter": {
-    "consumerKey": "",
-    "secret": ""
+  {
+    "MESSAGEBIRD_KEY": "Messagebird Key",
+    "GCM": {
+      "authorization": "GCM Authorization key"
+    },
+    "messagePassword": "Password for testing messaging service",
+    "public": {
+      "GCM": {
+        "senderId": "GCM Sender Id"
+      }
+    },
+    "twitter": {
+      "consumerKey": "",
+      "secret": ""
+    },
+    "twitterWhitelist": [
+      "adminHandle"
+    ]
   }
 }
 ```
