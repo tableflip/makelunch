@@ -1,21 +1,45 @@
 body.addmeal, body.editmeal {
+  .container {}
+  .mealEaters {
+    font-size: 0;
+  }
   .card {
+    font-family: 'Courier Prime';
     display: inline-block;
-    width: calc(~"50% - 5px");
+    width: calc(~"50% - 8px");
+    margin: 4px 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
+    border-radius: 2px;
+    .name {
+      z-index: 3;
+      letter-spacing: 0.5px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-size: 18px;
+      text-shadow: 0 0 2px rgba(0,0,0,0.9);
+      transition: color 0.25s,
+                  text-shadow 0.25s;
+    }
+    img {
+      width: 100%;
+    }
     .icon {
       position: absolute;
       color: black;
       left: 5%;
       width: 90%;
-      height: 45%;
+      height: 40%;
       display: block;
     }
     .icon-chef {
-      top: 0;
+      top: 5%;
     }
     .icon-knife-fork {
-      top: 56%;
-      height: 42.5%;
+      top: 55%;
       bottom: 5%;
     }
     .eater-status {
@@ -23,6 +47,10 @@ body.addmeal, body.editmeal {
       bottom: 100%;
     }
     &.eating {
+      .name {
+        color: black;
+        text-shadow: none;
+      }
       .eater-status {
         bottom: 0;
       }
@@ -38,13 +66,10 @@ body.addmeal, body.editmeal {
       }
     }
   }
-  .card:nth-child(odd) {
-    margin-right: 5px;
-  }
   .card .eater-status {
     position: absolute;
     width: 100%;
-    height: calc(~"200% - 35px");
+    height: 200%;
     bottom: 100%;
     transition: bottom 0.2s;
     overflow: hidden;
@@ -61,25 +86,18 @@ body.addmeal, body.editmeal {
       font-weight: bold;
     }
   }
-}
 
-@media (min-width: 768px) {
-  /* SM */
-  body.addmeal, body.editmeal {
-    .card, .card:nth-child(odd) {
-      width: calc(~"25% - 2px");
-      margin: 0 -4px 0 2px;
-      height: auto;
+  @media (min-width: 768px) {
+    /* SM */
+    .card {
+      width: calc(~"33% - 8px");
     }
   }
-}
 
-@media (min-width: 992px) {
-  /* MD */
-  body.addmeal, body.editmeal {
-    .card, .card:nth-child(odd) {
-      width: calc(~"25% - 2px");
-      margin: 0 -4px 2px 2px;
+  @media (min-width: 992px) {
+    /* MD */
+    .card {
+      width: calc(~"25% - 8px");
     }
   }
 }
