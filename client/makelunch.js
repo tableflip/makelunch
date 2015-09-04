@@ -66,6 +66,14 @@ Meteor.startup(function () {
 
     this.route('addperson')
 
+    this.route('eater', {
+      path: '/eater/:_id',
+      data: function () {
+        var ctx = this
+        return Eaters.findOne(ctx.params._id)
+      }
+    })
+
     this.route('meals', {
       path:'/meals',
       onBeforeAction: [
