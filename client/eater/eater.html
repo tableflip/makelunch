@@ -40,13 +40,6 @@
           <div class="tint"></div>
           <time datetime="{{date}}" class="date">{{niceDate date}}</time>
           <div class="centred-content">
-            <div class="names">
-              {{#each chef}}
-                {{#with profile this}}
-                  <span>{{name}}</span>
-                {{/with}}
-              {{/each}}
-            </div>
             <span class="dish">{{dish}}</span>
           </div>
           {{#each eaters}}
