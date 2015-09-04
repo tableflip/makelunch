@@ -146,14 +146,6 @@ Meteor.methods({
   }
 })
 
-var twitterWhitelist = [
-  'richsilvo',
-  'msdosh',
-  '_bmordan',
-  'olizilla',
-  '_alanshaw'
-]
-
 Accounts.validateLoginAttempt(function (info) {
   if (!info.user || !info.user.services || !info.user.services.twitter) {
     console.error('Attempt to log in has no twitter credentials attached.')
@@ -168,7 +160,7 @@ Accounts.validateLoginAttempt(function (info) {
     })
     return true
   }
-  if (twitterWhitelist.indexOf(info.user.services.twitter.screenName) > -1) return true
+  if (Meteor.settings && Meteor.settings.twitterWhitelist && Meteor.settings.twitterWhitelist.indexOf(info.user.services.twitter.screenName) > -1) return true
   var screenName = info.user.services.twitter.screenName.toLowerCase()
   var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
   if (eaters.length === 0) {
