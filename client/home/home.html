@@ -28,7 +28,7 @@
 
 <template name="card">
   {{#with eater}}
-  <div class="card {{scoreSummary this}}" data-person-id="{{_id}}">
+  <a class="card {{scoreSummary this}}" href="/eater/{{_id}}" data-person-id="{{_id}}">
     <span class="name">{{name}}</span>
     {{#if uploadcare}}
       <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
@@ -40,6 +40,6 @@
         <div></div>
       {{/each}}
     </div>
-  </div>
+  </a>
   {{/with}}
 </template>
