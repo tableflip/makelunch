@@ -70,7 +70,7 @@ Meteor.startup(function () {
       path: '/eater/:_id',
       onBeforeAction: [
         function () {
-          this.subscribe('meals', 100)
+          this.subscribe('meals', Infinity)
           this.next()
         }
       ],
@@ -163,6 +163,10 @@ Template.registerHelper('todaysISODate', function () {
 
 Template.registerHelper('niceDate', function (date) {
   return moment(date, 'YYYY-MM-DD').format('ddd Do MMM')
+})
+
+Template.registerHelper('niceDateWithYear', function (date) {
+  return moment(date, 'YYYY-MM-DD').format('ddd Do MMM YYYY')
 })
 
 Template.card.events({
