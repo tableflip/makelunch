@@ -146,11 +146,32 @@ Meteor.methods({
   }
 })
 
+var twitterWhitelist = [
+  'richsilvo',
+  'msdosh',
+  '_bmordan',
+  'olizilla',
+  '_alanshaw'
+]
+
 Accounts.validateLoginAttempt(function (info) {
-  if (!Meteor.users.find({'services.twitter': {$exists: true}}).count()) return true
-  if (!info.user || !info.user.services || !info.user.services.twitter) return false
+  var twitterUsers = Meteor.users.find({'services.twitter': {$exists: true}}, {fields: {'services.twitter.screenName': true}}).map(function (user) {
+    return user.services.twitter.screenName
+  })
+  var twitterEaters = Eaters.find({'auth.twitter': {$exists: true}}).map(function (eater) {
+    return eater.auth.twitter
+  })
+  if (!_.intersection(twitterUsers, twitterEaters).length) return true
+  if (!info.user || !info.user.services || !info.user.services.twitter) {
+    console.error('Attempt to log in has no twitter credentials attached.')
+    return false
+  }
+  if (twitterWhitelist.indexOf(info.user.services.twitter.screenName) > -1) return true
   var screenName = info.user.services.twitter.screenName.toLowerCase()
   var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
-  if(eaters.length === 0) return false
+  if (eaters.length === 0) {
+    console.error('The user ' + screenName + ' has not been registered as an eater. A registered user must add an eater with their twitter handle before they can log in.')
+    return false
+  }
   return true
 })
