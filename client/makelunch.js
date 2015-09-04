@@ -111,6 +111,10 @@ Meteor.startup(function () {
   Template.registerHelper('scoreSummary', Eaters.scoreSummary)
 })// end Meteor.startup
 
+Accounts.onLoginFailure(function () {
+  console.error('Could not log in! Are you sure there is a registered Eater with this twitter handle?  If not, you\'ll need to get an already registered Eater to add one.')
+})
+
 Template.registerHelper('fromNow', function (date) {
   return moment(date + 'T12:00').fromNow()
 })
