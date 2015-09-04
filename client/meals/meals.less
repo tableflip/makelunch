@@ -1,5 +1,5 @@
 /* MEALS */
-body.meals .meal {
+body.meals .meal, body.eater .meal {
   overflow: hidden;
   position: relative;
   margin-bottom: 5px;
@@ -85,11 +85,9 @@ body.meals .meal {
     z-index: 4;
     transition: left 0.25s;
   }
-}
 
-@media (min-width: 768px) {
-  /* SM */
-  body.meals .meal {
+  @media (min-width: 768px) {
+    /* SM */
     .centred-content {
       font-size: 36px;
     }
@@ -112,13 +110,11 @@ body.meals .meal {
       }
     }
   }
-}
 
-@media (min-width: 992px) {
-  /* MD */
-  body.meals .meal {
+  @media (min-width: 992px) {
+    /* MD */
     .photoFrame, .guests {
       width: 10%;
-    }
+    }  
   }
 }

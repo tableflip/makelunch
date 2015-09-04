@@ -1,8 +1,5 @@
 body.eater {
   font-size: 12px;
-  #content {
-    text-align: right;
-  }
   .card {
     width: 50%;
     float: left;
@@ -24,6 +21,7 @@ body.eater {
     }
   }
   .stats, .eater-buttons {
+    text-align: right;
     vertical-align: top;
     display: inline-block;
     width: 50%;
@@ -35,6 +33,11 @@ body.eater {
       display: block;
     }
   }
+  .meals {
+    margin-top: 24px;
+    clear: both;
+  }
+
   @media (min-width: 768px) {
     .card {
       width: 33%;

@@ -68,9 +68,18 @@ Meteor.startup(function () {
 
     this.route('eater', {
       path: '/eater/:_id',
+      onBeforeAction: [
+        function () {
+          this.subscribe('meals', 100)
+          this.next()
+        }
+      ],
       data: function () {
         var ctx = this
-        return Eaters.findOne(ctx.params._id)
+        return {
+          eater: Eaters.findOne(ctx.params._id),
+          meals: Meals.find({ chef: this.params._id })
+        }
       }
     })
 

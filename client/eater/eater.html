@@ -1,4 +1,5 @@
 <template name="eater">
+  {{#with eater}}
   <div class="card">
     <span class="name">{{name}}</span>
     {{#if uploadcare}}
@@ -19,15 +20,49 @@
   </div>
   {{#if currentUser}}
     <div class="eater-buttons">
-      {{#if equal status 'jail'}}
+      {{#if equal ../status 'jail'}}
         <a class="btn btn-make-chef" href="/addmeal?chef={{ _id }}">Cook</a>
       {{/if}}
       <a class="btn btn-edit-user" href="/editperson/{{ _id }}">Edit</a>
-      {{#if equal status 'jail'}}
+      {{#if equal ../status 'jail'}}
         <a class="btn btn-on-the-rye" href="#">Out of action</a>
       {{else}}
         <a class="btn btn-on-the-rye" href="#">Back in action</a>
       {{/if}}
     </div>
   {{/if}}
+  {{/with}}
+  {{#if meals}}
+    <div class="meals">
+      <h2>Meals cooked</h2>
+      {{#each meals}}
+        <div class="row meal">
+          <div class="tint"></div>
+          <time datetime="{{date}}" class="date">{{niceDate date}}</time>
+          <div class="centred-content">
+            <div class="names">
+              {{#each chef}}
+                {{#with profile this}}
+                  <span>{{name}}</span>
+                {{/with}}
+              {{/each}}
+            </div>
+            <span class="dish">{{dish}}</span>
+          </div>
+          {{#each eaters}}
+            {{#with profile this}}
+              {{> photoFrame}}
+            {{/with}}
+          {{/each}}
+          {{#if guests}}
+            <div class="guests">
+              <img src="/img/square-pixel.png" />
+              <span>+{{guests}}</span>
+            </div>
+          {{/if}}
+          <a class="btn btn-edit-meal" href="/editmeal/{{_id}}">Edit meal</a>
+        </div>
+      {{/each}}
+    </div>
+    {{/if}}
 </template>
