@@ -1,12 +1,14 @@
 App.info({
-  id: 'com.tableflip.makelunch',
-  version: '0.5',
-  name: 'MakeLunch',
-  description: 'Lunch tracking app',
+  id: 'io.tableflip.makelunch',
+  version: '0.6.2',
+  name: 'Lunch',
+  description: 'Whose turn is it to make lunch?',
   author: 'tableflip',
   email: 'hello@tableflip.io',
-  website: 'http://makelunch.meteor.com'
+  website: 'https://lunch.tableflip.io'
 })
+
+App.setPreference('BackgroundColor', '0xff303030');
 
 App.accessRule('http://www.gravatar.com', {launchExternal: false})
 App.accessRule('http://yui.yahooapis.com', {launchExternal: false})
@@ -23,36 +25,25 @@ App.accessRule('https://cloud.githubusercontent.com', {launchExternal: false})
 App.accessRule('http://photos-h.ak.instagram.com', {launchExternal: false})
 App.accessRule('https://avatars0.githubusercontent.com', {launchExternal: false})
 App.accessRule('http://media-cache-ec0.pinimg.com', {launchExternal: false})
+App.accessRule('https://www.ucarecdn.com', {launchExternal: false})
 
 App.icons({
-  'iphone': 'icons/ios/appicon-60.png',
-  'iphone_2x': 'icons/ios/appicon-60@2x.png',
-  'iphone_3x': 'icons/ios/appicon-60@3x.png',
-  'ipad': 'icons/ios/appicon-76.png',
-  'ipad_2x': 'icons/ios/appicon-76@2x.png',
-  'android_ldpi': 'icons/android/appicon.png',
-  'android_mdpi': 'icons/android/appicon.png',
-  'android_hdpi': 'icons/android/appicon.png',
-  'android_xhdpi': 'icons/android/appicon.png'
+  'iphone_3x': 'assets/icons/ios/iphone.png',
+  'ipad_2x': 'assets/icons/ios/iphone.png',
+  'android_xhdpi': 'assets/icons/android/android.png'
 })
 
 App.launchScreens({
-  'iphone': 'icons/ios/iTunesArtwork',
-  'iphone_2x': 'icons/ios/iTunesArtwork',
-  'iphone5': 'icons/ios/iTunesArtwork',
-  'iphone6': 'icons/ios/iTunesArtwork',
-  'iphone6p_portrait': 'icons/ios/iTunesArtwork',
-  'iphone6p_landscape': 'icons/ios/iTunesArtwork',
-  'ipad_portrait': 'icons/ios/iTunesArtwork',
-  'ipad_portrait_2x': 'icons/ios/iTunesArtwork@2x',
-  'ipad_landscape': 'icons/ios/iTunesArtwork',
-  'ipad_landscape_2x': 'icons/ios/iTunesArtwork@2x',
-  'android_ldpi_portrait': 'icons/android/images/res-en-long-port-ldpi/default.png',
-  'android_ldpi_landscape': 'icons/android/images/res-en-long-land-ldpi/default.png',
-  'android_mdpi_portrait': 'icons/android/images/res-en-long-port-mdpi/default.png',
-  'android_mdpi_landscape': 'icons/android/images/res-en-long-land-mdpi/default.png',
-  'android_hdpi_portrait': 'icons/android/images/res-en-long-port-hdpi/default.png',
-  'android_hdpi_landscape': 'icons/android/images/res-en-long-land-hdpi/default.png',
-  'android_xhdpi_portrait': 'icons/android/images/res-en-long-port-xhdpi/default.png',
-  'android_xhdpi_landscape': 'icons/android/images/res-en-long-land-xhdpi/default.png'
+  'iphone': 'assets/splash-screens/ios/Default.png',
+  'iphone_2x': 'assets/splash-screens/ios/Default@2x.png',
+  'iphone5': 'assets/splash-screens/ios/Default-568h@2x.png',
+  'iphone6': 'assets/splash-screens/ios/Default-667h@2x.png',
+  'iphone6p_portrait': 'assets/splash-screens/ios/Default-Portrait-736h@3x.png',
+  'iphone6p_landscape': 'assets/splash-screens/ios/Default-Landscape-736h@3x.png',
+  'ipad_portrait': 'assets/splash-screens/ios/Default-Portrait.png',
+  'ipad_portrait_2x': 'assets/splash-screens/ios/Default-Portrait@2x.png',
+  'ipad_landscape': 'assets/splash-screens/ios/Default-Landscape.png',
+  'ipad_landscape_2x': 'assets/splash-screens/ios/Default-Landscape@2x.png',
+  'android_xhdpi_portrait': 'assets/splash-screens/android/drawable-xhdpi/makelunch.9.png',
+  'android_xhdpi_landscape': 'assets/splash-screens/android/drawable-xhdpi/makelunch.9.png'
 })
