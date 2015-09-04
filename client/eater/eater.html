@@ -1,16 +1,17 @@
 <template name="eater">
   <h1>{{name}}</h1>
   {{#if uploadcare}}
-    <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
+    <img class="eater-pic" src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
   {{else}}
-    <img src="{{monster}}">
+    <img class="eater-pic" src="{{monster}}">
   {{/if}}
-  <span class="ratio">{{servings.given}} : {{servings.received}}</span>
+  <h2>Ratio</h2>
+  <p class="ratio">{{servings.given}} served : {{servings.received}} eaten</p>
   {{#if lastCooked}}
-    <span class="last-cooked">Last cooked {{fromNow lastCooked}}</span>
+    <p class="last-cooked">Last cooked {{fromNow lastCooked}}</p>
   {{/if}}
   {{#if lastEaten}}
-    <span title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</span>
+    <p title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</p>
   {{/if}}
   {{#if currentUser}}
     <a class="btn btn-make-chef" href="/addmeal?chef={{ _id }}">Cook</a>
