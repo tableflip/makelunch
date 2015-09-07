@@ -1,21 +1,22 @@
 <template name="eater">
   {{#with eater}}
   <div class="card">
-    <span class="name">{{name}}</span>
-    {{#if uploadcare}}
-      <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
-    {{else}}
-      <img src="{{monster}}">
-    {{/if}}
+    <div class="photo" style="background-image: url({{photo}})">
+      <span class="name">{{name}}</span>
+    </div>
   </div>
   <div class="stats">
-    <p class="score">{{score this}} points</p>
-    <p class="ratio">{{servings.given}} served : {{servings.received}} eaten</p>
+    <p>Lunches made.....<strong>{{servings.given}}</strong></p>
+    <p>Lunches eaten....<strong>{{servings.received}}</strong></p>
+    <p>Balance..........<strong>{{score this}}</strong></p>
+    <p class="flourish">
+      {{> svg "logo-table"}}
+    </p>
     {{#if lastCooked}}
-      <p class="last-cooked">Last cooked {{fromNow lastCooked}}</p>
+    <p class="last-cooked" title="{{lastCooked}}">Last cooked {{fromNow lastCooked}}</p>
     {{/if}}
     {{#if lastEaten}}
-      <p title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</p>
+    <p class="last-ate" title="{{lastEaten}}">Last ate {{fromNow lastEaten}}</p>
     {{/if}}
   </div>
   {{#if currentUser}}

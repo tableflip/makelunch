@@ -38,13 +38,13 @@ body.meals .meal, body.eater .meal {
   }
   .tint {
     z-index: 2;
-    background-color: rgba(13, 39, 54, 0.8);
+    background-color: rgba(67, 67, 67, 0.8);
     transition: background-color 0.25s;
   }
   &:focus, &.visible {
-    background-color: rgba(13, 39, 54, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
     .tint {
-      background-color: rgba(13, 39, 54, 0);
+      background-color: rgba(67, 67, 67, 0);
     }
     time {
       opacity: 0;
@@ -95,7 +95,7 @@ body.meals .meal, body.eater .meal {
       font-size: 14px;
     }
     &:hover {
-      background-color: rgba(13, 39, 54, 0.5);
+      background-color: rgba(255, 193, 7, 0.26);
       .tint {
         background-color: rgba(13, 39, 54, 0);
       }
@@ -115,6 +115,6 @@ body.meals .meal, body.eater .meal {
     /* MD */
     .photoFrame, .guests {
       width: 10%;
-    }  
+    }
   }
 }
