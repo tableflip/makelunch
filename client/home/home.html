@@ -20,7 +20,7 @@
   <h1>Out of action</h1>
   <div class="rye deck">
     {{#each mia}}
-      {{> card basic=true eater=this}}
+      {{> card eater=this}}
     {{/each}}
   </div>
   {{/if}}
@@ -29,16 +29,13 @@
 <template name="card">
   {{#with eater}}
   <a class="card {{scoreSummary this}}" href="/eater/{{_id}}" data-person-id="{{_id}}">
-    <span class="name">{{name}}</span>
-    {{#if uploadcare}}
-      <img src="https://www.ucarecdn.com/{{uploadcare}}/-/scale_crop/768x768/center" />
-    {{else}}
-      <img src="{{monster}}">
-    {{/if}}
-    <div class="score {{status this}}">
-      {{#each absPointsArray this}}
-        <div></div>
-      {{/each}}
+    <div class="photo" style="background-image: url({{photo}})">
+      <span class="name">{{name}}</span>
+      <div class="score {{status this}}">
+        {{#each absPointsArray this}}
+          <div></div>
+        {{/each}}
+      </div>
     </div>
   </a>
   {{/with}}

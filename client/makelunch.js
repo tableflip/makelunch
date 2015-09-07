@@ -134,6 +134,12 @@ Template.registerHelper('monster', function () {
   return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
 })
 
+Template.registerHelper('photo', function () {
+  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=retro"
+  if (!this.uploadcare) return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
+  return "https://www.ucarecdn.com/"+this.uploadcare+"/-/scale_crop/768x768/center"
+})
+
 Template.registerHelper('score', function (eater) {
   return eater.servings.given - eater.servings.received
 })
