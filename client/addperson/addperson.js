@@ -16,7 +16,9 @@ Template.addperson.events = {
     }
     console.log(person)
     Eaters.create(person)
-    Router.go('/')
+    Meteor.call('storeUploadcare', person.uploadcare, function () {
+      Router.go('/')
+    })
   }
 }
 

@@ -5,12 +5,12 @@
       <label class="hidden-xs">Name</label>
       <input class="form-control placeholder-visible-xs personName" type="text" placeholder="Name" />
     </div>
-    
+
     <div class="form-group">
       <label class="hidden-xs">Twitter Handle</label>
       <input class="form-control placeholder-visible-xs twitterHandle" type="text" placeholder="Twitter handle" />
     </div>
-    
+
     <div class="form-group">
       <label class="hidden-xs">Phone Number</label>
       <input class="form-control placeholder-visible-xs mobile" type="text" placeholder="Mobile Number" />
@@ -18,7 +18,7 @@
 
     <div class="form-group">
       <label class="hidden-xs">Picture</label>
-      <input type="hidden" name="picture" role="uploadcare-uploader" data-crop />
+      <input type="hidden" name="picture" role="uploadcare-uploader" data-crop data-public-key="{{uploadcarePublicKey}}"/>
       <input type="hidden" id="uploadcare-uuid" name="uploadcare-uuid" />
     </div>
 
