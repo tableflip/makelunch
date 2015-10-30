@@ -15,20 +15,33 @@ Template.editperson.events = {
         email: null
       }
     }
-    if (tpl.find('.personName').value) person.name = tpl.find('.personName').value
-    if (tpl.find('#uploadcare-uuid').value) {
-      var currentUuid = Eaters.findOne({ _id: ctx._id }).uploadcare
-      Meteor.call('removeUploadcare', currentUuid, function () {
-        person.uploadcare = tpl.find('#uploadcare-uuid').value
-        Meteor.call('storeUploadcare', person.uploadcare, function () {
+
+    if (tpl.find('.personName').value) {
+      person.name = tpl.find('.personName').value
+    }
+
+    if (!tpl.find('#uploadcare-uuid').value) {
+      Eaters.update(eaterId, {$set: person})
+      return Router.go('/')
+    }
+
+    person.uploadcare = tpl.find('#uploadcare-uuid').value
+
+    // Store the new
+    Meteor.call('storeUploadcare', person.uploadcare, function () {
+      var currentUuid = Eaters.findOne({_id: eaterId}).uploadcare
+
+      if (currentUuid) {
+        // Remove the old
+        Meteor.call('removeUploadcare', currentUuid, function () {
           Eaters.update(eaterId, {$set: person})
           Router.go('/')
         })
-      })
-    } else {
-      Eaters.update(eaterId, {$set: person})
-      Router.go('/')
-    }
+      } else {
+        Eaters.update(eaterId, {$set: person})
+        Router.go('/')
+      }
+    })
   }
 }
 

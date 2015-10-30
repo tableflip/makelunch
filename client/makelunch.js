@@ -194,3 +194,7 @@ Template.header.events({
     Meteor.loginWithTwitter()
   }
 })
+
+Template.registerHelper('uploadcarePublicKey', function () {
+  return Meteor.settings.public.uploadcare.publicKey
+})

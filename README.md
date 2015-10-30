@@ -16,7 +16,7 @@ To recommend who cooks next we look at how has the lowest value of `servings.giv
 - In the event of a tie, who cooked longest ago. (could also factor in meals eaten vs cooked)
 - User auth
 - Edit data / correct mistakes
-- Whizzbang visulisations
+- Whizzbang visualizations
 
 Getting started
 ---------------
@@ -24,24 +24,28 @@ Getting started
 - Add a settings.json in the top level of the repo:
 ```json
 {
-  {
-    "MESSAGEBIRD_KEY": "Messagebird Key",
+  "MESSAGEBIRD_KEY": "Messagebird Key",
+  "GCM": {
+    "authorization": "GCM Authorization key"
+  },
+  "messagePassword": "Password for testing messaging service",
+  "public": {
     "GCM": {
-      "authorization": "GCM Authorization key"
+      "senderId": "GCM Sender Id"
     },
-    "messagePassword": "Password for testing messaging service",
-    "public": {
-      "GCM": {
-        "senderId": "GCM Sender Id"
-      }
-    },
-    "twitter": {
-      "consumerKey": "",
-      "secret": ""
-    },
-    "twitterWhitelist": [
-      "adminHandle"
-    ]
+    "uploadcare": {
+      "publicKey": "uploadcare public key"
+    }
+  },
+  "twitter": {
+    "consumerKey": "",
+    "secret": ""
+  },
+  "twitterWhitelist": [
+    "adminHandle"
+  ],
+  "uploadcare": {
+    "privateKey": "uploadcare private key"
   }
 }
 ```
