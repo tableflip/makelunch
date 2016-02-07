@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    title=title ? title + ' - MAKELUNCH' : 'MAKELUNCH'
+    link(href='/#{manifest["bundle.css"]}' rel='stylesheet')
+  body.bg-img-pinboard
+    include ../public/bundle.svg
+    div#content!= content
+    script(type='text/javascript').
+      UPLOADCARE_PUBLIC_KEY = '#{uploadcarePublicKey}'
+      UPLOADCARE_LIVE = false
+      UPLOADCARE_MANUAL_START = true
+    script(src='/#{manifest["bundle.js"]}')

@@ -1,0 +1,191 @@
+/*
+ * Built on Bassplate * Boilerplate for Basscss with cssnext * http://github.com/basscss/bassplate
+ *
+ * @imports are automagically resolved to css files by looking for a module of
+ * the same name, and checking it's package.json `style` attribute.
+ */
+
+@import 'normalize.css';
+
+/* Basscss Modules */
+@import 'basscss-base-reset';
+@import 'basscss-base-forms';
+@import 'basscss-base-tables';
+@import 'basscss-base-typography';
+@import 'basscss-color-base';
+@import 'basscss-color-forms';
+@import 'basscss-color-tables';
+@import 'basscss-btn';
+@import 'basscss-btn-primary';
+@import 'basscss-btn-outline';
+@import 'basscss-type-scale';
+@import 'basscss-align';
+@import 'basscss-margin';
+@import 'basscss-padding';
+@import 'basscss-position';
+@import 'basscss-responsive-states';
+@import 'basscss-grid';
+@import 'basscss-layout';
+@import 'basscss-typography';
+@import 'flex-object';
+@import 'basscss-border';
+@import 'basscss-colors';
+@import 'basscss-background-colors';
+@import 'basscss-responsive-white-space';
+@import 'basscss-btn-sizes';
+
+
+/* Optional Modules (not included in Basscss by default) */
+/*
+@import 'basscss-btn-sizes';
+@import 'basscss-color-forms-dark';
+@import 'basscss-input-range';
+@import 'basscss-progress';
+@import 'basscss-background-images';
+@import 'basscss-media-object';
+@import 'basscss-responsive-white-space';
+@import 'basscss-utility-headings';
+@import 'basscss-ui-utility-groups';
+@import 'basscss-table-object';
+@import 'basscss-highlight-dark';
+@import 'basscss-highlight';
+*/
+
+/* Example custom file import */
+/*
+@import './color/borders';
+*/
+
+/* Default custom properties */
+/*@import 'basscss-defaults';*/
+
+/* Custom media queries */
+@custom-media --breakpoint-sm (min-width: 40em);
+@custom-media --breakpoint-md (min-width: 52em);
+@custom-media --breakpoint-lg (min-width: 64em);
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url("/fonts/courier-prime-sans/ttf/Courier Prime Sans.ttf") format("truetype");
+}
+
+/* Custom properties */
+:root {
+  --font-family: "Gill sans", sans-serif;
+  --line-height: 1.5;
+  --heading-font-family: var(--font-family);
+  --heading-font-weight: bold;
+  --heading-line-height: 1.25;
+  --monospace-font-family: "Courier Prime", 'Source Code Pro', Consolas, monospace;
+
+  --h1: 2rem;
+  --h2: 1.5rem;
+  --h3: 1.25rem;
+  --h4: 1rem;
+  --h5: .875rem;
+  --h6: .75rem;
+
+  --bold-font-weight: bold;
+
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 2rem;
+  --space-4: 4rem;
+
+  --form-field-font-size: 1rem;
+  --form-field-height: 2.25rem;
+  --form-field-padding-y: .5rem;
+  --form-field-padding-x: .5rem;
+
+  --button-font-size: inherit;
+  --button-font-weight: normal;
+  --button-line-height: 1.125rem;
+  --button-padding-y: .5rem;
+  --button-padding-x: 1rem;
+
+  --container-width: 64em;
+
+  --black:  #111;
+  --gray:   #aaa;
+  --silver: #ddd;
+  --white:  #fff;
+
+  --aqua:   #7fdbff;
+  --blue:   #0074d9;
+  --navy:   #001f3f;
+  --teal:   #39cccc;
+  --green:  #2ecc40;
+  --olive:  #3d9970;
+  --lime:   #01ff70;
+
+  --yellow: #ffdc00;
+  --orange: #ffc107;
+  --red:    #ff4136;
+  --fuchsia:#f012be;
+  --purple: #b10dc9;
+  --maroon: #85144b;
+
+  --darken-1: rgba(0,0,0,.0625);
+  --darken-2: rgba(0,0,0,.125);
+  --darken-3: rgba(0,0,0,.25);
+  --darken-4: rgba(0,0,0,.5);
+
+  --border-width: 1px;
+  --border-radius: 3px;
+  --border-color: var(--darken-2);
+  --hover-background-color: var(--darken-1);
+
+  --link-color: var(--blue);
+  --button-background-color: var(--blue);
+  --pre-background-color: var(--silver);
+}
+
+/* MAKELUNCH STYLES */
+body {
+  background:#434141;
+}
+.bg-img-tablecloth {
+  background-image:url('/img/tablecloth.png');
+}
+.bg-img-pinboard {
+  background-image:url('/img/pinboard.png');
+}
+.svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height:inherit;
+  vertical-align:middle;
+  margin:0 5px;
+}
+.svg-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.logo {
+  width:50px;
+  height:42px;
+}
+.big-chef {
+  width:200px;
+  height:200px;
+}
+.big-chef svg {
+  fill: #ffffff;
+}
+.header-text {
+  color:white;
+  text-decoration: none;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  vertical-align:middle;
+}
+.text-shadow {
+  text-shadow:2px 2px 2px rgba(0, 0, 0, 0.8);
+}
+.monospace {
+  font-family: "Courier Prime", 'Source Code Pro', Consolas, monospace;
+}

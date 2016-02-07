@@ -1,0 +1,18 @@
+include ../icon
+
+#page.join
+  header.white.bg-orange
+    a.btn(href="/")
+      +icon('logo')
+      span.header-text MAKE LUNCH
+  
+  h1.white.text-shadow.monospace.center Join in.
+  form.sm-col-8.md-col-6.lg-col-4.bg-orange.p3.mx-auto.my2
+    p.h3 Fill in your details to create your account.
+    label Name
+    input(type="text", name="name").block.col-12.mb2.field.monospace
+    label Email
+    input(type="text", name="email").block.col-12.mb2.field.monospace
+    label Password
+    input(type="text", name="password").block.col-12.mb2.field.monospace
+    button(type="submit").btn.btn-primary Create account

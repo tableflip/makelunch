@@ -1,0 +1,21 @@
+include ../icon
+
+#page.home
+  header.white.bg-orange
+    a.btn(href="/")
+      +icon('logo')
+      span.header-text MAKELUNCH
+  
+  .center
+    .mt3
+      +icon('chef', 'big-chef')
+    h2.white.text-shadow.monospace Cook for friends. Decide who's next.
+    a.btn.btn-primary.bg-orange.h2.mt2.mb3.px4.py2(href="/auth/twitter") Join in
+      
+    div(style="line-height:0;")
+      - var photos = ['9GafGxpxhF', '_q-4N-Jxv3', 'BASC11Ypxpl', '_xNCikpxvB', '_Z5PD4Jxk8', '_Z1hvepxus', '_Z14fvJxvM', '-ghE7iJxhG', '9f8XhOJxqy', '9QnDIapxh4', '8Xl_UBpxiZ', '78XJjRJxi6', '7vzvlFpxgv', '7k8f3EpxjF', '67S8yppxnc', '5U3Zu8Jxh-', '5CWeBIpxhM', '4tbJ53pxoz', '3ozYofJxhP', 'w1xte5pxie', 'v0xD5Jpxh6', 'vdb_nlpxpb', 'udLlUwJxnH', 'uQRYbeJxo4', 'uVvqKppxkh', 'uAkKsIJxiW', 't-MBx8pxg7', 'txQ1I8pxuK', 'tsTtUupxiI', 'sFUjnJpxqZ', 'mtD2E_pxpL', 'eSHSrepxvJ', 'c3o9NpJxrp', 'biWTZKpxk4', 'ankNJ3JxgS', 'Y8FruCpxrf', 'Y7dvArpxvs', 'Y7dT07JxvZ', 'YQF5eVpxuP', 'XsfuTxJxpl', 'XkAE51pxo5', 'WW3lozpxlk', 'RR9Ffdpxq7']
+      each id in photos
+        - var url = `http://instagram.com/p/${id}/media/?size=m`
+        img.rounded.m1(src=url, style="max-width:45%")
+    a(href="/#page" title="Built by TABLEFLIP").h1.my2.btn
+      +icon('logo-table')
