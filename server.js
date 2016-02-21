@@ -1,7 +1,7 @@
 var startedAt = Date.now()
 var config = require('config')
 var path = require('path')
-var db = require('./lib/db')
+var db = require('./db')
 var app = require('./lib/server')
 var ecstatic = require('ecstatic')
 
@@ -17,14 +17,14 @@ console.log(`
 `)
 console.log('Connecting to rethink:', config.rethink)
 
-db(config.rethink, (err, conn) => {
+db.init(config.rethink, (err) => {
   if (err) {
     console.error('Error starting rethink:', err.message)
     process.exit(-1)
   }
 
   // Let each route mount itself
-  routes.map(route => { route(app, conn) })
+  routes.map(route => { route(app, db) })
   app.use(ecstatic({root: path.join(__dirname, 'public')}))
 
   var server = app.listen(config.port, config.host, () => {

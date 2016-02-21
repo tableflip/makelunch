@@ -15,7 +15,7 @@ To recommend who cooks next we look at who has the lowest value of `servings.giv
 
 ```js
 {
-  _id: "foo",
+  id: "foo",
   name: "JAILmake",
   slug: "jailmake",
   photo: "https://logo.png",
@@ -74,3 +74,27 @@ profile: {
   ]
 }
 ```
+
+## Modes of app usage
+
+**Determined soloist**
+
+1. Unknown user logs in via twitter: _Create user_
+2. User starts new group: _Create group_, _Create member_
+3. User adds members: _Create member_
+4. User logs meal: _Create meal_
+
+**Crowdsource**
+
+1. Start a new group: _Create group_
+2. Add yourself: _Create user_
+2. Add emails for others: _Invite user_
+
+
+Create account... get jwt.
+
+do you have a jwt?
+  return user info with response
+
+
+
