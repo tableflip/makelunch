@@ -125,18 +125,18 @@ Template.registerHelper('equal', function (a, b) {
 
 Template.registerHelper('profile', function (userId) {
   var eater = Eaters.findOne(userId)
-  eater.monster = eater.monster || "http://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
+  eater.monster = eater.monster || "https://www.gravatar.com/avatar/" + CryptoJS.MD5(eater.name) + "?s=300&d=monsterid"
   return eater
 })
 
 Template.registerHelper('monster', function () {
-  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=retro"
-  return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
+  if (!this || !this.name) return "https://www.gravatar.com/avatar/mario?s=768&d=retro"
+  return "https://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
 })
 
 Template.registerHelper('photo', function () {
-  if (!this || !this.name) return "http://www.gravatar.com/avatar/mario?s=768&d=retro"
-  if (!this.uploadcare) return "http://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
+  if (!this || !this.name) return "https://www.gravatar.com/avatar/mario?s=768&d=retro"
+  if (!this.uploadcare) return "https://www.gravatar.com/avatar/" + CryptoJS.MD5(this.name) + "?s=768&d=retro"
   return "https://www.ucarecdn.com/"+this.uploadcare+"/-/scale_crop/768x768/center"
 })
 
