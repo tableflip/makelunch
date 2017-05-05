@@ -1,8 +1,19 @@
-Make Lunch!
-===========
+# Make Lunch!
 
-What it does
-------------
+## Dockering
+
+```
+# Build it
+docker build -t makelunch .
+
+# Run it
+docker run -p 3000:3000 -u "node" \
+-e "MONGO_URL=mongodb://<ure db here>" \
+-e "ROOT_URL=http://localhost:3000" \
+-e "METEOR_SETTINGS="$(cat settings.json)" makelunch
+```
+
+## What it does
 
 Help figure out whose cooking next by recording stats on how many servings you've made vs how many you've received.
 
