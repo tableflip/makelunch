@@ -1,2 +1,8 @@
+.git
+.gitignore
+Dockerfile
+settings.json
+settings.json.tpl
+README.md
 .meteor/local
 node_modules
