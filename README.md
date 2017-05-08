@@ -111,7 +111,6 @@ $ now alias https://makelunch-mdpmammtdx.now.sh lunch.tableflip.io
 
 ## Initial data
 
-
 - 2014-02-10, Hammick cooked leaky pasta for Elliot, Evans, Robinson, Wooding + 1 guest
 - 2014-02-11, Wooding cooked baked potatoes for Elliot, Evans, Hammick, Shaw + 1 guest
 - 2014-02-12, Shaw Bacon pasta cooked for Elliot, Hammick, Robinson, Wooding + 1 guest
