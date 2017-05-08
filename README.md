@@ -11,8 +11,8 @@ Meals are historical records. The stats on the Eaters are calculated on meal ins
 To recommend who cooks next we look at how has the lowest value of `servings.given` - `servings.recieved`.
 
 **TODO:**
+- Support multiple groups
 - In the event of a tie, who cooked longest ago. (could also factor in meals eaten vs cooked)
-- User auth
 - Whizzbang visualizations
 
 ## Getting started
@@ -25,7 +25,7 @@ $ meteor run --settings settings.json
 ```
 - Go to [http://localhost:3000](http://localhost:3000)
 
-## Build it with Docker
+### Build it with Docker
 
 ```
 # Build it
@@ -38,25 +38,48 @@ docker run -p 3000:3000 -u "node" \
 -e "METEOR_SETTINGS="$(cat settings.json)" makelunch
 ```
 
-## Deploy it with now.sh
+### Deploy it with now.sh
 
 Put env config in .env.production
-```
+```sh
 ROOT_URL="https://lunch.tableflip.io"
 MONGO_URL="@makelunch-mongo-url-prod"
 METEOR_SETTINGS="@makelunch-settings-prod"
 ```
 
+Then On the TABLEFLIP `now` account (if you plan to deploy to lunch.tableflip.io)
+
 Add secrets
-```
+```sh
 now secret add makelunch-mongo-url-prod <db url>
 now secret add makelunch-settings-prod "${cat settings.json | tr -d '\n'}"
 ```
 
 Deploy!
-```
+```sh
 now --dotenv=.env.production --docker
 ```
+
+You can run that last command to your hearts content. Each deploy get's it's own url.
+
+Once your happy with it, alias the deployment to the live URL
+```sh
+now alias https://makelunch-zyfwsdybcl.now.sh/ lunch.tableflip.io
+```
+
+You should see:
+
+```sh
+$ now alias https://makelunch-mdpmammtdx.now.sh lunch.tableflip.io
+> lunch.tableflip.io is a custom domain.
+> Verifying the DNS settings for lunch.tableflip.io (see https://zeit.world for help)
+> Success! Domain tableflip.io (FOn9AsAAz4hzoeh1z5Fa463G) added
+> Verification OK!
+> Provisioning certificate for lunch.tableflip.io
+> Success! lunch.tableflip.io now points to makelunch-mdpmammtdx.now.sh! [29s]
+```
+
+:rocket:
 
 ## Collections
 
