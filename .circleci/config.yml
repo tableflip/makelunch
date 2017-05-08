@@ -10,7 +10,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
-      - run: curl -sL https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh
+      - run: if [[ ! -e ~/.meteor ]]; then curl -sL https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh; fi
       - save_cache:
           key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
           paths:
