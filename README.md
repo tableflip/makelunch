@@ -1,6 +1,6 @@
 # Make Lunch!
 
-https://lunch.tableflip.io
+[![CircleCI](https://circleci.com/gh/tableflip/makelunch/tree/circleci2.svg?style=svg)](https://circleci.com/gh/tableflip/makelunch/tree/circleci2) - https://lunch.tableflip.io
 
 Helps figure out who should cooking next by recording stats on how many servings you've made vs how many you've received.
 
