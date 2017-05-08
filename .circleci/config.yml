@@ -4,30 +4,29 @@ jobs:
     working_directory: ~/src
     docker:
       - image: node:4.8.3
-      environment:
-        METEOR_ALLOW_SUPERUSER: true
+        environment:
+          METEOR_ALLOW_SUPERUSER: true
     steps:
       - checkout
-        - restore_cache:
-            key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
-        - run: curl -sL https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh
-        - save_cache:
-            key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
-            paths:
-              - "~/.meteor"
-
-        - restore_cache:
-            key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
-        - run:
-            name: Install npm deps
-            command: |
-              npm i --quiet --production
-        - save_cache:
-            key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
-            paths:
-              - "node_modules"
-        - run:
-            name: Install npm deps
-            command: |
-              ~/.meteor/meteor build --directory ..
-              cd ../bundle/programs/server && npm i --quiet --production
+      - restore_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
+      - run: curl -sL https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
+          paths:
+            - "~/.meteor"
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Install npm deps
+          command: |
+            npm i --quiet --production
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Install npm deps
+          command: |
+            ~/.meteor/meteor build --directory ..
+            cd ../bundle/programs/server && npm i --quiet --production
