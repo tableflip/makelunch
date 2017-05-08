@@ -18,15 +18,24 @@ jobs:
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
-          name: Install npm deps
+          name: Install our npm deps
           command: |
             npm i --quiet --production
       - save_cache:
           key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - "node_modules"
+      - restore_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/versions" }}
       - run:
-          name: Install npm deps
+          name: Build meteor bundle
           command: |
             ~/.meteor/meteor build --directory ..
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/versions" }}
+          paths:
+            - ".meteor/local/plugin-cache"
+      - run:
+          name: Install meteor's npm deps
+          command: |
             cd ../bundle/programs/server && npm i --quiet --production
