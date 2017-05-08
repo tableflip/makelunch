@@ -1,6 +1,31 @@
 # Make Lunch!
 
-## Dockering
+https://lunch.tableflip.io
+
+Helps figure out who should cooking next by recording stats on how many servings you've made vs how many you've received.
+
+If I cook for 8 people (including me), I recieve 1 portion and give 8, so am +7
+
+Meals are historical records. The stats on the Eaters are calculated on meal insert. It's an experiment in document storage style.
+
+To recommend who cooks next we look at how has the lowest value of `servings.given` - `servings.recieved`.
+
+**TODO:**
+- In the event of a tie, who cooked longest ago. (could also factor in meals eaten vs cooked)
+- User auth
+- Whizzbang visualizations
+
+## Getting started
+
+- Clone the repo
+- Copy settings.tpl to settings.json and fill out the blanks
+- Run meteor:
+```bash
+$ meteor run --settings settings.json
+```
+- Go to [http://localhost:3000](http://localhost:3000)
+
+## Build it with Docker
 
 ```
 # Build it
@@ -13,80 +38,27 @@ docker run -p 3000:3000 -u "node" \
 -e "METEOR_SETTINGS="$(cat settings.json)" makelunch
 ```
 
-## What it does
+## Deploy it with now.sh
 
-Help figure out whose cooking next by recording stats on how many servings you've made vs how many you've received.
-
-If I cook for 8 people (including me), I recieve 1 portion and give 8, so am +7
-
-Meals are historical records. The stats on the Eaters are calculated on meal insert. It's an experiment in document storage style.
-
-To recommend who cooks next we look at how has the lowest value of `servings.given` - `servings.recieved`.
-
-**TODO:**
-- In the event of a tie, who cooked longest ago. (could also factor in meals eaten vs cooked)
-- User auth
-- Edit data / correct mistakes
-- Whizzbang visualizations
-
-Getting started
----------------
-- Clone the repo
-- Add a settings.json in the top level of the repo:
-```json
-{
-  "MESSAGEBIRD_KEY": "Messagebird Key",
-  "GCM": {
-    "authorization": "GCM Authorization key"
-  },
-  "messagePassword": "Password for testing messaging service",
-  "public": {
-    "GCM": {
-      "senderId": "GCM Sender Id"
-    },
-    "uploadcare": {
-      "publicKey": "uploadcare public key"
-    }
-  },
-  "twitter": {
-    "consumerKey": "",
-    "secret": ""
-  },
-  "twitterWhitelist": [
-    "adminHandle"
-  ],
-  "uploadcare": {
-    "privateKey": "uploadcare private key"
-  }
-}
+Put env config in .env.production
 ```
-- Run meteor:
-```bash
-$ meteor run --settings settings.json
+ROOT_URL="https://lunch.tableflip.io"
+MONGO_URL="@makelunch-mongo-url-prod"
+METEOR_SETTINGS="@makelunch-settings-prod"
 ```
-- Go to [http://localhost:3000](http://localhost:3000)
-- **For now, you'll need to edit the following code** in server/server.js:
-```js
-Accounts.validateLoginAttempt(function (info) {
-  if (!info.user) return false
-  var screenName = info.user.services.twitter.screenName.toLowerCase()
-  var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
-  if(eaters.length === 0) return false
-  return true
-})
+
+Add secrets
 ```
-- Comment out everything in that function except ``` return true ``` and uncomment once you've logged in and created a user with your Twitter handle. Sorry.
+now secret add makelunch-mongo-url-prod <db url>
+now secret add makelunch-settings-prod "${cat settings.json | tr -d '\n'}"
+```
 
-Routes
-------
+Deploy!
+```
+now --dotenv=.env.production --docker
+```
 
-`/` = stats & recommendations
-`/addmeal` = create new meal data
-`/addperson` = create new people
-
-
-Collections
------------
+## Collections
 
 **Meals**
 ```
@@ -114,8 +86,8 @@ Collections
 }
 ```
 
-Initial data
-------------
+## Initial data
+
 
 - 2014-02-10, Hammick cooked leaky pasta for Elliot, Evans, Robinson, Wooding + 1 guest
 - 2014-02-11, Wooding cooked baked potatoes for Elliot, Evans, Hammick, Shaw + 1 guest
