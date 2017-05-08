@@ -1,0 +1,25 @@
+{
+  "name": "makelunch",
+  "version": "1.0.0",
+  "description": "Make Lunch!",
+  "dependencies": {
+    "async": "^1.3.0",
+    "babel-runtime": "^6.23.0",
+    "bcrypt": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "say sorry",
+    "deploy": "now --dotenv=.env.production --docker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/makelunch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tableflip/makelunch/issues"
+  },
+  "homepage": "https://github.com/tableflip/makelunch#readme"
+}

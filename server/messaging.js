@@ -1,6 +1,6 @@
+var async = require('async')
+
 var messageBirdURI = 'https://rest.messagebird.com/',
-    Future = Npm.require('fibers/future'),
-    async = Meteor.npmRequire('async'),
     heirarchy,
     eaterIndex,
     lunchHash
@@ -8,10 +8,10 @@ var messageBirdURI = 'https://rest.messagebird.com/',
 Meteor.startup(function() {
   heirarchy = Eaters.sorted({status: 'jail'}),
   eaterIndex = 0,
-  lunchHash = Random.id()  
+  lunchHash = Random.id()
 })
 
-function sendMessage(message, eaters, link) {
+function sendMessage(message, eaters, link, done) {
 
   if (typeof eaters === 'string')
       eaters = Eaters.find({name: eaters}).fetch();
@@ -24,11 +24,10 @@ function sendMessage(message, eaters, link) {
   else
       throw new Meteor.Error('bad_eaters_argument', 'Supplied eater(s) data is not one of: eater name, eater doc, cursor over eaters, array of eater names.');
 
-  var fut = new Future(),
-      messageCount = 0
+  var messageCount = 0
 
   async.each(eaters, function(eater, cb) {
-    
+
     var user = Meteor.users.findOne({'services.twitter.screenName': eater.auth && eater.auth.twitter})
 
     if (user && user.regid) {
@@ -50,21 +49,13 @@ function sendMessage(message, eaters, link) {
         cb(err)
       })
     } else cb()
-    
-  }, function(err) {
-    if (err) throw err
-    else fut.return(messageCount)
+
+  }, function (err) {
+    done(err, messageCount)
   });
-  
-  return fut.wait()
-    
 }
 
-Meteor.methods({
-  
-
-  
-})
+var sendMessageInFiber = Meteor.wrapAsync(sendMessage)
 
 function greeting() {
   return _.sample([
@@ -101,7 +92,7 @@ function startNotifying() {
 function notifyEater(name) {
   lunchHash = Random.id()
   console.log('You\'re up to cook tomorrow, ' + greeting() + '!', name, 'tomorrow/' + lunchHash)
-  sendMessage('You\'re up to cook tomorrow, ' + greeting() + '!', name, 'tomorrow/' + lunchHash)
+  sendMessageInFiber('You\'re up to cook tomorrow, ' + greeting() + '!', name, 'tomorrow/' + lunchHash)
 }
 
 var foo = 'bar';
@@ -122,12 +113,12 @@ Meteor.methods({
   },
 
   'sendMessage': function(message, eaters, password, link) {
-    if (password === Meteor.settings.messagePassword) return sendMessage(message, eaters, link)
+    if (password === Meteor.settings.messagePassword) return sendMessageInFiber(message, eaters, link)
     else throw new Meteor.Error('wrong password')
   },
-  
+
   'startNotifying': function(password) {
     if (password === Meteor.settings.messagePassword) return startNotifying()
-    else throw new Meteor.Error('wrong password')    
+    else throw new Meteor.Error('wrong password')
   }
 })

@@ -1,10 +1,8 @@
-Make Lunch!
-===========
+# Make Lunch!
 
-What it does
-------------
+https://lunch.tableflip.io
 
-Help figure out whose cooking next by recording stats on how many servings you've made vs how many you've received.
+Helps figure out who should cooking next by recording stats on how many servings you've made vs how many you've received.
 
 If I cook for 8 people (including me), I recieve 1 portion and give 8, so am +7
 
@@ -13,69 +11,77 @@ Meals are historical records. The stats on the Eaters are calculated on meal ins
 To recommend who cooks next we look at how has the lowest value of `servings.given` - `servings.recieved`.
 
 **TODO:**
+- Support multiple groups
 - In the event of a tie, who cooked longest ago. (could also factor in meals eaten vs cooked)
-- User auth
-- Edit data / correct mistakes
 - Whizzbang visualizations
 
-Getting started
----------------
+## Getting started
+
 - Clone the repo
-- Add a settings.json in the top level of the repo:
-```json
-{
-  "MESSAGEBIRD_KEY": "Messagebird Key",
-  "GCM": {
-    "authorization": "GCM Authorization key"
-  },
-  "messagePassword": "Password for testing messaging service",
-  "public": {
-    "GCM": {
-      "senderId": "GCM Sender Id"
-    },
-    "uploadcare": {
-      "publicKey": "uploadcare public key"
-    }
-  },
-  "twitter": {
-    "consumerKey": "",
-    "secret": ""
-  },
-  "twitterWhitelist": [
-    "adminHandle"
-  ],
-  "uploadcare": {
-    "privateKey": "uploadcare private key"
-  }
-}
-```
+- Copy settings.tpl to settings.json and fill out the blanks
 - Run meteor:
 ```bash
 $ meteor run --settings settings.json
 ```
 - Go to [http://localhost:3000](http://localhost:3000)
-- **For now, you'll need to edit the following code** in server/server.js:
-```js
-Accounts.validateLoginAttempt(function (info) {
-  if (!info.user) return false
-  var screenName = info.user.services.twitter.screenName.toLowerCase()
-  var eaters = Eaters.find({ 'auth.twitter': screenName }).fetch()
-  if(eaters.length === 0) return false
-  return true
-})
+
+### Build it with Docker
+
 ```
-- Comment out everything in that function except ``` return true ``` and uncomment once you've logged in and created a user with your Twitter handle. Sorry.
+# Build it
+docker build -t makelunch .
 
-Routes
-------
+# Run it
+docker run -p 3000:3000 -u "node" \
+-e "MONGO_URL=mongodb://<ure db here>" \
+-e "ROOT_URL=http://localhost:3000" \
+-e "METEOR_SETTINGS="$(cat settings.json)" makelunch
+```
 
-`/` = stats & recommendations
-`/addmeal` = create new meal data
-`/addperson` = create new people
+### Deploy it with now.sh
 
+Put env config in .env.production
+```sh
+ROOT_URL="https://lunch.tableflip.io"
+MONGO_URL="@makelunch-mongo-url-prod"
+METEOR_SETTINGS="@makelunch-settings-prod"
+```
 
-Collections
------------
+Then On the TABLEFLIP `now` account (if you plan to deploy to lunch.tableflip.io)
+
+Add secrets
+```sh
+now secret add makelunch-mongo-url-prod <db url>
+now secret add makelunch-settings-prod "${cat settings.json | tr -d '\n'}"
+```
+
+Deploy!
+```sh
+now --dotenv=.env.production --docker
+```
+
+You can run that last command to your hearts content. Each deploy get's it's own url.
+
+Once your happy with it, alias the deployment to the live URL
+```sh
+now alias https://makelunch-zyfwsdybcl.now.sh/ lunch.tableflip.io
+```
+
+You should see:
+
+```sh
+$ now alias https://makelunch-mdpmammtdx.now.sh lunch.tableflip.io
+> lunch.tableflip.io is a custom domain.
+> Verifying the DNS settings for lunch.tableflip.io (see https://zeit.world for help)
+> Success! Domain tableflip.io (FOn9AsAAz4hzoeh1z5Fa463G) added
+> Verification OK!
+> Provisioning certificate for lunch.tableflip.io
+> Success! lunch.tableflip.io now points to makelunch-mdpmammtdx.now.sh! [29s]
+```
+
+:rocket:
+
+## Collections
 
 **Meals**
 ```
@@ -103,8 +109,8 @@ Collections
 }
 ```
 
-Initial data
-------------
+## Initial data
+
 
 - 2014-02-10, Hammick cooked leaky pasta for Elliot, Evans, Robinson, Wooding + 1 guest
 - 2014-02-11, Wooding cooked baked potatoes for Elliot, Evans, Hammick, Shaw + 1 guest

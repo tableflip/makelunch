@@ -6,12 +6,12 @@
   "messagePassword": "<MESSAGE_PASSWORD>",
   "public": {
     "uploadcare": {
-      "publicKey": "<UPLOADCARE_PUBLIC_KEY>",
+      "publicKey": "<UPLOADCARE_PUBLIC_KEY>"
     },
     "GCM": {
       "senderId": "<GCM_SENDER_ID>"
     }
-  }
+  },
   "uploadcare": {
     "privateKey": "<UPLOADCARE_PRIVATE_KEY>"
   },
