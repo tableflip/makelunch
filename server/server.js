@@ -1,10 +1,15 @@
-Meteor.publish('eaters', function () {
-  return Eaters.find({}, { sort: {name: 1} })
+Meteor.publish('eaters', function (opts = {}) {
+  var query = {}
+  if (opts._id) query._id = opts._id
+  return Eaters.find(query, { sort: {name: 1} })
 })
 
-Meteor.publish('meals', function (limit) {
-  limit = limit || 10
-  return Meals.find({}, {sort:[['date', 'desc']], limit: limit})
+Meteor.publish('meals', function (opts = {}) {
+  var limit = opts.limit || 20
+  var query = {}
+  if (opts.chef) query.chef = opts.chef
+  if (opts._id) query._id = opts._id
+  return Meals.find(query, {sort:[['date', 'desc']], limit: limit})
 })
 
 Meteor.startup(function () {

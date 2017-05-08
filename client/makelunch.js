@@ -1,8 +1,5 @@
 MakeLunch = {} // our global for helpers
 
-Meteor.subscribe('eaters')
-Meteor.subscribe('meals')
-
 Meteor.startup(function () {
 
   Router.configure({
@@ -18,6 +15,12 @@ Meteor.startup(function () {
 
     this.route('home', {
       path:'/' ,
+      onBeforeAction: [
+        function () {
+          this.subscribe('eaters')
+          this.next()
+        }
+      ],
       data: function () {
         return {
           eaters: Eaters.sorted({status:'jail'}),
@@ -40,6 +43,13 @@ Meteor.startup(function () {
 
     this.route('editmeal', {
       path:'/editmeal/:_id',
+      onBeforeAction: [
+        function () {
+          this.subscribe('meals', {_id: this.params._id})
+          this.subscribe('eaters')
+          this.next()
+        }
+      ],
       data: function () {
         var meal = Meals.findOne(this.params._id)
         if (!meal) return {
@@ -59,6 +69,12 @@ Meteor.startup(function () {
 
     this.route('editperson', {
       path: '/editperson/:_id',
+      onBeforeAction: [
+        function () {
+          this.subscribe('eaters', {_id: this.params._id})
+          this.next()
+        }
+      ],
       data: function() {
         return Eaters.findOne(this.params._id)
       }
@@ -70,14 +86,15 @@ Meteor.startup(function () {
       path: '/eater/:_id',
       onBeforeAction: [
         function () {
-          this.subscribe('meals', Infinity)
+          this.subscribe('eaters')
+          this.subscribe('meals', { chef: this.params._id })
           this.next()
         }
       ],
       data: function () {
         var ctx = this
         return {
-          eater: Eaters.findOne(ctx.params._id),
+          eater: Eaters.findOne(this.params._id),
           meals: Meals.find({ chef: this.params._id })
         }
       }
@@ -87,6 +104,7 @@ Meteor.startup(function () {
       path:'/meals',
       onBeforeAction: [
         function () {
+          this.subscribe('eaters')
           this.subscribe('meals')
           this.next()
         }
