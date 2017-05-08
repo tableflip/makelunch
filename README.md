@@ -1,6 +1,6 @@
 # Make Lunch!
 
-https://lunch.tableflip.io
+[![CircleCI](https://circleci.com/gh/tableflip/makelunch.svg?style=svg)](https://circleci.com/gh/tableflip/makelunch) - https://lunch.tableflip.io
 
 Helps figure out who should cooking next by recording stats on how many servings you've made vs how many you've received.
 
@@ -110,7 +110,6 @@ $ now alias https://makelunch-mdpmammtdx.now.sh lunch.tableflip.io
 ```
 
 ## Initial data
-
 
 - 2014-02-10, Hammick cooked leaky pasta for Elliot, Evans, Robinson, Wooding + 1 guest
 - 2014-02-11, Wooding cooked baked potatoes for Elliot, Evans, Hammick, Shaw + 1 guest

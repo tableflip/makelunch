@@ -1,0 +1,41 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/src
+    docker:
+      - image: node:4.8.3
+        environment:
+          METEOR_ALLOW_SUPERUSER: true
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
+      - run: if [[ ! -e ~/.meteor ]]; then curl -sL https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh; fi
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/release" }}
+          paths:
+            - "~/.meteor"
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Install our npm deps
+          command: |
+            npm i --quiet --production
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - restore_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/versions" }}
+      - run:
+          name: Build meteor bundle
+          command: |
+            ~/.meteor/meteor build --directory ..
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ checksum ".meteor/versions" }}
+          paths:
+            - ".meteor/local/plugin-cache"
+      - run:
+          name: Install meteor's npm deps
+          command: |
+            cd ../bundle/programs/server && npm i --quiet --production
