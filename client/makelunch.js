@@ -33,6 +33,12 @@ Meteor.startup(function () {
 
     this.route('addmeal', {
       path:'/addmeal',
+      onBeforeAction: [
+        function () {
+          this.subscribe('eaters')
+          this.next()
+        }
+      ],
       data: function () {
         return {
           chef: this.params.query.chef,
