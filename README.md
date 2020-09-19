@@ -32,10 +32,7 @@ $ meteor run --settings settings.json
 docker build -t makelunch .
 
 # Run it
-docker run -p 3000:3000 -u "node" \
--e "MONGO_URL=mongodb://<ure db here>" \
--e "ROOT_URL=http://localhost:3000" \
--e "METEOR_SETTINGS="$(cat settings.json)" makelunch
+docker run --init -p 3000:3000 -u "node" -e "MONGO_URL=<her hair is full of secrets>" -e "ROOT_URL=http://localhost:3000" -e "METEOR_SETTINGS=$(cat settings.json)" makelunch
 ```
 
 ### Deploy it with now.sh

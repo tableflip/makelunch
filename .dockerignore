@@ -1,6 +1,7 @@
-.meteor/local
 .git*
 .env*
-node_modules
+**/node_modules
+**/.meteor/local
 README.md
 settings.json.tpl
+

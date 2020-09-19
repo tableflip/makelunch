@@ -1,29 +1,39 @@
-FROM node:4.8.3
-MAINTAINER olizilla <oli@tableflip.io>
+# from https://github.com/disney/meteor-base/blob/f8acb5de78e487b6f027d34339b22fd25c1080e6/example/default.dockerfile
 
-WORKDIR /src
+# The tag here should match the Meteor version of your app, per .meteor/release
+FROM geoffreybooth/meteor-base:1.11
 
-# Add Tini a lightweight init system that properly handles running as PID 1.
-# A Node.js process running as PID 1 will not respond to SIGTERM (CTRL-C) and similar signals.
-# https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#handling-kernel-signals
-ENV TINI_VERSION v0.14.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--"]
+# Copy app package.json and package-lock.json into container
+COPY ./package*.json $APP_SOURCE_FOLDER/
 
-ENV METEOR_ALLOW_SUPERUSER=true
-RUN curl -sL https://install.meteor.com | sed s/--progress-bar/-sL/g | /bin/sh
+RUN bash $SCRIPTS_FOLDER/build-app-npm-dependencies.sh
 
-ADD package.json /src
-RUN npm install --production --quiet
+# Copy app source into container
+COPY . $APP_SOURCE_FOLDER/
 
-ADD . /src
-RUN meteor build --directory .. \
-    && cd /bundle/programs/server \
-    && npm install --production --quiet
+RUN bash $SCRIPTS_FOLDER/build-meteor-bundle.sh
 
-ENV NODE_ENV=production
-ENV PORT=3000
-EXPOSE 3000
-WORKDIR /bundle
+
+# Use the specific version of Node expected by your Meteor release, per https://docs.meteor.com/changelog.html; this is expected for Meteor 1.11
+FROM node:12.18.3-alpine
+
+ENV APP_BUNDLE_FOLDER /opt/bundle
+ENV SCRIPTS_FOLDER /docker
+
+# Runtime dependencies; if your dependencies need compilation (native modules such as bcrypt) or you are using Meteor <1.8.1, use app-with-native-dependencies.dockerfile instead
+RUN apk --no-cache add \
+		bash \
+		ca-certificates
+
+# Copy in entrypoint
+COPY --from=0 $SCRIPTS_FOLDER $SCRIPTS_FOLDER/
+
+# Copy in app bundle
+COPY --from=0 $APP_BUNDLE_FOLDER/bundle $APP_BUNDLE_FOLDER/bundle/
+
+RUN bash $SCRIPTS_FOLDER/build-meteor-npm-dependencies.sh
+
+# Start app
+ENV PORT 3000
+ENTRYPOINT ["/docker/entrypoint.sh"]
 CMD ["node", "main.js"]
