@@ -35,5 +35,9 @@ RUN bash $SCRIPTS_FOLDER/build-meteor-npm-dependencies.sh
 
 # Start app
 ENV PORT 3000
-ENTRYPOINT ["/docker/entrypoint.sh"]
-CMD ["node", "main.js"]
+
+# Get gcp secret to env tool https://github.com/binxio/gcp-get-secret
+# It replaces env var values that start with gcp:///path/to/secret with the actual value from secret manager
+COPY --from=binxio/gcp-get-secret:0.3.1 /gcp-get-secret /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/gcp-get-secret"]
+CMD ["/bin/bash", "-c", "/docker/entrypoint.sh", "node", "main.js"]
